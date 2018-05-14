@@ -9,3 +9,14 @@ footer {
 	position: fixed;
 	bottom: 0;
 }
+
+header {
+	background: #b98c00;
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+
+main {
+	padding-top: 79px;
+}
