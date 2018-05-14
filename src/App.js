@@ -7,10 +7,22 @@ import Main from './main/Main';
 
 
 class App extends Component {
-  render() {
+    apirequest(){
+        fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
+            .then(response => response.json())
+
+            .then(json => {
+                    console.log(json);
+                }
+            )
+        ;
+
+    };
+
+    render() {
     return (
       <div className="App">
-	  
+          {this.apirequest()}
 		<Header />
 		
 		<Main />
