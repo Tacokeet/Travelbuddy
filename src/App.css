@@ -2,3 +2,21 @@
   text-align: center;
 }
 
+footer {
+	background: #cccccc;
+	width: 100%;
+	padding: 20px 0px 20px 0px;
+	position: fixed;
+	bottom: 0;
+}
+
+header {
+	background: #b98c00;
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+
+main {
+	padding-top: 79px;
+}
