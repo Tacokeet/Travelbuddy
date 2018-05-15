@@ -10,9 +10,14 @@ import City   from './city/City';
 
 class App extends Component {
     state = {
-        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnengehaalde info*/
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         cityName: 'Groningen',
-        categories: ['Must see places','Entertainment','Restaurants']
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen"
+    }
+
+    filterHandler = () => {
+        console.log("TEST");
     }
 
   render() {
@@ -24,6 +29,7 @@ class App extends Component {
               {this.state.categories.map((categorie) => {
                   return <Places
                       categories ={categorie}
+                      key={this.state.id}
                   />
               })}
           </div>
@@ -35,6 +41,8 @@ class App extends Component {
 		<Header />
 		
 		<City cityName={this.state.cityName}/>
+
+        <button id={'filter'} onClick={this.filterHandler}>filter</button>
 
         {textcategories}
 

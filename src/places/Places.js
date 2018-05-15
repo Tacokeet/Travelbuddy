@@ -4,7 +4,7 @@ import './Places.css';
 const places = (props) => {
     return (
     <div>
-        <h3 className={'placesText'}>{props.categories}</h3>
+        <h3 className={'placesText'} >{props.categories}</h3>
         <div className={'places'}></div>
 
     </div>
