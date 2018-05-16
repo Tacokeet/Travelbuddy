@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import Login from './main/user/Login';
-import Profile from './main/user/Profile';
+import Login from './user/Login';
+import Profile from './user/Profile';
+import Settings from './user/Settings.js';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
 
@@ -16,7 +18,7 @@ import {
 
 import Places from './places/Places';
 import City   from './city/City';
-import Settings from './main/user/Settings.js';
+
 
 class App extends Component {
     render() {
