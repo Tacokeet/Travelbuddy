@@ -6,9 +6,8 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './main/user/Login';
 import Profile from './main/user/Profile';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
-import {
+import { 
 	Route,
 	BrowserRouter
 } from 'react-router-dom';
@@ -16,15 +15,14 @@ import {
 import Places from './places/Places';
 import City   from './city/City';
 
-
 class App extends Component {
     render() {
         return (
           <BrowserRouter>
             <div className="App">
-
+                
                 <Header />
-
+                  
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
@@ -72,11 +70,13 @@ class Home extends Component {
           </div>
       );
     {this.apirequest()}
-
+    
     return (
-        <City cityName={this.state.cityName}/>
-        <button id='filter'>filter</button>
-        {textcategories}
+		<main>
+			<City cityName={this.state.cityName}/>
+			<button id='filter' onClick={this.filterHandler}>filter</button>
+			{textcategories}
+		</main>
     );
   }
 }
