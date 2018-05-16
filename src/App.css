@@ -3,12 +3,13 @@
 	background: #F8F9FA;
 	font-family: 'Raleway', sans-serif;
 
+
 }
 
 footer {
 	background: #495057;
 	color: white;
-	margin-top: 40px;
+	margin-top: 90px;
 	width: 100%;
 	padding: 20px 0px 20px 0px;
 	position: relative;
@@ -26,7 +27,10 @@ header {
 
 #filter {
 	float: left;
-	margin-right: -30px;
+	margin-left: 5vw;
+	margin-top: 3.5vw;
+
+
 }
 
 main {
@@ -39,6 +43,7 @@ main {
     display: inline-block;
 	margin-top: 26px;
     right: 30px;
+	cursor: pointer;
 }
 
 #menu {
@@ -96,4 +101,11 @@ header h1 {
 
 #signIn {
 	
+}
+
+#test{
+	margin-left: 100px;
+	width: 50%;
+	height: 100px;
+	background-color: #ffffff;
 }
