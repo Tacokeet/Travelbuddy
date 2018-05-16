@@ -16,7 +16,7 @@ import {
 
 import Places from './places/Places';
 import City   from './city/City';
-import faCoffee from "@fortawesome/fontawesome-free-regular/faUser";
+import Settings from './main/user/Settings.js';
 
 class App extends Component {
     render() {
@@ -29,6 +29,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
+				<Route path="/settings" component={Settings} />
 
                 <Footer />
 
