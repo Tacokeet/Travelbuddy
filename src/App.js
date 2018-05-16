@@ -26,10 +26,10 @@ class App extends Component {
       let textcategories = null
       textcategories = (
           <div>
-              {this.state.categories.map((categorie) => {
+              {this.state.categories.map((categorie,index) => {
                   return <Places
                       categories ={categorie}
-                      key={this.state.id}
+                      key={this.state.id + index}
                   />
               })}
           </div>
