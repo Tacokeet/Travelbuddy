@@ -1,0 +1,27 @@
+#settings {
+	padding: 0 20% 0 20%;
+	text-align: left;
+}
+
+.settingsRow {
+	margin-bottom: 18px;
+}
+
+.settingsBlock {
+	width: 33%;
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+}
+
+.settingsBlock label {
+	display: block;
+    margin-bottom: 7px;
+}
+
+.settingsBlock input, .settingsBlock select {
+	width: 260px;
+	padding: 4px 4px 4px 8px;
+	font-size: 14px;
+	line-height: 28px;
+}
