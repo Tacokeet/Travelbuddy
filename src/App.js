@@ -6,23 +6,26 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './main/user/Login';
 import Profile from './main/user/Profile';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
 
-import { 
+import {
 	Route,
 	BrowserRouter
 } from 'react-router-dom';
 
 import Places from './places/Places';
 import City   from './city/City';
+import faCoffee from "@fortawesome/fontawesome-free-regular/faUser";
 
 class App extends Component {
     render() {
         return (
           <BrowserRouter>
             <div className="App">
-                
+
                 <Header />
-                  
+
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
@@ -70,11 +73,17 @@ class Home extends Component {
           </div>
       );
     {this.apirequest()}
-    
+
     return (
 		<main>
 			<City cityName={this.state.cityName}/>
-			<button id='filter' onClick={this.filterHandler}>filter</button>
+			{/*<button id='filter' onClick={this.filterHandler}>filter</button>*/}
+            <div id={'filter'} onClick={this.filterHandler}>
+                <FontAwesomeIcon icon={faFilter} />
+            </div>
+            <div id={'test'}>
+                <p>fdfdsfdsf</p>
+            </div>
 			{textcategories}
 		</main>
     );

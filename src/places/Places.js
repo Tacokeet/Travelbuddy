@@ -12,10 +12,7 @@ const places = (props) => {
     <div>
         <h3 className={'placesText'} >{props.categories}</h3>
         <div className={'places'}>
-            <div className={'imageText'}>
-                <img className={'locations'} src={logo1} alt="gfd" />
-                <p className={'infoLocation'}>test</p>
-            </div>
+            <img className={'locations'} src={logo1} alt="gfd" />
             <img className={'locations'} src={logo2} alt="ghfd" />
             <img className={'locations'} src={logo3} alt="ff" />
             <img className={'locations'} src={logo4} alt="ss" />
