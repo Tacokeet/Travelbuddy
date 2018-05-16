@@ -22,7 +22,6 @@ header {
 	position: relative;
 	top: 0;
 	box-shadow: 0 4px 2px -2px gray;
-	margin-bottom: 50px;
 }
 
 #filter {
@@ -31,7 +30,7 @@ header {
 }
 
 main {
-	padding-top: 79px;
+	margin-top: 50px;
 }
 
 #dropDown {
