@@ -9,6 +9,18 @@ import City   from './city/City';
 
 
 class App extends Component {
+    apirequest(){
+        fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
+            .then(response => response.json())
+
+            .then(json => {
+                    console.log(json);
+                }
+            )
+        ;
+
+    };
+
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         cityName: 'Groningen',
@@ -19,8 +31,7 @@ class App extends Component {
     filterHandler = () => {
         console.log("TEST");
     }
-
-  render() {
+    render() {
 
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
@@ -35,22 +46,22 @@ class App extends Component {
           </div>
       );
 
-    return (
-      <div className="App">
-	  
-		<Header />
-		
-		<City cityName={this.state.cityName}/>
+        return (
+            <div className="App">
+                {this.apirequest()}
+                <Header />
+
+                <City cityName={this.state.cityName}/>
 
         <button id={'filter'} onClick={this.filterHandler}>filter</button>
 
         {textcategories}
 
-		<Footer />
-		
-      </div>
-    );
-  }
+                <Footer />
+
+            </div>
+        );
+    }
 }
 
 export default App;
