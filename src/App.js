@@ -90,6 +90,7 @@ class Home extends Component {
                 <FontAwesomeIcon icon={faFilter} />
             </div>
 
+
             <ToggleDisplay show={this.state.show}>
             <div id={'filterMenu'}>
                 <p className={'filterMenuItems'}>Categorie</p>
