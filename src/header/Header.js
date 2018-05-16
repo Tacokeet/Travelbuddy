@@ -3,7 +3,8 @@ import {
 	NavLink,
 } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faCoffee from '@fortawesome/fontawesome-free-regular/faUser'
+import userIcon from '@fortawesome/fontawesome-free-regular/faUser'
+import './Header.css';
 
 class Header extends Component {
 	constructor(props) {
@@ -22,7 +23,7 @@ class Header extends Component {
 				<h1>Welcome to TravelBuddy</h1>
 				<div id="dropDown">
 					<div id="dropDownIcon" onClick={this.toggleMenu}>
-						<FontAwesomeIcon icon={faCoffee} />
+						<FontAwesomeIcon icon={userIcon} />
 					</div>
 					{this.state.showDropDown ? <DropDown /> : null}
 				</div>
@@ -43,6 +44,8 @@ class DropDown extends Component {
 			<ul id="menu">
 				<li><NavLink to="/login">Login</NavLink></li>
 				<li><NavLink to="/">Home</NavLink></li>
+				<li><NavLink to="/settings">Settings</NavLink></li>
+				<li><NavLink to="/profile">Profile</NavLink></li>
 			</ul>
 		)
 	}
