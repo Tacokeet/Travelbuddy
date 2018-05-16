@@ -26,7 +26,6 @@ class App extends Component {
         cityName: 'Groningen',
         categories: ['Must see places','Entertainment','Restaurants']
     }
-
     render() {
 
         /* loop door alle catergories in state en maak places (div's) aan*/
