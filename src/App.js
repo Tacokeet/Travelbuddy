@@ -75,7 +75,7 @@ class Home extends Component {
 
     return (
         <City cityName={this.state.cityName}/>
-        <button id='filter' onClick={this.filterHandler}>filter</button>
+        <button id='filter'>filter</button>
         {textcategories}
     );
   }
