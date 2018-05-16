@@ -1,20 +1,33 @@
 .App {
-  text-align: center;
+  	text-align: center;
+	background: #F8F9FA;
+	font-family: 'Raleway', sans-serif;
+
 }
 
 footer {
-	background: #cccccc;
+	background: #495057;
+	color: white;
+	margin-top: 40px;
 	width: 100%;
 	padding: 20px 0px 20px 0px;
-	position: fixed;
+	position: relative;
 	bottom: 0;
 }
 
 header {
-	background: #b98c00;
+	background: #ffffff;
 	width: 100%;
-	position: fixed;
+	height: 6%;
+	position: relative;
 	top: 0;
+	box-shadow: 0 4px 2px -2px gray;
+	margin-bottom: 50px;
+}
+
+#filter {
+	float: left;
+	margin-right: -30px;
 }
 
 main {
