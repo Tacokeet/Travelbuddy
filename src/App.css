@@ -25,4 +25,8 @@ header {
 	margin-bottom: 50px;
 }
 
+#filter {
+	float: left;
+	margin-right: -30px;
+}
 
