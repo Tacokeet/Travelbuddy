@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
@@ -11,6 +12,7 @@ import {
 	Route,
 	BrowserRouter
 } from 'react-router-dom';
+
 
 class App extends Component {
 	constructor(props) {
