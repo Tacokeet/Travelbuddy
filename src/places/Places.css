@@ -1,16 +1,34 @@
 .places{
-    border-radius: 5px;
+
     margin-left: 1.5%;
     margin-top: 30px;
     width: 95%;
     height: 150px;
-    border:  1px solid #fafafa;
-    box-shadow: 0 5px 6px #cccccc;
-    background-color: #ededed;
     padding: 16px;
 }
 
 .placesText {
     text-align: left;
     padding-left: 4vw;
+    margin-bottom: -35px;
+    margin-top: 90px;
+    font-size: 20px;
+}
+
+.locations {
+    float: left;
+    margin-right: 3vw;
+    height: 200px;
+    width: 300px;
+
+}
+
+.infoLocation {
+    text-align: justify;
+    width: 300px;
+}
+
+.imageText{
+    display: block;
+    margin: 0 auto;
 }

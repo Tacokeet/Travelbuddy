@@ -9,6 +9,15 @@ import City   from './city/City';
 
 
 class App extends Component {
+
+    state = {
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
+        cityName: 'Groningen',
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen"
+    }
+
+
     apirequest(){
         fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
             .then(response => response.json())
@@ -21,12 +30,6 @@ class App extends Component {
 
     };
 
-    state = {
-        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
-        cityName: 'Groningen',
-        categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen"
-    }
 
     filterHandler = () => {
         console.log("TEST");
