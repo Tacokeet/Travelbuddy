@@ -1,12 +1,12 @@
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './user/Login';
 import Profile from './user/Profile';
-import Settings from './user/Settings.js';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
@@ -34,7 +34,6 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
-				<Route path="/settings" component={Settings} />
 
                 <Footer />
 
@@ -45,6 +44,27 @@ class App extends Component {
 }
 
 class Home extends Component {
+    state = {
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
+        region_name: ' ',
+        city: ' ',
+        continent_name: ' ',
+        name: ' ',
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen",
+        show: false
+    }
+    componentDidMount(){
+        axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
+            .then(response => {
+                this.setState({continent_name: response.data.continent_name})
+                this.setState({region_name: response.data.region_name})
+                this.setState({city: response.data.city})
+                this.setState({name: response.data.location.languages[0].name})
+
+            });
+    }
+
     apirequest(){
       fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
           .then(response => response.json())
@@ -54,6 +74,7 @@ class Home extends Component {
               }
           );
     };
+
 
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
@@ -88,15 +109,18 @@ class Home extends Component {
               })}
           </div>
       );
+
     {this.apirequest()}
 
     let viewModal = null;
       if(this.state.showModal){
           viewModal = <Modal/>
       }
+
     return (
 		<main>
-			<City cityName={this.state.cityName}/>
+
+			<City region_name={this.state.region_name}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
