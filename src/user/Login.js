@@ -6,7 +6,7 @@ class Login extends Component {
 		return (
 			<main>
 				<div id="signIn">
-					<h1>Sign in</h1>
+					<h1 id="signInTitle">Sign in with TravelBuddy</h1>
 					
 					<RegisterForm />
 					<LoginForm />
@@ -40,7 +40,7 @@ class LoginForm extends Component {
 					<label>Password</label>
 					<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
 					
-					<label><a href="">Forgot password</a></label>
+					<label id="forgotPassword"><a href="">Forgot password</a></label>
 					
 					<button type="submit">Login</button>
 				</form>

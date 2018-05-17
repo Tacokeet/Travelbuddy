@@ -19,6 +19,7 @@ import {
 
 import Places from './places/Places';
 import City   from './city/City';
+import Modal   from './modal/Modal';
 
 
 class App extends Component {
@@ -70,11 +71,23 @@ class Home extends Component {
     }
 
 
+    state = {
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
+        cityName: 'Groningen',
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen",
+        show: false,
+        showModal: false
+    }
 
     handleClick = () => {
         this.setState({
             show: !this.state.show
         });
+    }
+
+    modalHandler = () => {
+        this.setState({showModal: true})
     }
 
   render() {
@@ -86,11 +99,19 @@ class Home extends Component {
                   return <Places
                       categories ={categorie}
                       key={this.state.id + index}
+                      click = {this.modalHandler}
                   />
               })}
           </div>
       );
-    
+
+    {this.apirequest()}
+
+    let viewModal = null;
+      if(this.state.showModal){
+          viewModal = <Modal/>
+      }
+
     return (
 		<main>
 
@@ -108,7 +129,7 @@ class Home extends Component {
             </div>
             </ToggleDisplay>
 
-
+            {viewModal}
 			{textcategories}
 		</main>
     );
