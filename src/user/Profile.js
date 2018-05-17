@@ -6,6 +6,9 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import xIcon from '@fortawesome/fontawesome-free-solid/faTimes'
 import deleteIcon from '@fortawesome/fontawesome-free-regular/faTimesCircle'
 
+import solidStar from '@fortawesome/fontawesome-free-solid/faStar'
+import regularStar from '@fortawesome/fontawesome-free-regular/faStar'
+
 class Profile extends Component {
 	constructor(props) {
 		super(props);
@@ -14,10 +17,12 @@ class Profile extends Component {
 			favorites: [
 				{name: "Cantina Mexicana",
 				image: logo1,
-				location: "Groningen"},
+				location: "Groningen",
+				rating: 4},
 				{name: "Groninger Museum",
 				image: logo2,
-				location: "Groningen"},
+				location: "Groningen",
+				rating: 5},
 			],
 			preferences: [
 				"Restaurants",
@@ -25,6 +30,8 @@ class Profile extends Component {
 				"Museums"
 			]
 		}
+		
+		this.removePreference = this.removePreference.bind(this);
 	}
 	
 	render() {		
@@ -33,7 +40,7 @@ class Profile extends Component {
 				<div id="profileWrapper">
 					<Favorites favorites={this.state.favorites} />
 					
-					<Preferences preferences={this.state.preferences} />
+					<Preferences preferences={this.state.preferences} onClick={(index) => this.removePreference(index)} />
 					
 					<Settings />
 				</div>
@@ -41,7 +48,13 @@ class Profile extends Component {
 		);
 	}
 	
-	
+	removePreference(index) {
+		let array = this.state.preferences;
+		array.splice(index, 1);
+		this.setState({
+			preferences: array
+		});
+	}
 }
 
 class Favorites extends Component {	
@@ -54,6 +67,16 @@ class Favorites extends Component {
 						<img src={place.image} alt={place.name} />
 						<label className="favoriteName">{place.name}</label>
 						<label className="favoriteLocation">{place.location}</label>
+						{Array.apply(0, Array(Math.floor(place.rating))).map(function(x) {
+							return (
+								<FontAwesomeIcon icon={solidStar} />
+							);
+						})}
+						{Array.apply(0, Array(5-Math.floor(place.rating))).map(function(x) {
+							return (
+								<FontAwesomeIcon icon={regularStar} />
+							);
+						})}
 						<FontAwesomeIcon icon={deleteIcon} />
 					</div>
 				);})}
@@ -71,8 +94,8 @@ class Preferences extends Component {
 				<input type="text" placeholder="Museums"/>
 				
 				<div id="preferenceList">
-					{this.props.preferences.map((preference) => {return (
-						<label className="preference">
+					{this.props.preferences.map((preference, index) => {return (
+						<label className="preference" onClick={() => this.props.onClick(index)}>
 							{preference}
 							<FontAwesomeIcon className="closeIcon" icon={xIcon} />
 						</label>
