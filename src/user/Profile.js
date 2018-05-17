@@ -4,6 +4,7 @@ import logo1 from '../images/4.jpg';
 import logo2 from '../images/3.jpg';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import xIcon from '@fortawesome/fontawesome-free-solid/faTimes'
+import deleteIcon from '@fortawesome/fontawesome-free-regular/faTimesCircle'
 
 class Profile extends Component {
 	constructor(props) {
@@ -53,6 +54,7 @@ class Favorites extends Component {
 						<img src={place.image} alt={place.name} />
 						<label className="favoriteName">{place.name}</label>
 						<label className="favoriteLocation">{place.location}</label>
+						<FontAwesomeIcon icon={deleteIcon} />
 					</div>
 				);})}
 			</div>
