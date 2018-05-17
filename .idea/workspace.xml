@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8d2594f-fb48-4189-9019-d20328c1c4e3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/places/Places.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/places/Places.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/places/Places.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/places/Places.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,14 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
-              <folding>
-                <element signature="e#1#42#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="92" selection-start-line="92" selection-end-line="92" />
             </state>
           </provider>
         </entry>
@@ -43,8 +39,8 @@
       <file leaf-file-name="Places.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/places/Places.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+            <state relative-caret-position="238">
+              <caret line="14" column="65" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="65" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -52,27 +48,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/user/Login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-973" />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Places.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/places/Places.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="22" />
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
+            <state relative-caret-position="285">
+              <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -80,8 +69,20 @@
       <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/header/Header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="67" />
+            <state relative-caret-position="119">
+              <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Header.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/header/Header.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="67" column="1" lean-forward="true" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -93,11 +94,6 @@
               <caret line="6" column="82" selection-start-line="6" selection-start-column="82" selection-end-line="6" selection-end-column="82" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Profile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/user/Profile.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -120,13 +116,14 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/places/places.js" />
         <option value="$PROJECT_DIR$/src/main/Main.js" />
-        <option value="$PROJECT_DIR$/src/header/Header.js" />
         <option value="$PROJECT_DIR$/src/city/City.js" />
         <option value="$PROJECT_DIR$/src/city/City.css" />
-        <option value="$PROJECT_DIR$/src/places/Places.js" />
         <option value="$PROJECT_DIR$/src/places/Places.css" />
-        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/places/Places.js" />
+        <option value="$PROJECT_DIR$/src/header/Header.js" />
+        <option value="$PROJECT_DIR$/src/header/Header.css" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/App.css" />
       </list>
     </option>
   </component>
@@ -184,52 +181,7 @@
               <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
               <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="fontawesome" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="fontawesome" type="462c0819:PsiDirectoryNode" />
-              <item name="advanced-options" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="fontawesome" type="462c0819:PsiDirectoryNode" />
-              <item name="advanced-options" type="462c0819:PsiDirectoryNode" />
-              <item name="raw-svg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="fontawesome" type="462c0819:PsiDirectoryNode" />
-              <item name="advanced-options" type="462c0819:PsiDirectoryNode" />
-              <item name="raw-svg" type="462c0819:PsiDirectoryNode" />
-              <item name="regular" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="fontawesome" type="462c0819:PsiDirectoryNode" />
-              <item name="advanced-options" type="462c0819:PsiDirectoryNode" />
-              <item name="raw-svg" type="462c0819:PsiDirectoryNode" />
-              <item name="solid" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -301,7 +253,7 @@
       <workItem from="1526390743098" duration="21265000" />
       <workItem from="1526452264688" duration="448000" />
       <workItem from="1526456322689" duration="5464000" />
-      <workItem from="1526480843524" duration="8373000" />
+      <workItem from="1526480843524" duration="20131000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js">
       <created>1526295084448</created>
@@ -373,11 +325,46 @@
       <option name="project" value="LOCAL" />
       <updated>1526485665252</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js">
+      <created>1526492671843</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1526492671844</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js">
+      <created>1526492717117</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1526492717117</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js">
+      <created>1526507143640</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1526507143640</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.css&#10;#&#9;src/header/Header.js">
+      <created>1526507495007</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1526507495007</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.css&#10;#&#9;src/header/Header.js">
+      <created>1526508537483</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1526508537483</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39630000" />
+    <option name="totallyTimeSpent" value="51388000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -385,13 +372,13 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" sideWeight="0.4986979" weight="0.32965517" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5019531" side_tool="true" visible="true" weight="0.32965517" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49804688" visible="true" weight="0.32965517" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4986979" weight="0.32827586" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5026042" side_tool="true" visible="true" weight="0.32965517" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49739584" visible="true" weight="0.32965517" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49804688" weight="0.32827586" />
       <window_info id="npm" order="2" sideWeight="0.50718683" side_tool="true" weight="0.125" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49804688" weight="0.3475862" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49739584" weight="0.3475862" />
       <window_info anchor="bottom" id="TypeScript" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.23632812" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.23632812" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -434,16 +421,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit." />
     <MESSAGE value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.css&#10;#&#9;src/header/Header.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.css&#10;#&#9;src/header/Header.js" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -482,6 +467,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -503,9 +491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -565,9 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,28 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/city/City.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/places/Places.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/user/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-973" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -704,37 +664,66 @@
     <entry file="file://$PROJECT_DIR$/src/main/user/Profile.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/places/Places.css">
+    <entry file="file://$PROJECT_DIR$/src/fontawesome/advanced-options/raw-svg/solid/filter.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/user/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="-973" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/places/Places.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="65" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/header/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="67" />
+        <state relative-caret-position="119">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fontawesome/advanced-options/raw-svg/solid/filter.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
+    <entry file="file://$PROJECT_DIR$/src/header/Header.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
+        <state relative-caret-position="336">
+          <caret line="67" column="1" lean-forward="true" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/city/City.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/places/Places.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
         </state>
       </provider>
     </entry>
