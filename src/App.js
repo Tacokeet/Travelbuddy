@@ -5,10 +5,15 @@ import axios from 'axios';
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import Login from './main/user/Login';
-import Profile from './main/user/Profile';
+import Login from './user/Login';
+import Profile from './user/Profile';
+import Settings from './user/Settings.js';
 
-import { 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
+import ToggleDisplay from 'react-toggle-display';
+
+import {
 	Route,
 	BrowserRouter
 } from 'react-router-dom';
@@ -16,17 +21,19 @@ import {
 import Places from './places/Places';
 import City   from './city/City';
 
+
 class App extends Component {
     render() {
         return (
           <BrowserRouter>
             <div className="App">
-                
+
                 <Header />
-                  
+
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
+				<Route path="/settings" component={Settings} />
 
                 <Footer />
 
@@ -42,7 +49,8 @@ class Home extends Component {
         cityName: 'Groningen',
         posts: [],
         categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen"
+        id: "hier moet unieke waarde komen",
+        show: false
     }
     componentDidMount(){
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
@@ -64,9 +72,12 @@ class Home extends Component {
 
 
 
-    filterHandler = () => {
-        console.log("TEST");
+    handleClick = () => {
+        this.setState({
+            show: !this.state.show
+        });
     }
+
   render() {
         const posts = this.state.posts.map(post => {
             return
@@ -83,10 +94,24 @@ class Home extends Component {
               })}
           </div>
       );
+    
     return (
 		<main>
 			<City cityName={this.state.cityName}/>
-			<button id='filter' onClick={this.filterHandler}>filter</button>
+
+            <div id={'filter'} onClick={this.handleClick}>
+                <FontAwesomeIcon icon={faFilter} />
+            </div>
+
+
+            <ToggleDisplay show={this.state.show}>
+            <div id={'filterMenu'}>
+                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>Categorie</p>
+            </div>
+            </ToggleDisplay>
+
+
 			{textcategories}
 		</main>
     );
