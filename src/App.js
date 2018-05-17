@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './App.css';
 import Header from './header/Header';
@@ -18,6 +19,7 @@ import {
 
 import Places from './places/Places';
 import City   from './city/City';
+import Modal   from './modal/Modal';
 
 
 
@@ -42,6 +44,27 @@ class App extends Component {
 }
 
 class Home extends Component {
+    state = {
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
+        region_name: ' ',
+        city: ' ',
+        continent_name: ' ',
+        name: ' ',
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen",
+        show: false
+    }
+    componentDidMount(){
+        axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
+            .then(response => {
+                this.setState({continent_name: response.data.continent_name})
+                this.setState({region_name: response.data.region_name})
+                this.setState({city: response.data.city})
+                this.setState({name: response.data.location.languages[0].name})
+
+            });
+    }
+
     apirequest(){
       fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
           .then(response => response.json())
@@ -52,18 +75,24 @@ class Home extends Component {
           );
     };
 
+
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         cityName: 'Groningen',
         categories: ['Must see places','Entertainment','Restaurants'],
         id: "hier moet unieke waarde komen",
-        show: false
+        show: false,
+        showModal: false
     }
 
     handleClick = () => {
         this.setState({
             show: !this.state.show
         });
+    }
+
+    modalHandler = () => {
+        this.setState({showModal: true})
     }
 
   render() {
@@ -75,15 +104,23 @@ class Home extends Component {
                   return <Places
                       categories ={categorie}
                       key={this.state.id + index}
+                      click = {this.modalHandler}
                   />
               })}
           </div>
       );
+
     {this.apirequest()}
+
+    let viewModal = null;
+      if(this.state.showModal){
+          viewModal = <Modal/>
+      }
 
     return (
 		<main>
-			<City cityName={this.state.cityName}/>
+
+			<City region_name={this.state.region_name}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
@@ -97,7 +134,7 @@ class Home extends Component {
             </div>
             </ToggleDisplay>
 
-
+            {viewModal}
 			{textcategories}
 		</main>
     );
