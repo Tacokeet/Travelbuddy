@@ -21,7 +21,6 @@ import Places from './places/Places';
 import City   from './city/City';
 
 
-
 class App extends Component {
     render() {
         return (
@@ -46,6 +45,7 @@ class Home extends Component {
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         region_name: ' ',
+        text: ' ',
         city: ' ',
         continent_name: ' ',
         name: ' ',
@@ -60,19 +60,14 @@ class Home extends Component {
                 this.setState({region_name: response.data.region_name})
                 this.setState({city: response.data.city})
                 this.setState({name: response.data.location.languages[0].name})
-
+                console.log(response.data)
             });
+        axios.get('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen')
+            .then(wiki => {
+            this.setState({text: wiki.data})
+            console.log(wiki.data[2][1])
+        });
     }
-
-    apirequest(){
-      fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
-          .then(response => response.json())
-
-          .then(json => {
-                  console.log(json);
-              }
-          );
-    };
 
 
 
