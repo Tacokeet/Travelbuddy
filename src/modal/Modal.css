@@ -13,7 +13,7 @@
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: white;
+    background-color: #FFA94D;
     margin: 1% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -26,4 +26,36 @@
     font-size: 40px;
     margin-top: -15px;
     cursor: pointer;
+}
+
+.modalImage {
+
+    margin-left: 2vw;
+    height: 200px;
+    width: 300px;
+}
+
+#nameLocation {
+
+
+    left: -10vw;
+
+}
+
+.left {
+    float: left;
+    margin-top: 3vh;
+}
+
+.right {
+    float: right;
+    margin-top: 3vh;
+}
+
+.center {
+    margin: auto;
+}
+
+.textLocation {
+    color: white;
 }
