@@ -3,7 +3,10 @@ import {
 	NavLink,
 } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faCoffee from '@fortawesome/fontawesome-free-regular/faUser'
+import userIcon from '@fortawesome/fontawesome-free-regular/faUser'
+import searchIcon from '@fortawesome/fontawesome-free-solid/faSearch'
+import './Header.css';
+import mainLogo from '../images/logo.jpg';
 
 class Header extends Component {
 	constructor(props) {
@@ -19,13 +22,20 @@ class Header extends Component {
 	render() {
 		return (
 			<header>
-				<h1>Welcome to TravelBuddy</h1>
+                <img className={'mainLogo'} src={mainLogo} alt="mainLogo" />
+				<h1 id={'headerText'}>TravelBuddy</h1>
 				<div id="dropDown">
 					<div id="dropDownIcon" onClick={this.toggleMenu}>
-						<FontAwesomeIcon icon={faCoffee} />
+						<FontAwesomeIcon icon={userIcon} />
 					</div>
 					{this.state.showDropDown ? <DropDown /> : null}
 				</div>
+
+                <div id="search">
+                    <div id="searchIcon">
+                        <FontAwesomeIcon icon={searchIcon} />
+                    </div>
+                </div>
 			</header>
 		);
 	}
@@ -43,6 +53,8 @@ class DropDown extends Component {
 			<ul id="menu">
 				<li><NavLink to="/login">Login</NavLink></li>
 				<li><NavLink to="/">Home</NavLink></li>
+				<li><NavLink to="/settings">Settings</NavLink></li>
+				<li><NavLink to="/profile">Profile</NavLink></li>
 			</ul>
 		)
 	}

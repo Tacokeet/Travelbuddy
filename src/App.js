@@ -4,10 +4,13 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import Login from './main/user/Login';
-import Profile from './main/user/Profile';
+import Login from './user/Login';
+import Profile from './user/Profile';
+import Settings from './user/Settings.js';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
+import ToggleDisplay from 'react-toggle-display';
 
 import {
 	Route,
@@ -16,7 +19,7 @@ import {
 
 import Places from './places/Places';
 import City   from './city/City';
-import faCoffee from "@fortawesome/fontawesome-free-regular/faUser";
+
 
 class App extends Component {
     render() {
@@ -29,6 +32,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
+				<Route path="/settings" component={Settings} />
 
                 <Footer />
 
@@ -53,12 +57,16 @@ class Home extends Component {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         cityName: 'Groningen',
         categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen"
+        id: "hier moet unieke waarde komen",
+        show: false
     }
 
-    filterHandler = () => {
-        console.log("TEST");
+    handleClick = () => {
+        this.setState({
+            show: !this.state.show
+        });
     }
+
   render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
@@ -77,13 +85,20 @@ class Home extends Component {
     return (
 		<main>
 			<City cityName={this.state.cityName}/>
-			{/*<button id='filter' onClick={this.filterHandler}>filter</button>*/}
-            <div id={'filter'} onClick={this.filterHandler}>
+
+            <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
             </div>
-            <div id={'test'}>
-                <p>fdfdsfdsf</p>
+
+
+            <ToggleDisplay show={this.state.show}>
+            <div id={'filterMenu'}>
+                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>Categorie</p>
             </div>
+            </ToggleDisplay>
+
+
 			{textcategories}
 		</main>
     );
