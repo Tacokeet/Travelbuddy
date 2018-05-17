@@ -20,3 +20,10 @@
     width: 80%;
     height: 80vh;
 }
+
+.close {
+    float: right;
+    font-size: 40px;
+    margin-top: -15px;
+    cursor: pointer;
+}

@@ -54,6 +54,7 @@ class Home extends Component {
         id: "hier moet unieke waarde komen",
         show: false
     }
+
     componentDidMount(){
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
@@ -78,7 +79,6 @@ class Home extends Component {
 
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
-        cityName: 'Groningen',
         categories: ['Must see places','Entertainment','Restaurants'],
         id: "hier moet unieke waarde komen",
         show: false,
@@ -93,6 +93,10 @@ class Home extends Component {
 
     modalHandler = () => {
         this.setState({showModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({showModal: false})
     }
 
   render() {
@@ -114,13 +118,13 @@ class Home extends Component {
 
     let viewModal = null;
       if(this.state.showModal){
-          viewModal = <Modal/>
+          viewModal = <Modal click={this.hideModal}/>
       }
 
     return (
 		<main>
 
-			<City region_name={this.state.region_name}/>
+			<City region_name={this.state.city}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
