@@ -9,6 +9,7 @@ import Profile from './user/Profile';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
+import ToggleDisplay from 'react-toggle-display';
 
 import {
 	Route,
@@ -17,6 +18,7 @@ import {
 
 import Places from './places/Places';
 import City   from './city/City';
+
 
 
 class App extends Component {
@@ -54,12 +56,16 @@ class Home extends Component {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         cityName: 'Groningen',
         categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen"
+        id: "hier moet unieke waarde komen",
+        show: false
     }
 
-    filterHandler = () => {
-        console.log("TEST");
+    handleClick = () => {
+        this.setState({
+            show: !this.state.show
+        });
     }
+
   render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
@@ -78,13 +84,20 @@ class Home extends Component {
     return (
 		<main>
 			<City cityName={this.state.cityName}/>
-			{/*<button id='filter' onClick={this.filterHandler}>filter</button>*/}
-            <div id={'filter'} onClick={this.filterHandler}>
+
+            <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
             </div>
-            <div id={'test'}>
-                <p>fdfdsfdsf</p>
+
+
+            <ToggleDisplay show={this.state.show}>
+            <div id={'filterMenu'}>
+                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>Categorie</p>
             </div>
+            </ToggleDisplay>
+
+
 			{textcategories}
 		</main>
     );
