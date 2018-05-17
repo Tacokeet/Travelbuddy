@@ -46,8 +46,10 @@ class App extends Component {
 class Home extends Component {
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
-        cityName: 'Groningen',
-        posts: [],
+        region_name: ' ',
+        city: ' ',
+        continent_name: ' ',
+        name: ' ',
         categories: ['Must see places','Entertainment','Restaurants'],
         id: "hier moet unieke waarde komen",
         show: false
@@ -55,8 +57,11 @@ class Home extends Component {
     componentDidMount(){
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
-                this.setState({posts: response.data})
-                //console.log(response.data);
+                this.setState({continent_name: response.data.continent_name})
+                this.setState({region_name: response.data.region_name})
+                this.setState({city: response.data.city})
+                this.setState({name: response.data.location.languages[0].name})
+
             });
     }
 
@@ -79,9 +84,6 @@ class Home extends Component {
     }
 
   render() {
-        const posts = this.state.posts.map(post => {
-            return
-        });
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
       textcategories = (
@@ -97,7 +99,8 @@ class Home extends Component {
     
     return (
 		<main>
-			<City cityName={this.state.cityName}/>
+
+			<City region_name={this.state.region_name}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
