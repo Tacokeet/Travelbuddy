@@ -1,4 +1,85 @@
-#profile {
-	margin: 0 20% 0 20%;
+#profileWrapper {
+	padding: 0 20% 0 20%;
 	text-align: left;
+}
+
+#settings {
+	width: 100%;
+	display: inline-block;
+}
+
+.settingsRow {
+	margin-bottom: 18px;
+}
+
+.settingsBlock {
+	width: 33%;
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+}
+
+.settingsBlock label {
+	display: block;
+    margin-bottom: 7px;
+}
+
+.settingsBlock input, .settingsBlock select {
+	width: 260px;
+	padding: 4px 4px 4px 8px;
+	font-size: 14px;
+	line-height: 28px;
+}
+
+#preferences {
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#favorites {
+	width: 50%;
+	display: inline-block;
+	margin-bottom: 35px;
+}
+
+.favorite {
+	padding: 8px 0 8px 0;
+	border-top: 1px solid grey;
+	display: block;
+}
+
+.favorite img {
+	width: 80px;
+	display: inline-block;
+}
+
+.favoriteName {
+	display: inline-block;
+	margin-left: 15px;
+	vertical-align: top;
+	font-weight: bold;
+    font-size: 18px;
+}
+
+.favoriteLocation {
+	
+}
+
+.preference {
+	background: #FF922B;
+	padding: 8px 14px 8px 14px;
+	border-radius: 3px;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+#preferenceList {
+	margin-top: 25px;
+}
+
+.closeIcon {
+	margin-left: 9px;
+    vertical-align: middle;
+    padding-bottom: 1px;
 }

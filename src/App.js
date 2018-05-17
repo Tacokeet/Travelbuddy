@@ -6,7 +6,6 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './user/Login';
 import Profile from './user/Profile';
-import Settings from './user/Settings.js';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
@@ -31,7 +30,6 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
-				<Route path="/settings" component={Settings} />
 
                 <Footer />
 
