@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './App.css';
 import Header from './header/Header';
@@ -36,6 +37,21 @@ class App extends Component {
 }
 
 class Home extends Component {
+    state = {
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
+        cityName: 'Groningen',
+        posts: [],
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen"
+    }
+    componentDidMount(){
+        axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
+            .then(response => {
+                this.setState({posts: response.data})
+                //console.log(response.data);
+            });
+    }
+
     apirequest(){
       fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
           .then(response => response.json())
@@ -46,17 +62,15 @@ class Home extends Component {
           );
     };
 
-    state = {
-        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
-        cityName: 'Groningen',
-        categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen"
-    }
+
 
     filterHandler = () => {
         console.log("TEST");
     }
   render() {
+        const posts = this.state.posts.map(post => {
+            return
+        });
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
       textcategories = (
@@ -69,8 +83,6 @@ class Home extends Component {
               })}
           </div>
       );
-    {this.apirequest()}
-    
     return (
 		<main>
 			<City cityName={this.state.cityName}/>
