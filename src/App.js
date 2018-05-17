@@ -105,8 +105,6 @@ class Home extends Component {
           </div>
       );
 
-    {this.apirequest()}
-
     let viewModal = null;
       if(this.state.showModal){
           viewModal = <Modal/>
