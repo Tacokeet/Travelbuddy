@@ -129,8 +129,7 @@ class Home extends Component {
     return (
 		<main>
 
-			<City region_name={this.state.city}/>
-
+			<City region_name={this.state.city} continent={this.state.continent_name}/>
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
             </div>
