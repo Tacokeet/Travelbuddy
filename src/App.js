@@ -7,6 +7,9 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './user/Login';
 import Profile from './user/Profile';
+import Places from './places/Places';
+import City   from './city/City';
+import Modal   from './modal/Modal';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
@@ -97,6 +100,7 @@ class Home extends Component {
 
 
 
+
   render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
@@ -138,7 +142,26 @@ class Home extends Component {
             <ToggleDisplay show={this.state.show}>
             <div id={'filterMenu'}>
                 <p className={'filterMenuItems'}>Range</p>
-                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    5 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range" value="range" />
+                    10 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    15 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    20 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    25 km
+                </p>
             </div>
             </ToggleDisplay>
 
