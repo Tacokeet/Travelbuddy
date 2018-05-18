@@ -1,0 +1,19 @@
+.city {
+    margin: auto;
+    border-radius: 15px;
+    width: 70%;
+    border:  1px solid #b98c00;
+    box-shadow: 0 5px 6px #cccccc;
+    padding: 16px;
+    background-color: #FF922B;
+    background: linear-gradient(#FF9F44, #FF922B);
+    text-align: center;
+
+}
+
+#cityText{
+    width: 30px;
+    font-size: 10px;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: scroll; /* Add vertical scrollbar */
+}

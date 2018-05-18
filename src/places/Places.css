@@ -1,0 +1,33 @@
+.places{
+    margin-top: 30px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.placesRow {
+    width: 100%;
+    overflow: hidden;
+}
+
+.placesText {
+    text-align: left;
+    font-size: 25px;
+}
+
+.locations {
+    cursor: pointer;
+    width: 23%;
+    display: inline-block;
+    float: left;
+    margin-right: 2%;
+}
+
+.infoLocation {
+    text-align: justify;
+    width: 300px;
+}
+
+.imageText{
+    display: block;
+    margin: 0 auto;
+}
