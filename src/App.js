@@ -52,6 +52,9 @@ class Home extends Component {
         text: ' ',
         city: ' ',
         continent_name: ' ',
+        latitude: ' ',
+        longitude: ' ',
+        groningen: ' ',
         name: ' ',
         categories: ['Must see places','Entertainment','Restaurants'],
         id: "hier moet unieke waarde komen",
@@ -60,18 +63,23 @@ class Home extends Component {
     }
 
     componentDidMount(){
+        var proxy  = 'https://cors-anywhere.herokuapp.com/';
+        var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen';
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
                 this.setState({continent_name: response.data.continent_name})
                 this.setState({region_name: response.data.region_name})
                 this.setState({city: response.data.city})
                 this.setState({name: response.data.location.languages[0].name})
+                this.setState({longitude: response.data.longitude})
+                this.setState({latitude: response.data.latitude})
                 console.log(response.data)
             });
-        axios.get('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen')
+        axios.get(proxy + url)
             .then(wiki => {
             this.setState({text: wiki.data})
-            console.log(wiki.data[2][1])
+            this.setState({groningen: wiki.data[2][0]})
+            console.log(wiki.data)
         });
     }
 
@@ -89,6 +97,7 @@ class Home extends Component {
     hideModal = () => {
         this.setState({showModal: false})
     }
+
 
 
 
@@ -123,7 +132,7 @@ class Home extends Component {
     return (
 		<main>
 
-			<City region_name={this.state.city}/>
+			<City region_name={this.state.region_name} groningen={this.state.groningen}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
@@ -133,7 +142,26 @@ class Home extends Component {
             <ToggleDisplay show={this.state.show}>
             <div id={'filterMenu'}>
                 <p className={'filterMenuItems'}>Range</p>
-                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    5 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range" value="range" />
+                    10 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    15 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    20 km
+                </p>
+                <p className={'filterMenuItems'}>
+                    <input type="radio" name = "range"  value="range" />
+                    25 km
+                </p>
             </div>
             </ToggleDisplay>
 
