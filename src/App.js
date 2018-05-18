@@ -49,6 +49,7 @@ class App extends Component {
 class Home extends Component {
     state = {
         region_name: ' ',
+        text: ' ',
         city: ' ',
         continent_name: ' ',
         name: ' ',
@@ -65,19 +66,14 @@ class Home extends Component {
                 this.setState({region_name: response.data.region_name})
                 this.setState({city: response.data.city})
                 this.setState({name: response.data.location.languages[0].name})
-
+                console.log(response.data)
             });
+        axios.get('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen')
+            .then(wiki => {
+            this.setState({text: wiki.data})
+            console.log(wiki.data[2][1])
+        });
     }
-
-    apirequest(){
-      fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
-          .then(response => response.json())
-
-          .then(json => {
-                  console.log(json);
-              }
-          );
-    };
 
 
     handleClick = () => {
@@ -116,8 +112,6 @@ class Home extends Component {
               })}
           </div>
       );
-
-    {this.apirequest()}
 
     let viewModal = null;
       if(this.state.showModal){

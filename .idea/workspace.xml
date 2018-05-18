@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Places.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/places/Places.css">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="22" column="17" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="17" />
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -162,6 +162,7 @@
         <option value="$PROJECT_DIR$/src/map/Map.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/modal/Modal.css" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -197,26 +198,39 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="city" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="footer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="city" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -227,22 +241,21 @@
               <item name="header" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="map" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="travelbuddy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="travelbuddy" type="462c0819:PsiDirectoryNode" />
+              <item name="Travelbuddy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Travelbuddy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="places" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -448,51 +461,62 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79980000" />
+    <option name="totallyTimeSpent" value="60972000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.16341145" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.16927083" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5045573" side_tool="true" visible="true" weight="0.3475862" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49544272" weight="0.32965517" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49544272" weight="0.32827586" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50416666" side_tool="true" visible="true" weight="0.32943678" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49583334" visible="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49739584" weight="0.32827586" />
       <window_info id="npm" order="2" sideWeight="0.50718683" side_tool="true" weight="0.125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49544272" visible="true" weight="0.3475862" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.496875" weight="0.34750265" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info id="npm" order="2" sideWeight="0.50718683" side_tool="true" weight="0.125" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.16341145" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49674478" weight="0.32965517" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49674478" visible="true" weight="0.32827586" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49674478" weight="0.3475862" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5032552" side_tool="true" visible="true" weight="0.32827586" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
       <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4986979" weight="0.32965517" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" sideWeight="0.50718683" side_tool="true" weight="0.125" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4986979" weight="0.32965517" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4986979" visible="true" weight="0.32827586" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49804688" weight="0.3475862" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50130206" side_tool="true" visible="true" weight="0.32827586" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4986979" weight="0.32965517" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -509,6 +533,27 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.css&#10;#&#9;src/header/Header.js" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/city/City.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/places/Places.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -814,15 +859,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/header/Header.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/header/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="17">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />er
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
