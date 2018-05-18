@@ -1,28 +1,25 @@
 .places{
-
-    margin-left: 4%;
     margin-top: 30px;
-    width: 95%;
-    height: 150px;
-    padding: 16px;
+    width: 100%;
+    overflow: hidden;
+}
 
+.placesRow {
+    width: 100%;
+    overflow: hidden;
 }
 
 .placesText {
     text-align: left;
-    padding-left: 5vw;
-    margin-bottom: -35px;
-    margin-top: 95px;
     font-size: 25px;
 }
 
 .locations {
-    float: left;
-    margin-right: 2.5vw;
-    height: 200px;
-    width: 300px;
     cursor: pointer;
-
+    width: 23%;
+    display: inline-block;
+    float: left;
+    margin-right: 2%;
 }
 
 .infoLocation {
