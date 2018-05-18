@@ -12,14 +12,15 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
 import ToggleDisplay from 'react-toggle-display';
 
+import logo1 from './images/1.jpg';
+import logo2 from './images/2.jpg';
+import logo3 from './images/3.jpg';
+import logo4 from './images/4.jpg';
+
 import {
 	Route,
 	BrowserRouter
 } from 'react-router-dom';
-
-import Places from './places/Places';
-import City   from './city/City';
-import Modal   from './modal/Modal';
 
 
 class App extends Component {
@@ -44,7 +45,6 @@ class App extends Component {
 
 class Home extends Component {
     state = {
-        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         region_name: ' ',
         text: ' ',
         city: ' ',
@@ -55,8 +55,10 @@ class Home extends Component {
         name: ' ',
         categories: ['Must see places','Entertainment','Restaurants'],
         id: "hier moet unieke waarde komen",
-        show: false
+        show: false,
+        photos: [logo1,logo2,logo3,logo4]
     }
+
     componentDidMount(){
         var proxy  = 'https://cors-anywhere.herokuapp.com/';
         var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen';
@@ -79,15 +81,6 @@ class Home extends Component {
     }
 
 
-    state = {
-        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
-        cityName: 'Groningen',
-        categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen",
-        show: false,
-        showModal: false
-    }
-
     handleClick = () => {
         this.setState({
             show: !this.state.show
@@ -98,16 +91,28 @@ class Home extends Component {
         this.setState({showModal: true})
     }
 
+    hideModal = () => {
+        this.setState({showModal: false})
+    }
+
+
+
   render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
+
       textcategories = (
           <div>
               {this.state.categories.map((categorie,index) => {
+
+                  let rand = Math.floor(Math.random() * 3)
+
                   return <Places
                       categories ={categorie}
                       key={this.state.id + index}
                       click = {this.modalHandler}
+                      photo = {this.state.photos}
+                      index = {index}
                   />
               })}
           </div>
@@ -115,7 +120,9 @@ class Home extends Component {
 
     let viewModal = null;
       if(this.state.showModal){
-          viewModal = <Modal/>
+          viewModal = <Modal
+              click={this.hideModal}
+              photo = {this.state.photos}/>
       }
 
     return (
@@ -130,7 +137,7 @@ class Home extends Component {
 
             <ToggleDisplay show={this.state.show}>
             <div id={'filterMenu'}>
-                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>Range</p>
                 <p className={'filterMenuItems'}>Categorie</p>
             </div>
             </ToggleDisplay>
