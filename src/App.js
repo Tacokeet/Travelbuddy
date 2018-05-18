@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './App.css';
+import './Responsive.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './user/Login';

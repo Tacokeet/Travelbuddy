@@ -1,15 +1,12 @@
 .App {
-  	text-align: center;
+  text-align: center;
 	background: #F8F9FA;
 	font-family: 'Raleway', sans-serif;
-
-
 }
 
 footer {
 	background: #495057;
 	color: white;
-	margin-top: 90px;
 	width: 100%;
 	padding: 20px 0px 20px 0px;
 	position: relative;
@@ -18,32 +15,30 @@ footer {
 
 #filter {
 	float: left;
-	margin-left: 5vw;
-	margin-top: 3.5vw;
-
-
+	text-align: left;
+	margin: 25px 0px;
+	width: 100%;
 }
 
 main {
-	margin-top: 50px;
+	max-width: 1170px;
+	margin: 0 auto;
+	padding: 50px 0px;
 }
 
 #filterMenu{
-	
-	margin-left: 100px;
-	margin-top: 40px;
-	width: 80%;
-	height: 80px;
 	background-color: #FFD8A8;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
+	width: 80%;
+	margin: 25px auto;
+	overflow: hidden;
 }
 
 .filterMenuItems {
 	display: inline;
 	float: left;
-	margin-top: 30px;
 	margin-left: 20px;
 }
 
