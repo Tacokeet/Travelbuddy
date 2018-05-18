@@ -1,38 +1,96 @@
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './App.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
+import Login from './user/Login';
+import Profile from './user/Profile';
+
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
+import ToggleDisplay from 'react-toggle-display';
+
+import {
+	Route,
+	BrowserRouter
+} from 'react-router-dom';
+
 import Places from './places/Places';
 import City   from './city/City';
+import Modal   from './modal/Modal';
 
 
 class App extends Component {
-    apirequest(){
-        fetch("http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907")
-            .then(response => response.json())
+    render() {
+        return (
+          <BrowserRouter>
+            <div className="App">
 
-            .then(json => {
-                    console.log(json);
-                }
-            )
-        ;
+                <Header />
 
-    };
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/profile" component={Profile} />
+
+                <Footer />
+
+            </div>
+          </BrowserRouter>
+        );
+    }
+}
+
+class Home extends Component {
+    state = {
+        /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
+        region_name: ' ',
+        text: ' ',
+        city: ' ',
+        continent_name: ' ',
+        name: ' ',
+        categories: ['Must see places','Entertainment','Restaurants'],
+        id: "hier moet unieke waarde komen",
+        show: false
+    }
+    componentDidMount(){
+        axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
+            .then(response => {
+                this.setState({continent_name: response.data.continent_name})
+                this.setState({region_name: response.data.region_name})
+                this.setState({city: response.data.city})
+                this.setState({name: response.data.location.languages[0].name})
+                console.log(response.data)
+            });
+        axios.get('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen')
+            .then(wiki => {
+            this.setState({text: wiki.data})
+            console.log(wiki.data[2][1])
+        });
+    }
+
 
     state = {
         /*deze fields moeten dynamisch worden toegewezen later door een 'setstate()' met door de api binnen gehaalde info*/
         cityName: 'Groningen',
         categories: ['Must see places','Entertainment','Restaurants'],
-        id: "hier moet unieke waarde komen"
+        id: "hier moet unieke waarde komen",
+        show: false,
+        showModal: false
     }
 
-    filterHandler = () => {
-        console.log("TEST");
+    handleClick = () => {
+        this.setState({
+            show: !this.state.show
+        });
     }
-    render() {
 
+    modalHandler = () => {
+        this.setState({showModal: true})
+    }
+
+  render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
       let textcategories = null
       textcategories = (
@@ -41,27 +99,39 @@ class App extends Component {
                   return <Places
                       categories ={categorie}
                       key={this.state.id + index}
+                      click = {this.modalHandler}
                   />
               })}
           </div>
       );
 
-        return (
-            <div className="App">
-                {this.apirequest()}
-                <Header />
+    let viewModal = null;
+      if(this.state.showModal){
+          viewModal = <Modal/>
+      }
 
-                <City cityName={this.state.cityName}/>
+    return (
+		<main>
 
-        <button id={'filter'} onClick={this.filterHandler}>filter</button>
+			<City region_name={this.state.region_name}/>
 
-        {textcategories}
-
-                <Footer />
-
+            <div id={'filter'} onClick={this.handleClick}>
+                <FontAwesomeIcon icon={faFilter} />
             </div>
-        );
-    }
+
+
+            <ToggleDisplay show={this.state.show}>
+            <div id={'filterMenu'}>
+                <p className={'filterMenuItems'}>Categorie</p>
+                <p className={'filterMenuItems'}>Categorie</p>
+            </div>
+            </ToggleDisplay>
+
+            {viewModal}
+			{textcategories}
+		</main>
+    );
+  }
 }
 
 export default App;
