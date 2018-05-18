@@ -9,7 +9,7 @@ import logo4 from '../images/4.jpg';
 const places = (props) => {
 
     return (
-    <div>
+     <div className={'placesRow'}>
         <h3 className={'placesText'} >{props.categories}</h3>
         <div className={'places'}>
             <img className={'locations'} src={props.photo[0]} onClick={props.click} alt="gfd" />
