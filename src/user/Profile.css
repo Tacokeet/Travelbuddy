@@ -23,7 +23,7 @@
 }
 
 .settingsBlock {
-	width: 33%;
+	width: 35%;
 	display: inline-block;
 	text-align: left;
 	font-weight: bold;
@@ -50,38 +50,14 @@
 }
 
 #preferences {
-	width: 49%;
+	width: 48%;
 	display: inline-block;
 	vertical-align: top;
+	padding-left: 15px;
 }
 
-#favorites {
-	width: 50%;
-	display: inline-block;
-	margin-bottom: 35px;
-}
-
-.favorite {
-	padding: 8px 0 8px 0;
-	border-top: 1px solid grey;
-	display: block;
-}
-
-.favorite img {
-	width: 80px;
-	display: inline-block;
-}
-
-.favoriteName {
-	display: inline-block;
-	margin-left: 15px;
-	vertical-align: top;
-	font-weight: bold;
-    font-size: 18px;
-}
-
-.favoriteLocation {
-	
+.preference {
+	margin-bottom: 8px;
 }
 
 .preference {
@@ -97,6 +73,8 @@
 	padding: 4px 4px 4px 8px;
 	font-size: 14px;
 	line-height: 28px;
+	display: block;
+    margin-top: 4px;
 }
 
 #preferenceList {
@@ -107,4 +85,57 @@
 	margin-left: 9px;
     vertical-align: middle;
     padding-bottom: 1px;
+}
+
+#favorites {
+	width: 50%;
+	display: inline-block;
+	margin-bottom: 35px;
+}
+
+.favorite {
+	padding: 8px 110px 8px 18px;
+	border-top: 1px solid grey;
+	display: block;
+	float: left;
+}
+
+.placeInfo {
+	display: inline-block;
+	float: left;
+	position: relative;
+}
+
+.favorite img {
+	width: 80px;
+	display: inline-block;
+	float: left;
+	margin-right: 15px;
+}
+
+.favoriteName {
+	display: block;
+	vertical-align: top;
+	font-weight: bold;
+    font-size: 18px;
+}
+
+.favoriteInfo {
+	padding-top: 7px;
+}
+
+.deleteFavoriteIcon {
+	position: absolute;
+    right: -99px;
+    bottom: 18px;
+    font-size: 24px;
+}
+
+.favoriteLocation {
+	
+}
+
+.favoriteRating {
+	margin-left: 5px;
+	display: inline-block;
 }
