@@ -6,15 +6,13 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import userIcon from '@fortawesome/fontawesome-free-regular/faUser'
 import searchIcon from '@fortawesome/fontawesome-free-solid/faSearch'
 import './Header.css';
-//import mainLogo from '../images/logo.jpg';
+import mainLogo from '../images/logo.jpg';
 
 class Header extends Component {
 	render() {
 		return (
 			<header>
-{/*
-                <img className={'mainLogo'} src={mainLogo} alt="mainLogo" />
-*/}
+				{<img className={'mainLogo'} src={mainLogo} alt="mainLogo" />}
 				<h1 id={'headerText'}>TravelBuddy</h1>
 				<DropDown />
 
@@ -73,6 +71,7 @@ class Menu extends Component {
 				<li><NavLink to="/">Home</NavLink></li>
 				<li><NavLink to="/login">Login</NavLink></li>
 				<li><NavLink to="/profile">Profile</NavLink></li>
+				<li><NavLink to="/addEvent">Add Event</NavLink></li>
 			</ul>
 		);
 	}
