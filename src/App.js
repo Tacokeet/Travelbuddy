@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './App.css';
+import './Responsive.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './user/Login';
 import Profile from './user/Profile';
+import AddEvent from './user/AddEvent';
 import Places from './places/Places';
 import City   from './city/City';
 import Modal   from './modal/Modal';
@@ -37,6 +39,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
+				<Route path="/addEvent" component={AddEvent} />
 
                 <Footer />
 
