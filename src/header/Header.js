@@ -18,7 +18,7 @@ class Header extends Component {
 
                 <div id="search">
                     <div id="searchIcon">
-                        <FontAwesomeIcon icon={searchIcon} />
+						<NavLink to="/search"><FontAwesomeIcon icon={searchIcon} /></NavLink>
                     </div>
                 </div>
 			</header>

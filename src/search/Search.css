@@ -1,0 +1,45 @@
+#result {
+    overflow: hidden;
+    margin: 25px auto;
+    width: 1170px;
+}
+
+.singleResult {
+    width: 24%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 25px;
+    position: relative;
+    margin-right: 1%;
+}
+
+.singleResult img {
+    height: 234px;
+    width: 285.8px;
+}
+
+.nameBox {
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    color: #fff;
+    background-color: #FF922B;
+    width: 100%;
+    padding-left: 5px;
+    min-height: 70px;
+}
+
+div.rating {
+    background-color: rgb(244, 212, 66);
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+    padding-top: 10px;
+    padding-left: 8px;
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+}
