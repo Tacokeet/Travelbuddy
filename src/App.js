@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './App.css';
+import './Responsive.css';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Login from './user/Login';
@@ -11,6 +12,7 @@ import AddEvent from './user/AddEvent';
 import Places from './places/Places';
 import City   from './city/City';
 import Modal   from './modal/Modal';
+import Search   from './search/Search.js';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFilter from '@fortawesome/fontawesome-free-solid/faFilter';
@@ -39,6 +41,7 @@ class App extends Component {
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
 				<Route path="/addEvent" component={AddEvent} />
+                <Route path="/search" component={Search} />
 
                 <Footer />
 
@@ -52,16 +55,17 @@ class Home extends Component {
     state = {
         region_name: ' ',
         text: ' ',
-        city: ' ',
+        city: '',
         continent_name: ' ',
         latitude: ' ',
         longitude: ' ',
         groningen: ' ',
         name: ' ',
-        categories: ['Must see places','Entertainment','Restaurants'],
+        categories: ['restaurant','supermarket','restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
-        photos: [logo1,logo2,logo3,logo4]
+        photos: [logo1,logo2,logo3,logo4],
+        query: "",
     }
 
     componentDidMount(){
@@ -76,12 +80,15 @@ class Home extends Component {
                 this.setState({longitude: response.data.longitude})
                 this.setState({latitude: response.data.latitude})
                 console.log(response.data)
+                let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+                    + this.state.latitude + ',' + this.state.longitude + '&radius=5000&type=';
+                this.setState({query: places})
             });
         axios.get(proxy + url)
             .then(wiki => {
             this.setState({text: wiki.data})
             this.setState({groningen: wiki.data[2][0]})
-            console.log(wiki.data)
+            //console.log(wiki.data)
         });
     }
 
@@ -112,14 +119,16 @@ class Home extends Component {
               {this.state.categories.map((categorie,index) => {
 
                   let rand = Math.floor(Math.random() * 3)
-
-                  return <Places
-                      categories ={categorie}
-                      key={this.state.id + index}
-                      click = {this.modalHandler}
-                      photo = {this.state.photos}
-                      index = {index}
-                  />
+                  if (this.state.query) {
+                      return <Places
+                          categories ={categorie}
+                          key={this.state.id + index}
+                          click = {this.modalHandler}
+                          photo = {this.state.photos}
+                          index = {index}
+                          query = {this.state.query}
+                      />
+                  }
               })}
           </div>
       );
@@ -134,7 +143,7 @@ class Home extends Component {
     return (
 		<main>
 
-			<City region_name={this.state.region_name} groningen={this.state.groningen}/>
+			<City region_name={this.state.city} groningen={this.state.groningen}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
