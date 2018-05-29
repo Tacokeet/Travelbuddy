@@ -59,7 +59,9 @@ class Home extends Component {
         continent_name: ' ',
         latitude: ' ',
         longitude: ' ',
-        groningen: ' ',
+        wikitext: ' ',
+        calling_code: ' ',
+        country_name: ' ',
         name: ' ',
         categories: ['restaurant','supermarket','restaurant'],
         id: "hier moet unieke waarde komen",
@@ -74,9 +76,12 @@ class Home extends Component {
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
                 this.setState({continent_name: response.data.continent_name})
+                this.setState({country_name: response.data.country_name})
                 this.setState({region_name: response.data.region_name})
                 this.setState({city: response.data.city})
                 this.setState({name: response.data.location.languages[0].name})
+                this.setState({country_flag: response.data.location.country_flag})
+                this.setState({calling_code: response.data.location.calling_code})
                 this.setState({longitude: response.data.longitude})
                 this.setState({latitude: response.data.latitude})
                 console.log(response.data)
@@ -87,7 +92,7 @@ class Home extends Component {
                 axios.get(proxy + url)
                     .then(wiki => {
                         this.setState({text: wiki.data})
-                        this.setState({groningen: wiki.data[2][0]})
+                        this.setState({wikitext: wiki.data[2][0]})
                         //console.log(wiki.data)
                     });
             });
@@ -150,7 +155,9 @@ class Home extends Component {
     return (
 		<main>
 
-			<City region_name={this.state.city} groningen={this.state.groningen} name={this.state.name} continent_name={this.state.continent_name}/>
+			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
+                  continent_name={this.state.continent_name} country_flag={this.state.country_flag}
+                  calling_code={this.state.calling_code} region_name={this.state.region_name} country_name={this.state.country_name}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
