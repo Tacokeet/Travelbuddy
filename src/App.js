@@ -61,7 +61,7 @@ class Home extends Component {
         longitude: ' ',
         groningen: ' ',
         name: ' ',
-        categories: ['restaurant','supermarket','car_dealer'],
+        categories: ['restaurant','supermarket','restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -150,7 +150,7 @@ class Home extends Component {
     return (
 		<main>
 
-			<City region_name={this.state.city} groningen={this.state.groningen}/>
+			<City region_name={this.state.city} groningen={this.state.groningen} name={this.state.name} continent_name={this.state.continent_name}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
