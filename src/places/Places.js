@@ -13,11 +13,13 @@ class Places extends Component {
 
     baseUrl = "https://maps.googleapis.com/maps/api/place/photo?maxheight=234&maxwidth=280&photoreference=";
     apikey = "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
+    radius = '&radius=';
+    type = '&type=';
 
     componentDidMount() {
         let proxy = "https://cors-anywhere.herokuapp.com/";
-        let type = this.props.categories;
-        let url = this.props.query + type + this.apikey;
+        let cat = this.props.categories;
+        let url = this.props.query + this.radius + this.props.range + this.type + cat + this.apikey;
         fetch(proxy + url)
             .then(response => response.json())
             .then(resultPlaces => {
@@ -28,47 +30,32 @@ class Places extends Component {
             })
     }
 
+    createContent = () => {
+        let content = [];
+        for (let index = 0; index < 4; index++) {
+            content.push(<div className={"singleResult"}>
+                            <div className={"nameBox"}>
+                                <p>{this.state.results[index].name}</p>
+                            </div>
+                            <div className={"rating"}>{this.state.results[index].rating}</div>
+                            <img src={this.baseUrl + this.state.results[index].photos[0].photo_reference + this.apikey} alt={""}/>
+                        </div>)
+        }
+
+            return content
+    }
+
     render() {
         return (
             this.state.results.length > 1 &&
             <div className={'placesRow'}>
                 <h3 className={'placesText'} >{this.props.categories}</h3>
-                    <div className={"singleResult"}>
-                        <div className={"nameBox"}>
-                            <p>{this.state.results[0].name}</p>
-                        </div>
-                        <div className={"rating"}>{this.state.results[0].rating}</div>
-                            <img src={this.baseUrl + this.state.results[0].photos[0].photo_reference + this.apikey} alt={""}/>
-                    </div>
-                    <div className={"singleResult"}>
-                        <div className={"nameBox"}>
-                            <p>{this.state.results[1].name}</p>
-                        </div>
-                        <div className={"rating"}>{this.state.results[1].rating}</div>
-                        <img src={this.baseUrl + this.state.results[1].photos[0].photo_reference + this.apikey} alt={""}/>
-                    </div>
-                    <div className={"singleResult"}>
-                        <div className={"nameBox"}>
-                            <p>{this.state.results[2].name}</p>
-                        </div>
-                        <div className={"rating"}>{this.state.results[2].rating}</div>
-                        <img src={this.baseUrl + this.state.results[2].photos[0].photo_reference + this.apikey} alt={""}/>
-                    </div>
-                    <div className={"singleResult"}>
-                        <div className={"nameBox"}>
-                            <p>{this.state.results[3].name}</p>
-                        </div>
-                        <div className={"rating"}>{this.state.results[3].rating}</div>
-                        <img src={this.baseUrl + this.state.results[3].photos[0].photo_reference + this.apikey} alt={""}/>
-                    </div>
+                {this.createContent()}
             </div>
         )
     }
 
 }
 
-class ResultList extends Component {
-
-}
 
 export default Places;
