@@ -61,16 +61,16 @@ class Home extends Component {
         longitude: ' ',
         groningen: ' ',
         name: ' ',
-        categories: ['restaurant','supermarket','restaurant'],
+        categories: ['restaurant','supermarket','car_dealer'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
         query: "",
+        range: "5000",
     }
 
     componentDidMount(){
         var proxy  = 'https://cors-anywhere.herokuapp.com/';
-        var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=Groningen';
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
                 this.setState({continent_name: response.data.continent_name})
@@ -81,15 +81,16 @@ class Home extends Component {
                 this.setState({latitude: response.data.latitude})
                 console.log(response.data)
                 let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-                    + this.state.latitude + ',' + this.state.longitude + '&radius=5000&type=';
+                    + this.state.latitude + ',' + this.state.longitude;
                 this.setState({query: places})
+                var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
+                axios.get(proxy + url)
+                    .then(wiki => {
+                        this.setState({text: wiki.data})
+                        this.setState({groningen: wiki.data[2][0]})
+                        //console.log(wiki.data)
+                    });
             });
-        axios.get(proxy + url)
-            .then(wiki => {
-            this.setState({text: wiki.data})
-            this.setState({groningen: wiki.data[2][0]})
-            //console.log(wiki.data)
-        });
     }
 
 
@@ -107,6 +108,11 @@ class Home extends Component {
         this.setState({showModal: false})
     }
 
+    radiusHandler = (e) => {
+        this.setState({
+            range: e.target.value
+        })
+    }
 
 
 
@@ -127,6 +133,7 @@ class Home extends Component {
                           photo = {this.state.photos}
                           index = {index}
                           query = {this.state.query}
+                          range = {this.state.range}
                       />
                   }
               })}
@@ -153,26 +160,11 @@ class Home extends Component {
             <ToggleDisplay show={this.state.show}>
             <div id={'filterMenu'}>
                 <p className={'filterMenuItems'}>Range</p>
-                <p className={'filterMenuItems'}>
-                    <input type="radio" name = "range"  value="range" />
-                    5 km
-                </p>
-                <p className={'filterMenuItems'}>
-                    <input type="radio" name = "range" value="range" />
-                    10 km
-                </p>
-                <p className={'filterMenuItems'}>
-                    <input type="radio" name = "range"  value="range" />
-                    15 km
-                </p>
-                <p className={'filterMenuItems'}>
-                    <input type="radio" name = "range"  value="range" />
-                    20 km
-                </p>
-                <p className={'filterMenuItems'}>
-                    <input type="radio" name = "range"  value="range" />
-                    25 km
-                </p>
+                <p className={'filterMenuItems'}><input type="radio" name="range"  value="5000" onChange={this.radiusHandler} />5 km</p>
+                <p className={'filterMenuItems'}><input type="radio" name="range"  value="10000" onChange={this.radiusHandler} />10 km</p>
+                <p className={'filterMenuItems'}><input type="radio" name="range"  value="15000" onChange={this.radiusHandler} />15 km</p>
+                <p className={'filterMenuItems'}><input type="radio" name="range"  value="20000" onChange={this.radiusHandler} />20 km</p>
+                <p className={'filterMenuItems'}><input type="radio" name="range"  value="25000" onChange={this.radiusHandler} />25 km</p>
             </div>
             </ToggleDisplay>
 
