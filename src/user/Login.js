@@ -35,7 +35,7 @@ class LoginForm extends Component {
 				<h3>Already a member?</h3>
 				<form onSubmit={this.handleSubmit}>
 					<label>Email address</label>
-					<input type="text" name="email" value={this.state.email} onChange={this.handleInputChange}/>
+					<input type="text" name="email" id={'eemail'} value={this.state.email} onChange={this.handleInputChange}/>
 					
 					<label>Password</label>
 					<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>

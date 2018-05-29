@@ -28,6 +28,10 @@ import {
 	BrowserRouter
 } from 'react-router-dom';
 
+const serverUrl = 'http://127.0.0.1:5000/';
+const http = axios.create({
+    baseURL: serverUrl,
+});
 
 class App extends Component {
     render() {
@@ -143,7 +147,7 @@ class Home extends Component {
     return (
 		<main>
 
-			<City region_name={this.state.city} groningen={this.state.groningen}/>
+			<City city={this.state.city} groningen={this.state.groningen}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
