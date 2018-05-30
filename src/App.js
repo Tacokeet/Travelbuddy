@@ -63,8 +63,8 @@ class Home extends Component {
         wikitext: ' ',
         calling_code: ' ',
         country_name: ' ',
-        lat: 0,
-        lon: 0,
+        lat: null,
+        lon: null,
         name: ' ',
         categories: ['restaurant','supermarket','restaurant'],
         id: "hier moet unieke waarde komen",
@@ -72,20 +72,22 @@ class Home extends Component {
         photos: [logo1,logo2,logo3,logo4],
         query: "",
         range: "5000",
-    }
+    };
+
 
     componentDidMount(){
 
-        // var gps;
-        // var geoSuccess = function(position) {
-        //     gps = position;
-        //     var latt = gps.coords.latitude;
-        //     var lonn = gps.coords.longitude;
-        //     console.log(latt,lonn)
-        //
-        // };
-        // navigator.geolocation.getCurrentPosition(geoSuccess);
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                lat: position.coords.latitude,
+                lon: position.coords.longitude
+            })
+            console.log(`Got location: ${position.coords.latitude}, ${position.coords.longitude}`);
+        })
 
+
+
+        
         var proxy  = 'https://cors-anywhere.herokuapp.com/';
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
@@ -97,65 +99,64 @@ class Home extends Component {
                                 country_flag: response.data.location.country_flag,
                                 calling_code: response.data.location.calling_code,
                                 longitude: response.data.longitude,
-                                latitude: response.data.latitude})
-                                console.log(response.data)
+                                latitude: response.data.latitude});
+
+                if (this.state.lat != null){
+                    this.setState({
+                        latitude: this.state.lat,
+                        longitude: this.state.lon
+                    })
+                }
+                                console.log(response.data);
+                                console.log(`Latitude ${this.state.latitude}, Longitude: ${this.state.longitude} `);
                 // let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
                 //     + this.state.latitude + ',' + this.state.longitude;
                 // this.setState({query: places})
                 var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
                 axios.get(proxy + url)
                     .then(wiki => {
-                        this.setState({text: wiki.data})
+                        this.setState({text: wiki.data});
                         this.setState({wikitext: wiki.data[2][0]})
                         //console.log(wiki.data)
                     });
             });
 
+
+
     }
 
-    addMore = () => {
-        var gps;
-        var geoSuccess = function(position) {
-            gps = position
-            this.setState({
-                counter: gps.coords.latitude
-            });
-        }
-
-        console.log(this.state.counter)
-    }
 
     handleClick = () => {
         this.setState({
             show: !this.state.show
         });
-    }
+    };
 
     modalHandler = () => {
         this.setState({showModal: true})
-    }
+    };
 
     hideModal = () => {
         this.setState({showModal: false})
-    }
+    };
 
     radiusHandler = (e) => {
         this.setState({
             range: e.target.value
         })
-    }
+    };
 
 
 
   render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
-      let textcategories = null
+      let textcategories = null;
 
       textcategories = (
           <div>
               {this.state.categories.map((categorie,index) => {
 
-                  let rand = Math.floor(Math.random() * 3)
+                  let rand = Math.floor(Math.random() * 3);
                   if (this.state.query) {
                       return <Places
                           categories ={categorie}
@@ -180,10 +181,6 @@ class Home extends Component {
 
     return (
 		<main>
-
-            <div onClick={ this.addMore }>
-                <p>counter: { this.state.counter }</p>
-            </div>
 
 			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
                   continent_name={this.state.continent_name} country_flag={this.state.country_flag}
