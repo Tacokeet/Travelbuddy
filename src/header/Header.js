@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { 
 	NavLink,
+	BrowserRouter
 } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import userIcon from '@fortawesome/fontawesome-free-regular/faUser'
@@ -70,13 +71,21 @@ class Menu extends Component {
 	render() {
 		return (
 			<ul id="menu">
-				<li><NavLink to="/">Home</NavLink></li>
+				<a onClick={() => this.dispatchNewRoute('/')}><li>Home</li></a>
+				<a onClick={() => this.dispatchNewRoute('/login')}><li>Login</li></a>
+				<a onClick={() => this.dispatchNewRoute('/profile')}><li>Profile</li></a>
+				<a onClick={() => this.dispatchNewRoute('/addEvent')}><li>Add Event</li></a>
+				{/*<li><NavLink to="/">Home</NavLink></li>
 				<li><NavLink to="/login">Login</NavLink></li>
 				<li><NavLink to="/profile">Profile</NavLink></li>
-				<li><NavLink to="/addEvent">Add Event</NavLink></li>
+				<li><NavLink to="/addEvent">Add Event</NavLink></li>*/}
 			</ul>
 		);
 	}
+	
+	dispatchNewRoute(route) {
+        window.location.href = route
+    }
 }
 
 export default Header;
