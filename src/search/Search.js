@@ -8,6 +8,13 @@ class Search extends Component {
         this.state = {
             results: [],
             input: '',
+            type: [],
+            radius: "",
+            language: "",
+            minPrice: "",
+            maxPrice: "",
+            openNow: "",
+            rankBy: ""
         };
     }
 

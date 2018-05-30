@@ -43,3 +43,13 @@ div.rating {
     padding-right: 7px;
     padding-bottom: 7px;
 }
+
+ul.suggestCategories {
+    padding-left: 0px;
+    list-style: none;
+}
+
+ul.suggestCategories li {
+    padding: 5px 0;
+    text-transform: capitalize;
+}

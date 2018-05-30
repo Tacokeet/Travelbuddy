@@ -61,7 +61,7 @@ class Home extends Component {
         longitude: ' ',
         groningen: ' ',
         name: ' ',
-        categories: ['restaurant','supermarket','car_dealer'],
+        categories: ['restaurant','supermarket','clothing_store'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -93,7 +93,6 @@ class Home extends Component {
             });
     }
 
-
     handleClick = () => {
         this.setState({
             show: !this.state.show
@@ -112,6 +111,7 @@ class Home extends Component {
         this.setState({
             range: e.target.value
         })
+        console.log(this.state.range);
     }
 
 
@@ -123,7 +123,6 @@ class Home extends Component {
       textcategories = (
           <div>
               {this.state.categories.map((categorie,index) => {
-
                   let rand = Math.floor(Math.random() * 3)
                   if (this.state.query) {
                       return <Places

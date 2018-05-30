@@ -55,6 +55,10 @@
 	padding-left: 15px;
 }
 
+.preference:first-letter {
+	text-transform: uppercase;
+}
+
 .preference {
 	margin-bottom: 8px;
 }
