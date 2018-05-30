@@ -28,10 +28,6 @@ import {
 	BrowserRouter
 } from 'react-router-dom';
 
-const serverUrl = 'http://127.0.0.1:5000/';
-const http = axios.create({
-    baseURL: serverUrl,
-});
 
 class App extends Component {
     render() {
@@ -40,12 +36,12 @@ class App extends Component {
             <div className="App">
 
                 <Header />
-
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/profile" component={Profile} />
+			
+				<Route exact path="/" component={Home} />
+				<Route path="/login" component={Login} />
+				<Route path="/profile" component={Profile} />
 				<Route path="/addEvent" component={AddEvent} />
-                <Route path="/search" component={Search} />
+				<Route path="/search" component={Search} />
 
                 <Footer />
 
@@ -65,7 +61,7 @@ class Home extends Component {
         longitude: ' ',
         groningen: ' ',
         name: ' ',
-        categories: ['restaurant','supermarket','restaurant'],
+        categories: ['restaurant','restaurant','restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -154,7 +150,7 @@ class Home extends Component {
     return (
 		<main>
 
-			<City city={this.state.city} groningen={this.state.groningen}/>
+			<City region_name={this.state.city} groningen={this.state.groningen}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
