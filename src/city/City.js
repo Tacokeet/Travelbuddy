@@ -13,6 +13,8 @@ const city = (props) => {
                 <li>Calling code: +{props.calling_code}</li>
                 <li>Region: {props.region_name}</li>
                 <li>Country: {props.country_name}</li>
+                <li>lat: {props.lat}</li>
+                <li>lon: {props.lon}</li>
             </ul>
 
         </div>
