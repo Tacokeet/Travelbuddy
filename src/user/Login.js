@@ -33,16 +33,16 @@ class LoginForm extends Component {
 		return (
 			<div id="loginForm">
 				<h3>Already a member?</h3>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleSubmit} action='/login' method='POST'>
 					<label>Email address</label>
-					<input type="text" name="email" id={'eemail'} value={this.state.email} onChange={this.handleInputChange}/>
+					<input type="text" name="email" id={'email'} value={this.state.email} onChange={this.handleInputChange}/>
 					
 					<label>Password</label>
 					<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
 					
 					<label id="forgotPassword"><a href="">Forgot password</a></label>
 					
-					<button type="submit">Login</button>
+					<button type="submit" name={'loginButton'}>Login</button>
 				</form>
 			</div>
 		);
@@ -78,7 +78,7 @@ class RegisterForm extends Component {
 	
 	render() {
 		return (
-			<div id="registerForm">
+			<div id="registerForm" action='/login' method='POST'>
 						<h3>Register</h3>
 						<form onSubmit={this.handleSubmit}>
 							<label>Username</label>
