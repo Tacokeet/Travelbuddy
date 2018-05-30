@@ -65,7 +65,7 @@ class Home extends Component {
         longitude: ' ',
         groningen: ' ',
         name: ' ',
-        categories: ['restaurant','supermarket','car_dealer'],
+        categories: ['restaurant','supermarket','restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
