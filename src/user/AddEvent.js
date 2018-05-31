@@ -22,11 +22,11 @@ class AddEvent extends Component {
 				<h1>Add event</h1>
 				
 				<div id="addEventWrapper">
-					<form>
+					<form action="/event" method="POST">
 						<div className="addEventRow">
 							<div className="addEventItem">
 								<label className="addEventLabel">Event name</label>
-								<input type="text"/>
+								<input type="text" name="name"/>
 							</div>
 
 							<div className="addEventItem">
@@ -46,26 +46,26 @@ class AddEvent extends Component {
 							</div>
 							<div className="addEventItem">
 								<label className="addEventLabel">Location</label>
-								<input type="text" />
+								<input name="location" type="text" />
 							</div>
 						</div>
 
 						<div className="addEventRow">
 							<div className="addEventItem">
 								<label className="addEventLabel">Start date</label>
-								<input type="date" />
+								<input type="date" name="startDate" />
 							</div>
 							
 							<div className="addEventItem">
 								<label className="addEventLabel">End date</label>
-								<input type="date" />
+								<input type="date" name="endDate" />
 							</div>
 						</div>
 						
 						<div className="addEventRow">
 							<label className="addEventLabel" id="addImageLabel">Add an image if you want:</label>
 							<label for="fileUpload" id="addImageBtn"><FontAwesomeIcon icon={fileIcon}/> Select</label>
-							<input id="fileUpload" type="file"/>
+							<input id="fileUpload" type="file" name="file"/>
 						</div>
 						
 						<div className="addEventRow">
