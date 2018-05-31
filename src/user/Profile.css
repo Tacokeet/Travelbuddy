@@ -142,3 +142,13 @@
 	margin-left: 5px;
 	display: inline-block;
 }
+
+ul.suggestCategories {
+	padding-left: 0px;
+	list-style: none;
+}
+
+ul.suggestCategories li {
+	padding: 5px 0;
+	text-transform: capitalize;
+}
