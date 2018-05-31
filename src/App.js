@@ -62,6 +62,7 @@ class Home extends Component {
         longitude: ' ',
         wikitext: ' ',
         calling_code: ' ',
+        gpsCity: '',
         country_name: ' ',
         lat: null,
         lon: null,
@@ -82,7 +83,6 @@ class Home extends Component {
                 lat: position.coords.latitude,
                 lon: position.coords.longitude
             })
-            console.log(`Got location: ${position.coords.latitude}, ${position.coords.longitude}`);
         })
 
 
@@ -107,27 +107,33 @@ class Home extends Component {
                         longitude: this.state.lon
                     })
                 }
-                                console.log(response.data);
-                                console.log(`Latitude ${this.state.latitude}, Longitude: ${this.state.longitude} `);
+                console.log('LAT',this.state.latitude)
+                console.log('LON',this.state.longitude)
                 // let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
                 //     + this.state.latitude + ',' + this.state.longitude;
                 // this.setState({query: places})
-                var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
-                axios.get(proxy + url)
-                    .then(wiki => {
-                        this.setState({text: wiki.data});
-                        this.setState({wikitext: wiki.data[2][0]})
-                        //console.log(wiki.data)
-                    });
                 var locationURL  =  'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.latitude + ',' + this.state.longitude + '&key=AIzaSyCRNHsASJT7nxChb3zBLeH2hGJdZGMIZGQ'
                 axios.get(locationURL)
                     .then(location => {
-                        // this.setState({realCity: location});
-                        console.log(location)
+                        this.setState({gpsCity: location.data.results[1].address_components[1].long_name});
+                        console.log(location.data)
+                        if (this.state.gpsCity){
+                            this.setState({
+                                city: this.state.gpsCity
+                            })
+                            var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
+                            axios.get(proxy + url)
+                                .then(wiki => {
+                                    this.setState({text: wiki.data});
+                                    this.setState({wikitext: wiki.data[2][0]})
+                                    console.log(wiki.data)
+                                });
+
+                        }
                     });
+
+
             });
-
-
 
     }
 
@@ -161,7 +167,6 @@ class Home extends Component {
       textcategories = (
           <div>
               {this.state.categories.map((categorie,index) => {
-
                   let rand = Math.floor(Math.random() * 3);
                   if (this.state.query) {
                       return <Places
@@ -178,25 +183,36 @@ class Home extends Component {
           </div>
       );
 
+
+
     let viewModal = null;
       if(this.state.showModal){
           viewModal = <Modal
               click={this.hideModal}
-              photo = {this.state.photos}/>
+              photo = {this.state.photos}
+              latitude = {this.state.latitude}
+              longitude = {this.state.longitude}
+
+          />
+
       }
 
     return (
 		<main>
 
+
 			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
                   continent_name={this.state.continent_name} country_flag={this.state.country_flag}
                   calling_code={this.state.calling_code} region_name={this.state.region_name}
-                  country_name={this.state.country_name} lat={this.state.lat} lon={this.state.lon}/>
+                  country_name={this.state.country_name}/>
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
             </div>
 
+            <div onClick={this.modalHandler}>
+                <p>Some Test</p>
+            </div>
 
 
             <ToggleDisplay show={this.state.show}>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8d2594f-fb48-4189-9019-d20328c1c4e3" name="Default" comment="Added radio buttons">
+    <list default="true" id="c8d2594f-fb48-4189-9019-d20328c1c4e3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/city/City.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/city/City.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/city/City.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/city/City.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/footer/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/map/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/map/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modal/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modal/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/places/Places.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/places/Places.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,13 +22,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="127" column="25" lean-forward="true" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
+            <state relative-caret-position="2703">
+              <caret line="186" selection-start-line="186" selection-end-line="186" />
               <folding>
                 <element signature="e#1#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Map.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/map/Map.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -36,50 +49,8 @@
       <file leaf-file-name="Places.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/places/Places.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Footer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/footer/Footer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Map.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/map/Map.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
-              <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Modal.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modal/Modal.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="5" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -87,8 +58,32 @@
       <file leaf-file-name="City.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/city/City.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="34">
+              <caret line="3" selection-start-line="3" selection-end-line="20" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Footer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/footer/Footer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Modal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modal/Modal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="6" column="26" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="26" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -99,7 +94,7 @@
       <file leaf-file-name="City.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/city/City.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="306">
               <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
             </state>
           </provider>
@@ -117,11 +112,14 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>range</find>
       <find>ca</find>
       <find>a</find>
       <find>lat</find>
       <find>handleClick</find>
+      <find>photos</find>
+      <find>range</find>
+      <find>query</find>
+      <find>textcategories</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -139,15 +137,16 @@
         <option value="$PROJECT_DIR$/src/Modal/Modal.js" />
         <option value="$PROJECT_DIR$/src/header/Header.js" />
         <option value="$PROJECT_DIR$/src/header/Header.css" />
-        <option value="$PROJECT_DIR$/src/places/Places.js" />
-        <option value="$PROJECT_DIR$/src/modal/Modal.js" />
         <option value="$PROJECT_DIR$/src/map/Map.css" />
         <option value="$PROJECT_DIR$/src/modal/Modal.css" />
-        <option value="$PROJECT_DIR$/src/map/Map.js" />
         <option value="$PROJECT_DIR$/src/city/City.css" />
+        <option value="$PROJECT_DIR$/src/footer/Footer.js" />
         <option value="$PROJECT_DIR$/src/city/City.js" />
+        <option value="$PROJECT_DIR$/src/places/Places.js" />
+        <option value="$PROJECT_DIR$/src/modal/Modal.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/map/Map.js" />
       </list>
     </option>
   </component>
@@ -184,7 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,7 +228,19 @@
               <item name="Test" type="b2602c69:ProjectViewProjectNode" />
               <item name="Test" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="modal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="places" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="search" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Test" type="b2602c69:ProjectViewProjectNode" />
@@ -242,6 +252,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -314,6 +325,8 @@
       <workItem from="1527079230245" duration="5000" />
       <workItem from="1527589859270" duration="1390000" />
       <workItem from="1527671494379" duration="11083000" />
+      <workItem from="1527757069183" duration="12543000" />
+      <workItem from="1527778448800" duration="347000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js">
       <created>1526295084448</created>
@@ -462,14 +475,21 @@
       <option name="project" value="LOCAL" />
       <updated>1526638940034</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added gps">
+      <created>1527758210885</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1527758210885</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77212000" />
+    <option name="totallyTimeSpent" value="90102000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49382716" visible="true" weight="0.16341145" />
@@ -477,8 +497,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50390625" side_tool="true" weight="0.3475862" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49609375" weight="0.32965517" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49674478" weight="0.32827586" />
       <window_info id="npm" order="2" sideWeight="0.50718683" side_tool="true" weight="0.125" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49674478" weight="0.32827586" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49609375" visible="true" weight="0.3475862" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -525,21 +545,15 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.js" />
     <MESSAGE value="Merge branch 'master' of https://github.com/wkurvers/Travelbuddy&#10;&#10;# Conflicts:&#10;#&#9;src/App.css&#10;#&#9;src/header/Header.js" />
     <MESSAGE value="Added radio buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added radio buttons" />
+    <MESSAGE value="Added gps" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added gps" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/city/City.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -794,16 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modal/Modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fontawesome/advanced-options/metadata/icons.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -829,51 +833,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/city/City.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="306">
           <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/map/Map.js">
+    <entry file="file://$PROJECT_DIR$/src/search/Search.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-        </state>
+        <state relative-caret-position="-459" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/footer/Footer.js">
+    <entry file="file://$PROJECT_DIR$/src/places/Places.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/city/City.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="34">
+          <caret line="3" selection-start-line="3" selection-end-line="20" selection-end-column="1" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/places/Places.js">
+    <entry file="file://$PROJECT_DIR$/src/footer/Footer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+        <state relative-caret-position="153">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="127" column="25" lean-forward="true" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
+        <state relative-caret-position="2703">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
           <folding>
             <element signature="e#1#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modal/Modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/map/Map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

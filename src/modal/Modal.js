@@ -8,7 +8,6 @@ const modal = (props) => {
     return(
 
 
-
         <div id="myModal" className="modal">
 
             <div className="modal-content">
@@ -19,12 +18,14 @@ const modal = (props) => {
                         <p id={'nameLocation'}>Amazing place</p>
                         <p>adres: Bornholmstraat 42</p>
                         <p>tel: 050 541 4477</p>
+                        <p>Latitude {props.latitude}</p>
+                        <p>Longitude {props.longitude}</p>
                     </div>
 
 
                 </div>
                 <div id={'right'}>
-                    <Map />
+                    <Map latitude={props.latitude} />
                 </div>
 
 
