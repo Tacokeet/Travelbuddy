@@ -66,7 +66,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: ['restaurant','supermarket','restaurant'],
+        categories: ['restaurant','supermarket','clothing_store'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -131,7 +131,6 @@ class Home extends Component {
 
     }
 
-
     handleClick = () => {
         this.setState({
             show: !this.state.show
@@ -161,8 +160,7 @@ class Home extends Component {
       textcategories = (
           <div>
               {this.state.categories.map((categorie,index) => {
-
-                  let rand = Math.floor(Math.random() * 3);
+                  let rand = Math.floor(Math.random() * 3)
                   if (this.state.query) {
                       return <Places
                           categories ={categorie}
