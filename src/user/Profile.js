@@ -5,6 +5,7 @@ import logo2 from '../images/3.jpg';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import xIcon from '@fortawesome/fontawesome-free-solid/faTimes'
 import deleteIcon from '@fortawesome/fontawesome-free-regular/faTimesCircle'
+import axios from 'axios';
 
 import solidStar from '@fortawesome/fontawesome-free-solid/faStar'
 import regularStar from '@fortawesome/fontawesome-free-regular/faStar'
@@ -93,25 +94,28 @@ class Preferences extends Component {
 	constructor(props) {
 		super(props);
 
-    	this.state = {
-            categories: [
-                "accounting", "airport", "amusement_park", "aquarium", "art_gallery", "atm", "bakery", "bank",
-                "beauty_salon", "bicycle_store", "book_store", "bowling_alley", "bus_station", "cafe", "campground",
-                "car_dealer", "car_rental", "car_repair", "car_wash", "casino", "cemetery", "church", "city_hall",
-                "clothing_store", "convenience_store", "courthouse","dentist", "department_store", "doctor",
-				"electrician", "electronics_store", "embassy", "fire_station", "florist", "funeral_home",
-				"furniture_store", "gas_station", "gym", "hair_care", "hardware_store", "hindu_temple",
-				"home_goods_store", "hospital", "insurance_agency", "jewelry_store", "laundry", "lawyer", "library",
-                "liquor_store", "local_government_office", "locksmith", "lodging", "meal_delivery", "meal_takeaway",
-                "mosque", "movie_rental", "movie_theater", "moving_company", "museum", "night_club", "painter",
-                "park", "parking", "pet_store", "pharmacy", "physiotherapist", "plumber", "police", "post_office",
-                "real_estate_agency", "restaurant", "roofing_contractor", "rv_park", "school", "shoe_store",
-				"shopping_mall", "spa", "stadium", "storage", "store", "subway_station", "supermarket", "synagogue",
-                "taxi_stand", "train_station", "transit_station", "travel_agency", "veterinary_care",
-                "zoo",
-            ],
-            results: []
-        }
+		this.state = {
+			jsonCategories: {},
+			categories: [],
+			results: []
+		}
+		
+		axios.get('/api/categories')
+			.then(result => {
+				let temp = [];
+				this.setState({
+					jsonCategories: result.data
+				})
+					
+				for (var key in this.state.jsonCategories) {
+					temp.push(key)
+					console.log(key)
+				}
+				this.setState({
+					categories: temp
+				})
+				console.log(this.state.categories)
+			}); 	 
 	}
 
     handleChange = (e) => {
@@ -120,7 +124,7 @@ class Preferences extends Component {
         for (let i = 0; i < this.state.categories.length; i++) {
         	let word = this.state.categories[i];
             if (word.substring(0, length) == e.target.value.toLowerCase()) {
-                result.push(word.split('_').join(' '));
+                result.push(word);
             }
 		}
 		if (e.target.value == "") {
@@ -141,7 +145,7 @@ class Preferences extends Component {
 				<h2>Preferences</h2>
 				Add preferences: 
 				<input type="text" placeholder="Museums" onChange={this.handleChange} />
-				<ResultList results={this.state.results} />
+				<ResultList results={this.state.results} object={this.state.jsonCategories} />
 			</div>
 		);
 	}
@@ -151,31 +155,46 @@ class ResultList extends Component {
 
 	constructor(props) {
 		super(props);
-
+		
 		this.state = {
-            preferences: [
-                "restaurant",
-                "Music stores",
-                "museum"
-			]
+			preferences: []
 		}
+
+		const url = "/api/user/preferences/wouter";
+		
+		axios.get(url)
+			.then(response => {
+				console.log(response)
+				let temp = [];
+				for (var key in response.data) {
+					temp.push(key)
+				}
+				console.log(temp)
+				this.setState({
+					preferences: temp
+				})
+				console.log(this.state.preferences)
+				
+			});  
 
         this.removePreference = this.removePreference.bind(this);
 
 	}
 
-    addPreference = (i) => {
+    addPreference = (i, result) => {
 		let pref = []
 		let check = 0;
-		console.log(this.props.results[i])
+		console.log(i)
 		for (let index = 0; index < this.state.preferences.length; index++) {
 			pref.push(this.state.preferences[index])
-			if (this.state.preferences[index] == this.props.results[i]) {
+			if (this.state.preferences[index] == result) {
 				check++;
 			}
 		}
-		pref.push(this.props.results[i])
+		pref.push(result)
 		if (check == 0) {
+			const url = "/api/user/preferences/wouter/" + i
+			axios.post(url)
             this.setState({
                 preferences: pref
             })
@@ -183,7 +202,9 @@ class ResultList extends Component {
 		console.log(this.state.preferences)
 	}
 
-    removePreference(index) {
+    removePreference(index, name, i) {
+		const url = "/api/user/preferences/wouter/" + i
+		axios.delete(url)
         let array = this.state.preferences;
         array.splice(index, 1);
         this.setState({
@@ -196,15 +217,15 @@ class ResultList extends Component {
 				<div>
 					<div id={"suggested"}>
 						<ul className={"suggestCategories"}>
-						{this.props.results.map((result, i) => (
-							<li value={i} name={result} onClick={this.addPreference.bind(this, i)}>{result}</li>
+						{this.props.results.map((result) => (
+							<li value={this.props.object[result]} name={result} onClick={this.addPreference.bind(this, this.props.object[result], result)}>{result.split('_').join(' ')}</li>
 						))}
 						</ul>
 					</div>
 					<div id="preferenceList">
                         {this.state.preferences.map((preference, index) => {return (
-                            <label className="preference" onClick={() => this.removePreference(index)}>
-                                {preference}
+                            <label className="preference" onClick={() => this.removePreference(index, preference, this.props.object[preference])}>
+                                {preference.split('_').join(' ')}
                                 <FontAwesomeIcon className="closeIcon" icon={xIcon} />
                             </label>
                         );})}
