@@ -12,6 +12,7 @@ import AddEvent from './user/AddEvent';
 import Places from './places/Places';
 import City   from './city/City';
 import Modal   from './modal/Modal';
+import Map   from './map/Map';
 import Search   from './search/Search.js';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -115,7 +116,7 @@ class Home extends Component {
                 var locationURL  =  'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.latitude + ',' + this.state.longitude + '&key=AIzaSyCRNHsASJT7nxChb3zBLeH2hGJdZGMIZGQ'
                 axios.get(locationURL)
                     .then(location => {
-                        this.setState({gpsCity: location.data.results[1].address_components[1].long_name});
+                        this.setState({gpsCity: location.data.results[0].address_components[2].long_name});
                         console.log(location.data)
                         if (this.state.gpsCity){
                             this.setState({
@@ -127,6 +128,7 @@ class Home extends Component {
                                     this.setState({text: wiki.data});
                                     this.setState({wikitext: wiki.data[2][0]})
                                     console.log(wiki.data)
+                                    console.log(wiki.data[2][0])
                                 });
 
                         }
@@ -197,6 +199,14 @@ class Home extends Component {
 
       }
 
+      let viewMap = null;
+          viewMap = <Map
+              latitude = {this.state.latitude}
+              longitude = {this.state.longitude}
+          />
+
+
+
     return (
 		<main>
 
@@ -227,6 +237,7 @@ class Home extends Component {
             </ToggleDisplay>
 
             {viewModal}
+            {viewMap}
 			{textcategories}
 		</main>
     );

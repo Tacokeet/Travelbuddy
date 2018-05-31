@@ -25,7 +25,7 @@ const modal = (props) => {
 
                 </div>
                 <div id={'right'}>
-                    <Map latitude={props.latitude} />
+                    <Map />
                 </div>
 
 
