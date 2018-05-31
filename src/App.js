@@ -119,6 +119,12 @@ class Home extends Component {
                         this.setState({wikitext: wiki.data[2][0]})
                         //console.log(wiki.data)
                     });
+                var locationURL  =  'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.latitude + ',' + this.state.longitude + '&key=AIzaSyCRNHsASJT7nxChb3zBLeH2hGJdZGMIZGQ'
+                axios.get(locationURL)
+                    .then(location => {
+                        // this.setState({realCity: location});
+                        console.log(location)
+                    });
             });
 
 
