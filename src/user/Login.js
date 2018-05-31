@@ -42,7 +42,7 @@ class LoginForm extends Component {
 					
 					<label id="forgotPassword"><a href="">Forgot password</a></label>
 					
-					<button type="submit" name={'loginButton'}>Login</button>
+					<button type="submit" name="submit" value='login'>Login</button>
 				</form>
 			</div>
 		);
@@ -68,8 +68,11 @@ class RegisterForm extends Component {
 		
 		this.state = {
 			username: "",
+			firstname: "",
+			lastname: "",
 			email: "",
 			password: "",
+			country: "",
 		}
 		
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -78,19 +81,29 @@ class RegisterForm extends Component {
 	
 	render() {
 		return (
-			<div id="registerForm" action='/login' method='POST'>
+			<div id="registerForm" >
 						<h3>Register</h3>
-						<form onSubmit={this.handleSubmit}>
-							<label>Username</label>
-							<input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
-					
-							<label>Email address</label>
+						<form onSubmit={this.handleSubmit} action='/login' method='POST'>
+
+                            <label>username</label>
+                            <input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
+
+                            <label>Email address</label>
 							<input type="text" name="email" value={this.state.email} onChange={this.handleInputChange}/>
-							
+
+							<label>firstname</label>
+							<input type="text" name="firstname" value={this.state.firstname} onChange={this.handleInputChange}/>
+
+							<label>lastname</label>
+							<input type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange}/>
+
 							<label>Password</label>
-							<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
-							
-							<button type="submit">Register</button>
+                            <input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
+
+                            <label>country</label>
+                            <input type="password" name="country" value={this.state.country} onChange={this.handleInputChange}/>
+
+							<button type="submit" name="submit" value='register'>Register</button>
 						</form>
 					</div>
 		);
