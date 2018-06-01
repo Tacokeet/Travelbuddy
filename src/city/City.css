@@ -17,3 +17,12 @@
     overflow-x: hidden; /* Hide horizontal scrollbar */
     overflow-y: scroll; /* Add vertical scrollbar */
 }
+
+#extraInfo{
+    padding-left: 0;
+
+}
+li{
+    display: inline-block;
+    width: 20%;
+}
