@@ -110,9 +110,9 @@ class Home extends Component {
                 }
                 console.log('LAT',this.state.latitude)
                 console.log('LON',this.state.longitude)
-                // let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-                //     + this.state.latitude + ',' + this.state.longitude;
-                // this.setState({query: places})
+                let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+                    + this.state.latitude + ',' + this.state.longitude;
+                this.setState({query: places})
                 var locationURL  =  'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.latitude + ',' + this.state.longitude + '&key=AIzaSyCRNHsASJT7nxChb3zBLeH2hGJdZGMIZGQ'
                 axios.get(locationURL)
                     .then(location => {
@@ -220,9 +220,9 @@ class Home extends Component {
                 <FontAwesomeIcon icon={faFilter} />
             </div>
 
-            <div onClick={this.modalHandler}>
-                <p>Some Test</p>
-            </div>
+            {/*<div onClick={this.modalHandler}>*/}
+                {/*<p>Some Test</p>*/}
+            {/*</div>*/}
 
 
             <ToggleDisplay show={this.state.show}>
