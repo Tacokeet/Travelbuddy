@@ -12,65 +12,54 @@ import regularStar from '@fortawesome/fontawesome-free-regular/faStar'
 class Profile extends Component {
 	constructor(props) {
 		super(props);
-		
-		this.state = {
-			favorites: [
-				{name: "Cantina Mexicana",
-				image: logo1,
-				location: "Groningen",
-				rating: 4},
-				{name: "Groninger Museum",
-				image: logo2,
-				location: "Groningen",
-				rating: 5},
-			],
-			preferences: [
-				"Restaurants",
-				"Music stores",
-				"Museums"
-			]
-		}
-		
-		this.removePreference = this.removePreference.bind(this);
 	}
 	
 	render() {		
 		return (
 			<main>
 				<div id="profileWrapper">				
-					<Favorites favorites={this.state.favorites} onClick={(index) => this.removeFavorite(index)} />
-					
-					<Preferences preferences={this.state.preferences} onClick={(index) => this.removePreference(index)} />
-					
+					<Favorites />
+					<Preferences />
 					<Settings />
 				</div>
 			</main>
 		);
 	}
-	
-	removePreference(index) {
-		let array = this.state.preferences;
-		array.splice(index, 1);
-		this.setState({
-			preferences: array
-		});
-	}
-	
-	removeFavorite(index) {
-		let array = this.state.favorites;
-		array.splice(index, 1);
-		this.setState({
-			favorites: array
-		});
-	}
 }
 
-class Favorites extends Component {	
+class Favorites extends Component {
+
+	constructor(props) {
+		super(props)
+
+        this.state = {
+            favorites: [
+                {name: "Cantina Mexicana",
+                    image: logo1,
+                    location: "Groningen",
+                    rating: 4},
+                {name: "Groninger Museum",
+                    image: logo2,
+                    location: "Groningen",
+                    rating: 5},
+            ],
+        }
+
+	}
+
+    removeFavorite(index) {
+        let array = this.state.favorites;
+        array.splice(index, 1);
+        this.setState({
+            favorites: array
+        });
+    }
+
 	render() {
 		return (
 			<div id="favorites">
 				<h2>Your favorite places</h2>
-				{this.props.favorites.map((place, index) => {return (
+				{this.state.favorites.map((place, index) => {return (
 					<div class="favorite">
 						<img src={place.image} alt={place.name} />
 						<div class="placeInfo">
@@ -90,7 +79,7 @@ class Favorites extends Component {
 									})}
 								</div>
 							</div>
-							<FontAwesomeIcon className="deleteFavoriteIcon" icon={deleteIcon} onClick={()=>this.props.onClick(index)}/>
+							<FontAwesomeIcon className="deleteFavoriteIcon" icon={deleteIcon} onClick={()=>this.removeFavorite(index)}/>
 						</div>
 					</div>
 				);})}
@@ -100,24 +89,130 @@ class Favorites extends Component {
 }
 
 class Preferences extends Component {
+
+	constructor(props) {
+		super(props);
+
+    	this.state = {
+            categories: [
+                "accounting", "airport", "amusement_park", "aquarium", "art_gallery", "atm", "bakery", "bank",
+                "beauty_salon", "bicycle_store", "book_store", "bowling_alley", "bus_station", "cafe", "campground",
+                "car_dealer", "car_rental", "car_repair", "car_wash", "casino", "cemetery", "church", "city_hall",
+                "clothing_store", "convenience_store", "courthouse","dentist", "department_store", "doctor",
+				"electrician", "electronics_store", "embassy", "fire_station", "florist", "funeral_home",
+				"furniture_store", "gas_station", "gym", "hair_care", "hardware_store", "hindu_temple",
+				"home_goods_store", "hospital", "insurance_agency", "jewelry_store", "laundry", "lawyer", "library",
+                "liquor_store", "local_government_office", "locksmith", "lodging", "meal_delivery", "meal_takeaway",
+                "mosque", "movie_rental", "movie_theater", "moving_company", "museum", "night_club", "painter",
+                "park", "parking", "pet_store", "pharmacy", "physiotherapist", "plumber", "police", "post_office",
+                "real_estate_agency", "restaurant", "roofing_contractor", "rv_park", "school", "shoe_store",
+				"shopping_mall", "spa", "stadium", "storage", "store", "subway_station", "supermarket", "synagogue",
+                "taxi_stand", "train_station", "transit_station", "travel_agency", "veterinary_care",
+                "zoo",
+            ],
+            results: []
+        }
+	}
+
+    handleChange = (e) => {
+		let length = e.target.value.length
+		let result = [];
+        for (let i = 0; i < this.state.categories.length; i++) {
+        	let word = this.state.categories[i];
+            if (word.substring(0, length) == e.target.value.toLowerCase()) {
+                result.push(word.split('_').join(' '));
+            }
+		}
+		if (e.target.value == "") {
+            this.setState({
+                results: []
+            })
+		} else {
+            this.setState({
+                results: result
+            })
+		}
+
+    }
+
 	render() {
 		return (
 			<div id="preferences">
 				<h2>Preferences</h2>
 				Add preferences: 
-				<input type="text" placeholder="Museums"/>
-				
-				<div id="preferenceList">
-					{this.props.preferences.map((preference, index) => {return (
-						<label className="preference" onClick={() => this.props.onClick(index)}>
-							{preference}
-							<FontAwesomeIcon className="closeIcon" icon={xIcon} />
-						</label>
-					);})}
-				</div>
+				<input type="text" placeholder="Museums" onChange={this.handleChange} />
+				<ResultList results={this.state.results} />
 			</div>
 		);
 	}
+}
+
+class ResultList extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+            preferences: [
+                "restaurant",
+                "Music stores",
+                "museum"
+			]
+		}
+
+        this.removePreference = this.removePreference.bind(this);
+
+	}
+
+    addPreference = (i) => {
+		let pref = []
+		let check = 0;
+		console.log(this.props.results[i])
+		for (let index = 0; index < this.state.preferences.length; index++) {
+			pref.push(this.state.preferences[index])
+			if (this.state.preferences[index] == this.props.results[i]) {
+				check++;
+			}
+		}
+		pref.push(this.props.results[i])
+		if (check == 0) {
+            this.setState({
+                preferences: pref
+            })
+		}
+		console.log(this.state.preferences)
+	}
+
+    removePreference(index) {
+        let array = this.state.preferences;
+        array.splice(index, 1);
+        this.setState({
+            preferences: array
+        });
+    }
+
+    render() {
+        return (
+				<div>
+					<div id={"suggested"}>
+						<ul className={"suggestCategories"}>
+						{this.props.results.map((result, i) => (
+							<li value={i} name={result} onClick={this.addPreference.bind(this, i)}>{result}</li>
+						))}
+						</ul>
+					</div>
+					<div id="preferenceList">
+                        {this.state.preferences.map((preference, index) => {return (
+                            <label className="preference" onClick={() => this.removePreference(index)}>
+                                {preference}
+                                <FontAwesomeIcon className="closeIcon" icon={xIcon} />
+                            </label>
+                        );})}
+                    </div>
+				</div>
+        )
+    }
+
 }
 
 class Settings extends Component {
