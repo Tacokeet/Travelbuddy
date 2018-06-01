@@ -68,7 +68,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: ['restaurant','supermarket','clothing_store'],
+        categories: [],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -79,6 +79,20 @@ class Home extends Component {
 
     componentDidMount(){
 
+		const url = "/api/user/preferences/wouter";
+		
+		axios.get(url)
+			.then(response => {
+				let temp = [];
+				for (var key in response.data) {
+					temp.push(key)
+				}
+				this.setState({
+					categories: temp
+				})				
+				console.log(this.state.categories)
+			});  
+	
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
                 lat: position.coords.latitude,
@@ -108,11 +122,20 @@ class Home extends Component {
                         longitude: this.state.lon
                     })
                 }
-                console.log('LAT',this.state.latitude)
-                console.log('LON',this.state.longitude)
-                // let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-                //     + this.state.latitude + ',' + this.state.longitude;
-                // this.setState({query: places})
+
+                                console.log(response.data);
+                                console.log(`Latitude ${this.state.latitude}, Longitude: ${this.state.longitude} `);
+                 let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+                     + this.state.latitude + ',' + this.state.longitude;
+                 this.setState({query: places})
+                var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
+                axios.get(proxy + url)
+                    .then(wiki => {
+                        this.setState({text: wiki.data});
+                        this.setState({wikitext: wiki.data[2][0]})
+                        //console.log(wiki.data)
+                    });
+
                 var locationURL  =  'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.latitude + ',' + this.state.longitude + '&key=AIzaSyCRNHsASJT7nxChb3zBLeH2hGJdZGMIZGQ'
                 axios.get(locationURL)
                     .then(location => {

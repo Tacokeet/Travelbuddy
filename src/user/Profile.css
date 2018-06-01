@@ -151,4 +151,5 @@ ul.suggestCategories {
 ul.suggestCategories li {
 	padding: 5px 0;
 	text-transform: capitalize;
+	width: 100%;
 }
