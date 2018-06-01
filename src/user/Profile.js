@@ -159,24 +159,28 @@ class ResultList extends Component {
 		this.state = {
 			preferences: []
 		}
-
-		const url = "/api/user/preferences/wouter";
 		
-		axios.get(url)
-			.then(response => {
-				console.log(response)
-				let temp = [];
-				for (var key in response.data) {
-					temp.push(key)
-				}
-				console.log(temp)
-				this.setState({
-					preferences: temp
-				})
-				console.log(this.state.preferences)
-				
-			});  
+		setTimeout(function() {
+			const url = "/api/user/preferences/wouter";
+			axios.get(url)
+				.then(response => {
+					console.log(response)
+					let temp = [];
+					for (var key in response.data) {
+						temp.push(key)
+					}
+					console.log(temp)
+					this.setState({
+						preferences: temp
+					})
+					console.log(this.state.preferences)
+					
+				});  
+		}.bind(this), 1500);
 
+		
+		
+		
         this.removePreference = this.removePreference.bind(this);
 
 	}
@@ -241,16 +245,30 @@ class Settings extends Component {
 		super(props);
 		
 		this.state = {
-			firstName: "John",
-			lastName: "Smith",
-			username: "johnsmith43",
-			email: "johnsmith@gmail.com",
-			country: "BE",
-			password: "showlength",
+			firstName: "",
+			lastName: "",
+			username: "",
+			email: "",
+			country: "",
+			password: "",
 		}
 		
+		let url = '/api/user/wouter'
+		axios.get(url)
+			.then(result => {
+				result = result.data;
+				this.setState({
+					firstName: result.firstName,
+					lastName: result.lastName,
+					username: result.username,
+					email: result.email,
+					country: result.country,
+				});
+			});
+		
+		
+		
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	
 	render() {
@@ -258,7 +276,7 @@ class Settings extends Component {
 			<div id="settings">
 			<h2>Account settings</h2>
 			
-			<form onSubmit={this.handleSubmit}>
+			<form action='/api/user/wouter' method='POST'>
 				<div className="settingsRow">
 					<div className="settingsBlock">
 						<label>First name</label>
@@ -274,7 +292,7 @@ class Settings extends Component {
 				<div className="settingsRow">
 					<div className="settingsBlock">
 						<label>Username</label>
-						<input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
+						<input type="text" name="username" value={this.state.username} readonly/>
 					</div>
 				</div>
 				<div className="settingsRow">
@@ -286,8 +304,8 @@ class Settings extends Component {
 				
 				<div className="settingsRow">
 					<div className="settingsBlock">
-						<label>Password</label>
-						<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
+						<label>New password</label>
+						<input type="password" name="password" value={this.state.password} placeholder="password" onChange={this.handleInputChange}/>
 					</div>
 				</div>
 				
@@ -307,6 +325,7 @@ class Settings extends Component {
 	}
 	
 	handleInputChange(event) {
+		console.log("change country " + event.target + ", " + event.target.name + ", " + event.target.value)
 		const targetField = event.target;
 		const value = targetField.value;
 		const field = targetField.name;
@@ -315,13 +334,9 @@ class Settings extends Component {
 		});
 	}
 	
-	handleSubmit(event) {
-		alert("Saved settings!");
-	}
-	
 	renderCountries() {
 		return (
-			<select value={this.state.country} onChange={this.handleInputChange}>
+			<select name="country" value={this.state.country} onChange={this.handleInputChange}>
 				<option value="AF">Afghanistan</option>
 				<option value="AX">Åland Islands</option>
 				<option value="AL">Albania</option>
