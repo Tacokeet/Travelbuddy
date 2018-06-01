@@ -22,7 +22,7 @@
     padding-left: 0;
 
 }
-li{
+#extraInfo li{
     display: inline-block;
     width: 20%;
 }
