@@ -5,6 +5,7 @@ import GoogleMapReact from 'google-map-react';
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const map = (props) => {
+
     return(
         <div  style={{ height: '300px', width: '300px', margin: '0 auto'}}>
             <p>{props.latitude}</p>
@@ -13,6 +14,7 @@ const map = (props) => {
     )
 
 }
+
 // class map extends Component {
 //     static defaultProps = {
 //         center: {

@@ -199,11 +199,11 @@ class Home extends Component {
 
       }
 
-      let viewMap = null;
-          viewMap = <Map
-              latitude = {this.state.latitude}
-              longitude = {this.state.longitude}
-          />
+      // let viewMap = null;
+      //     viewMap = <Map
+      //         latitude = {this.state.latitude}
+      //         longitude = {this.state.longitude}
+      //     />
 
 
 
@@ -237,7 +237,6 @@ class Home extends Component {
             </ToggleDisplay>
 
             {viewModal}
-            {viewMap}
 			{textcategories}
 		</main>
     );
