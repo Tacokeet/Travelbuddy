@@ -9,9 +9,9 @@ class Footer extends Component {
 	render() {
 		return (
 			<footer>
-				<img id="icon" src={facebookIcon} />
-				<img id="icon" src={twitterIcon} />
-				<img id="icon" src={linkedIcon} />
+				<img id="icon" src={facebookIcon} alt="facebookIcon" />
+				<img id="icon" src={twitterIcon} alt="twitterIcon" />
+				<img id="icon" src={linkedIcon} alt="linkedIcon" />
 			</footer>
 		);
 	}
