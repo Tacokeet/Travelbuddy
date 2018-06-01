@@ -30,6 +30,11 @@ class LoginForm extends Component {
 	}
 	
 	render() {
+
+        const isEnabled =
+            this.state.email.length > 0 &&
+            this.state.password.length > 0;
+
 		return (
 			<div id="loginForm">
 				<h3>Already a member?</h3>
@@ -42,7 +47,7 @@ class LoginForm extends Component {
 					
 					<label id="forgotPassword"><a href="">Forgot password</a></label>
 					
-					<button type="submit" name="submit" value='login'>Login</button>
+					<button type="submit" name="submit" value='login' disabled={!isEnabled}>Login</button>
 				</form>
 			</div>
 		);
@@ -58,7 +63,7 @@ class LoginForm extends Component {
 	}
 	
 	handleSubmit(event) {
-		alert("Logged in! " + this.state.email + ": " + this.state.password);
+		// alert("Logged in! " + this.state.email + ": " + this.state.password);
 	}
 }
 
@@ -78,8 +83,17 @@ class RegisterForm extends Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	
+
+
 	render() {
+        const isEnabled =
+        this.state.username.length > 0 &&
+        this.state.email.length > 0 &&
+        this.state.firstname.length > 0 &&
+        this.state.lastname.length > 0 &&
+        this.state.password.length > 0 &&
+        this.state.country.length > 0;
+
 		return (
 			<div id="registerForm" >
 						<h3>Register</h3>
@@ -103,12 +117,20 @@ class RegisterForm extends Component {
                             <label>country</label>
                             <input type="password" name="country" value={this.state.country} onChange={this.handleInputChange}/>
 
-							<button type="submit" name="submit" value='register'>Register</button>
+							<button type="submit" name="submit" disabled={!isEnabled} value='register'>Register</button>
 						</form>
 					</div>
 		);
 	}
-	
+
+    handleClick = () => {
+        this.setState({
+            show: !this.state.show
+        });
+    }
+
+
+
 	handleInputChange(event) {
 		const targetField = event.target;
 		const value = targetField.value;
