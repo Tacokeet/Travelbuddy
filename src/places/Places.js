@@ -57,7 +57,7 @@ class Places extends Component {
         return (
             this.state.results.length > 1 &&
             <div className={'placesRow'}>
-                <h3 className={'placesText'} >{this.props.categories}</h3>
+                <h3 className={'placesText'} >{this.props.categories.split('_').join(' ')}</h3>
                 {this.createContent()}
             </div>
         )
