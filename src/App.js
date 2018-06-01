@@ -68,7 +68,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: ['restaurant','supermarket','restaurant'],
+        categories: ['restaurant','supermarket','clothing_store'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -138,7 +138,6 @@ class Home extends Component {
             });
 
     }
-
 
     handleClick = () => {
         this.setState({

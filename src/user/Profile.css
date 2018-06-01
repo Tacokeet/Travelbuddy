@@ -55,6 +55,10 @@
 	padding-left: 15px;
 }
 
+.preference:first-letter {
+	text-transform: uppercase;
+}
+
 .preference {
 	margin-bottom: 8px;
 }
@@ -137,4 +141,14 @@
 .favoriteRating {
 	margin-left: 5px;
 	display: inline-block;
+}
+
+ul.suggestCategories {
+	padding-left: 0px;
+	list-style: none;
+}
+
+ul.suggestCategories li {
+	padding: 5px 0;
+	text-transform: capitalize;
 }

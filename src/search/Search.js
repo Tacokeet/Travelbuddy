@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import './Search.css';
+import banner from '../images/searchBanner.png';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import xIcon from "@fortawesome/fontawesome-free-solid/faTimes";
 
 class Search extends Component {
     constructor(props) {
@@ -8,6 +11,13 @@ class Search extends Component {
         this.state = {
             results: [],
             input: '',
+            type: "",
+            radius: "",
+            language: "",
+            minPrice: "",
+            maxPrice: "",
+            openNow: false,
+            rankBy: ""
         };
     }
 
@@ -30,14 +40,144 @@ class Search extends Component {
             });
     }
 
+    changeType = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            type: e.target.value
+        })
+    }
+
+    changeOpen = (e) => {
+        if (this.state.openNow == false) {
+            this.setState({
+                openNow: true,
+                open: "Open now"
+            })
+        } else {
+            this.setState({
+                openNow: false,
+                open: ""
+            })
+        }
+    }
+
+    changeRadius = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            radius: e.target.value
+        })
+    }
+
+    changeRankBy = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            rankBy: e.target.value
+        })
+    }
+
     render() {
         return (
-            <div className={"data"}>
-                <h3>Zoek door TravelBuddy</h3>
-                <input type={"text"} name={"place"} onChange={this.handleChange} />
-                <button type={"submit"} name={"submit"} onClick={this.searchByPlace}>Zoek</button>
-                <ResultList results={this.state.results} results={this.state.results}/>
-            </div>
+                <div className={"data"}>
+                    <div className={"searchHeader"}>
+                        <div className={"col-12 search"}>
+                        <h3>Zoek door TravelBuddy</h3>
+                        <input type={"text"} name={"place"} onChange={this.handleChange} />
+                        <button type={"submit"} name={"submit"} onClick={this.searchByPlace}>Zoek</button>
+                    </div>
+                    </div>
+                    <div className={"col-12"}>
+                        <div className={"searchContainer"}>
+                            <div className={"filter"}>
+                                <div className={"selection"}>
+                                    <div>
+                                        <p>Your selection</p>
+                                        <ul className={"yourSelection"}>
+                                            {this.state.type != "" &&
+                                                <li><label className={"preference"}>{this.state.type.split('_').join(' ')}
+                                                    <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                            {this.state.openNow != false &&
+                                                <li><label className={"preference"}>{this.state.open}
+                                                    <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                            {this.state.radius != "" &&
+                                                <li><label className={"preference"}>
+                                                {this.state.radius.substring(0, this.state.radius.length - 3)} km
+                                                    <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                            {this.state.rankBy != "" && <li><label className={"preference"}>{this.state.rankBy}
+                                                <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p>Type of result</p>
+                                        <ul>
+                                            <li>
+                                                <input type="radio" name={"type"} value={"restaurant"} onClick={this.changeType} />
+                                                <span>Restaurant</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name={"type"} value={"music_store"} onClick={this.changeType}/>
+                                                <span>Music store</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name={"type"} value={"museum"} onClick={this.changeType} />
+                                                <span>Museum</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p>Opened</p>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" onClick={this.changeOpen} checked={this.state.openNow} />
+                                                <span>Is open</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p>Max. distance</p>
+                                        <ul>
+                                            <li>
+                                                <input type="radio" name="range"  value="5000" onChange={this.changeRadius} />
+                                                <span>5 km</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="range"  value="10000" onChange={this.changeRadius} />
+                                                <span>10 km</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="range"  value="15000" onChange={this.changeRadius} />
+                                                <span>15 km</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="range"  value="20000" onChange={this.changeRadius} />
+                                                <span>20 km</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="range"  value="25000" onChange={this.changeRadius} />
+                                                <span>25 km</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p>Rank by</p>
+                                        <ul>
+                                            <li>
+                                                <input type="radio" name="rankby"  value="prominence" onChange={this.changeRankBy} />
+                                                <span>Prominence</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="rankby"  value="distance" onChange={this.changeRankBy} />
+                                                <span>Distance</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={"allResults"}>
+                                <ResultList results={this.state.results} results={this.state.results}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         )
     }
 }
@@ -46,7 +186,7 @@ class ResultList extends Component {
 
     render() {
         return (
-            <div id={"result"}>
+            <div id={"resultSearch"}>
                 {this.props.results.map((result) => (
                     <Result key={result.id} result={result} />
                 ))}
