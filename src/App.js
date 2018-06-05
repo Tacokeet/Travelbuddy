@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -10,6 +9,7 @@ import Login from './user/Login';
 import Profile from './user/Profile';
 import AddEvent from './user/AddEvent';
 import Places from './places/Places';
+import Test from './map/Test';
 import City   from './city/City';
 import Modal   from './modal/Modal';
 import Map   from './map/Map';
@@ -56,6 +56,7 @@ class Home extends Component {
     state = {
         region_name: ' ',
         counter: 0,
+        zoom: 1,
         text: ' ',
         city: '',
         continent_name: ' ',
@@ -209,6 +210,25 @@ class Home extends Component {
 
 
 
+                 <Map
+                     latitude = {this.state.latitude}
+                     longitude = {this.state.longitude}
+                     zoom = {this.state.zoom}
+
+                  />
+
+      // let test = null;
+      //
+      // test = (
+      //     <Test
+      //         latitude = {this.state.latitude}
+      //         longitude = {this.state.longitude}
+      //         zoom = {this.state.range}
+      //     />
+      // );
+
+
+
     let viewModal = null;
       if(this.state.showModal){
           viewModal = <Modal
@@ -221,11 +241,6 @@ class Home extends Component {
 
       }
 
-      // let viewMap = null;
-      //     viewMap = <Map
-      //         latitude = {this.state.latitude}
-      //         longitude = {this.state.longitude}
-      //     />
 
 
 

@@ -4,6 +4,8 @@ import Map from '../map/Map';
 
 let rand = Math.floor(Math.random() * 4);
 
+
+
 const modal = (props) => {
     return(
 
@@ -25,8 +27,7 @@ const modal = (props) => {
 
                 </div>
                 <div id={'right'}>
-                    <Map
-                    />
+                    <Map />
                 </div>
 
 
