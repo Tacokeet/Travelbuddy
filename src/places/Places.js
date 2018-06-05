@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Places.css';
+import places from '../images/placeholder.png';
 
 class Places extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             results: [],
         }
@@ -16,14 +16,15 @@ class Places extends Component {
     radius = '&radius=';
     type = '&type=';
 
-    componentDidMount() {
+    componentDidMount = () => {
+        console.log("Get Results");
         let proxy = "https://cors-anywhere.herokuapp.com/";
         let cat = this.props.categories;
         let url = this.props.query + this.radius + this.props.range + this.type + cat + this.apikey;
         fetch(proxy + url)
             .then(response => response.json())
             .then(resultPlaces => {
-                console.log(url);
+                console.log(123);
                 this.setState({
                     results: resultPlaces.results
                 })
@@ -31,25 +32,32 @@ class Places extends Component {
     }
 
     createContent = () => {
+        console.log("Create content");
         let content = [];
+        let image;
         for (let index = 0; index < 4; index++) {
+            if (this.state.results[index].photos == undefined) {
+                image = places;
+            } else {
+                image = this.baseUrl + this.state.results[index].photos[0].photo_reference + this.apikey;
+            }
             content.push(<div className={"singleResult"}>
-                            <div className={"nameBox"}>
-                                <p>{this.state.results[index].name}</p>
-                            </div>
-                            <div className={"rating"}>{this.state.results[index].rating}</div>
-                            <img src={this.baseUrl + this.state.results[index].photos[0].photo_reference + this.apikey} alt={""}/>
-                        </div>)
+                <div className={"nameBox"}>
+                    <p>{this.state.results[index].name}</p>
+                </div>
+                <div className={"rating"}>{this.state.results[index].rating}</div>
+                <img src={image} alt={""}/>
+            </div>)
         }
 
-            return content
+        return content
     }
 
     render() {
         return (
             this.state.results.length > 1 &&
             <div className={'placesRow'}>
-                <h3 className={'placesText'} >{this.props.categories}</h3>
+                <h3 className={'placesText'} >{this.props.categories.split('_').join(' ')}</h3>
                 {this.createContent()}
             </div>
         )

@@ -68,7 +68,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: ['restaurant','supermarket','restaurant'],
+        categories: [],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -78,6 +78,20 @@ class Home extends Component {
 
 
     componentDidMount(){
+
+		const url = "/api/user/preferences/wouter";
+
+		axios.get(url)
+			.then(response => {
+				let temp = [];
+				for (var key in response.data) {
+					temp.push(key)
+				}
+				this.setState({
+					categories: temp
+				})
+				console.log(this.state.categories)
+			});
 
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({

@@ -5,6 +5,7 @@ import logo2 from '../images/3.jpg';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import xIcon from '@fortawesome/fontawesome-free-solid/faTimes'
 import deleteIcon from '@fortawesome/fontawesome-free-regular/faTimesCircle'
+import axios from 'axios';
 
 import solidStar from '@fortawesome/fontawesome-free-solid/faStar'
 import regularStar from '@fortawesome/fontawesome-free-regular/faStar'
@@ -12,65 +13,54 @@ import regularStar from '@fortawesome/fontawesome-free-regular/faStar'
 class Profile extends Component {
 	constructor(props) {
 		super(props);
-		
-		this.state = {
-			favorites: [
-				{name: "Cantina Mexicana",
-				image: logo1,
-				location: "Groningen",
-				rating: 4},
-				{name: "Groninger Museum",
-				image: logo2,
-				location: "Groningen",
-				rating: 5},
-			],
-			preferences: [
-				"Restaurants",
-				"Music stores",
-				"Museums"
-			]
-		}
-		
-		this.removePreference = this.removePreference.bind(this);
 	}
 	
 	render() {		
 		return (
 			<main>
 				<div id="profileWrapper">				
-					<Favorites favorites={this.state.favorites} onClick={(index) => this.removeFavorite(index)} />
-					
-					<Preferences preferences={this.state.preferences} onClick={(index) => this.removePreference(index)} />
-					
+					<Favorites />
+					<Preferences />
 					<Settings />
 				</div>
 			</main>
 		);
 	}
-	
-	removePreference(index) {
-		let array = this.state.preferences;
-		array.splice(index, 1);
-		this.setState({
-			preferences: array
-		});
-	}
-	
-	removeFavorite(index) {
-		let array = this.state.favorites;
-		array.splice(index, 1);
-		this.setState({
-			favorites: array
-		});
-	}
 }
 
-class Favorites extends Component {	
+class Favorites extends Component {
+
+	constructor(props) {
+		super(props)
+
+        this.state = {
+            favorites: [
+                {name: "Cantina Mexicana",
+                    image: logo1,
+                    location: "Groningen",
+                    rating: 4},
+                {name: "Groninger Museum",
+                    image: logo2,
+                    location: "Groningen",
+                    rating: 5},
+            ],
+        }
+
+	}
+
+    removeFavorite(index) {
+        let array = this.state.favorites;
+        array.splice(index, 1);
+        this.setState({
+            favorites: array
+        });
+    }
+
 	render() {
 		return (
 			<div id="favorites">
 				<h2>Your favorite places</h2>
-				{this.props.favorites.map((place, index) => {return (
+				{this.state.favorites.map((place, index) => {return (
 					<div class="favorite">
 						<img src={place.image} alt={place.name} />
 						<div class="placeInfo">
@@ -90,7 +80,7 @@ class Favorites extends Component {
 									})}
 								</div>
 							</div>
-							<FontAwesomeIcon className="deleteFavoriteIcon" icon={deleteIcon} onClick={()=>this.props.onClick(index)}/>
+							<FontAwesomeIcon className="deleteFavoriteIcon" icon={deleteIcon} onClick={()=>this.removeFavorite(index)}/>
 						</div>
 					</div>
 				);})}
@@ -100,24 +90,154 @@ class Favorites extends Component {
 }
 
 class Preferences extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			jsonCategories: {},
+			categories: [],
+			results: []
+		}
+		
+		axios.get('/api/categories')
+			.then(result => {
+				let temp = [];
+				this.setState({
+					jsonCategories: result.data
+				})
+					
+				for (var key in this.state.jsonCategories) {
+					temp.push(key)
+					console.log(key)
+				}
+				this.setState({
+					categories: temp
+				})
+				console.log(this.state.categories)
+			}); 	 
+	}
+
+    handleChange = (e) => {
+		let length = e.target.value.length
+		let result = [];
+        for (let i = 0; i < this.state.categories.length; i++) {
+        	let word = this.state.categories[i];
+            if (word.substring(0, length) == e.target.value.toLowerCase()) {
+                result.push(word);
+            }
+		}
+		if (e.target.value == "") {
+            this.setState({
+                results: []
+            })
+		} else {
+            this.setState({
+                results: result
+            })
+		}
+
+    }
+
 	render() {
 		return (
 			<div id="preferences">
 				<h2>Preferences</h2>
 				Add preferences: 
-				<input type="text" placeholder="Museums"/>
-				
-				<div id="preferenceList">
-					{this.props.preferences.map((preference, index) => {return (
-						<label className="preference" onClick={() => this.props.onClick(index)}>
-							{preference}
-							<FontAwesomeIcon className="closeIcon" icon={xIcon} />
-						</label>
-					);})}
-				</div>
+				<input type="text" placeholder="Museums" onChange={this.handleChange} />
+				<ResultList results={this.state.results} object={this.state.jsonCategories} />
 			</div>
 		);
 	}
+}
+
+class ResultList extends Component {
+
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			preferences: []
+		}
+		
+		setTimeout(function() {
+			const url = "/api/user/preferences/wouter";
+			axios.get(url)
+				.then(response => {
+					console.log(response)
+					let temp = [];
+					for (var key in response.data) {
+						temp.push(key)
+					}
+					console.log(temp)
+					this.setState({
+						preferences: temp
+					})
+					console.log(this.state.preferences)
+					
+				});  
+		}.bind(this), 1500);
+
+		
+		
+		
+        this.removePreference = this.removePreference.bind(this);
+
+	}
+
+    addPreference = (i, result) => {
+		let pref = []
+		let check = 0;
+		console.log(i)
+		for (let index = 0; index < this.state.preferences.length; index++) {
+			pref.push(this.state.preferences[index])
+			if (this.state.preferences[index] == result) {
+				check++;
+			}
+		}
+		pref.push(result)
+		if (check == 0) {
+			const url = "/api/user/preferences/wouter/" + i
+			axios.post(url)
+            this.setState({
+                preferences: pref
+            })
+		}
+		console.log(this.state.preferences)
+	}
+
+    removePreference(index, name, i) {
+		const url = "/api/user/preferences/wouter/" + i
+		axios.delete(url)
+        let array = this.state.preferences;
+        array.splice(index, 1);
+        this.setState({
+            preferences: array
+        });
+    }
+
+    render() {
+        return (
+				<div>
+					<div id={"suggested"}>
+						<ul className={"suggestCategories"}>
+						{this.props.results.map((result) => (
+							<li value={this.props.object[result]} name={result} onClick={this.addPreference.bind(this, this.props.object[result], result)}>{result.split('_').join(' ')}</li>
+						))}
+						</ul>
+					</div>
+					<div id="preferenceList">
+                        {this.state.preferences.map((preference, index) => {return (
+                            <label className="preference" onClick={() => this.removePreference(index, preference, this.props.object[preference])}>
+                                {preference.split('_').join(' ')}
+                                <FontAwesomeIcon className="closeIcon" icon={xIcon} />
+                            </label>
+                        );})}
+                    </div>
+				</div>
+        )
+    }
+
 }
 
 class Settings extends Component {
@@ -125,16 +245,30 @@ class Settings extends Component {
 		super(props);
 		
 		this.state = {
-			firstName: "John",
-			lastName: "Smith",
-			username: "johnsmith43",
-			email: "johnsmith@gmail.com",
-			country: "BE",
-			password: "showlength",
+			firstName: "",
+			lastName: "",
+			username: "",
+			email: "",
+			country: "",
+			password: "",
 		}
 		
+		let url = '/api/user/wouter'
+		axios.get(url)
+			.then(result => {
+				result = result.data;
+				this.setState({
+					firstName: result.firstName,
+					lastName: result.lastName,
+					username: result.username,
+					email: result.email,
+					country: result.country,
+				});
+			});
+		
+		
+		
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	
 	render() {
@@ -142,7 +276,7 @@ class Settings extends Component {
 			<div id="settings">
 			<h2>Account settings</h2>
 			
-			<form onSubmit={this.handleSubmit}>
+			<form action='/api/user/wouter' method='POST'>
 				<div className="settingsRow">
 					<div className="settingsBlock">
 						<label>First name</label>
@@ -158,7 +292,7 @@ class Settings extends Component {
 				<div className="settingsRow">
 					<div className="settingsBlock">
 						<label>Username</label>
-						<input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
+						<input type="text" name="username" value={this.state.username} readonly/>
 					</div>
 				</div>
 				<div className="settingsRow">
@@ -170,8 +304,8 @@ class Settings extends Component {
 				
 				<div className="settingsRow">
 					<div className="settingsBlock">
-						<label>Password</label>
-						<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
+						<label>New password</label>
+						<input type="password" name="password" value={this.state.password} placeholder="password" onChange={this.handleInputChange}/>
 					</div>
 				</div>
 				
@@ -191,6 +325,7 @@ class Settings extends Component {
 	}
 	
 	handleInputChange(event) {
+		console.log("change country " + event.target + ", " + event.target.name + ", " + event.target.value)
 		const targetField = event.target;
 		const value = targetField.value;
 		const field = targetField.name;
@@ -199,13 +334,9 @@ class Settings extends Component {
 		});
 	}
 	
-	handleSubmit(event) {
-		alert("Saved settings!");
-	}
-	
 	renderCountries() {
 		return (
-			<select value={this.state.country} onChange={this.handleInputChange}>
+			<select name="country" value={this.state.country} onChange={this.handleInputChange}>
 				<option value="AF">Afghanistan</option>
 				<option value="AX">Åland Islands</option>
 				<option value="AL">Albania</option>
