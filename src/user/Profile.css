@@ -1,0 +1,155 @@
+#profileWrapper {
+	text-align: left;
+}
+
+#settings {
+	width: 100%;
+	display: inline-block;
+}
+
+#settings button {
+	background: #FF922B;
+	border: 0;
+	padding: 10px 18px;
+    font-size: 15px;
+	color: #fff;
+	font-weight: bold;
+	margin-top: 2px;
+}
+
+.settingsRow {
+	margin-bottom: 18px;
+}
+
+.settingsBlock {
+	width: 35%;
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+}
+
+.settingsBlock label {
+	display: block;
+    margin-bottom: 7px;
+}
+
+.settingsBlock select {
+	width: 276px;
+    height: 40px;
+	padding: 4px 4px 4px 8px;
+	font-size: 14px;
+	line-height: 28px;
+}
+
+.settingsBlock input {
+	width: 260px;
+	padding: 4px 4px 4px 8px;
+	font-size: 14px;
+	line-height: 28px;
+}
+
+#preferences {
+	width: 48%;
+	display: inline-block;
+	vertical-align: top;
+	padding-left: 15px;
+}
+
+.preference:first-letter {
+	text-transform: uppercase;
+}
+
+.preference {
+	margin-bottom: 8px;
+}
+
+.preference {
+	background: #FF922B;
+	padding: 8px 14px 8px 14px;
+	border-radius: 6px;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+#preferences input {
+	width: 260px;
+	padding: 4px 4px 4px 8px;
+	font-size: 14px;
+	line-height: 28px;
+	display: block;
+    margin-top: 4px;
+}
+
+#preferenceList {
+	margin-top: 25px;
+}
+
+.closeIcon {
+	margin-left: 9px;
+    vertical-align: middle;
+    padding-bottom: 1px;
+}
+
+#favorites {
+	width: 50%;
+	display: inline-block;
+	margin-bottom: 35px;
+}
+
+.favorite {
+	padding: 8px 110px 8px 18px;
+	border-top: 1px solid grey;
+	display: block;
+	float: left;
+}
+
+.placeInfo {
+	display: inline-block;
+	float: left;
+	position: relative;
+}
+
+.favorite img {
+	width: 80px;
+	display: inline-block;
+	float: left;
+	margin-right: 15px;
+}
+
+.favoriteName {
+	display: block;
+	vertical-align: top;
+	font-weight: bold;
+    font-size: 18px;
+}
+
+.favoriteInfo {
+	padding-top: 7px;
+}
+
+.deleteFavoriteIcon {
+	position: absolute;
+    right: -99px;
+    bottom: 18px;
+    font-size: 24px;
+}
+
+.favoriteLocation {
+	
+}
+
+.favoriteRating {
+	margin-left: 5px;
+	display: inline-block;
+}
+
+ul.suggestCategories {
+	padding-left: 0px;
+	list-style: none;
+}
+
+ul.suggestCategories li {
+	padding: 5px 0;
+	text-transform: capitalize;
+	width: 100%;
+}

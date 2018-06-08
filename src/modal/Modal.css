@@ -1,0 +1,60 @@
+.modal {
+    display: block;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #FFA94D;
+    margin: 1% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    overflow: hidden;
+}
+
+.close {
+    float: right;
+    font-size: 40px;
+    margin-top: -15px;
+    cursor: pointer;
+}
+
+.modalImage {
+    margin-left: 2vw;
+    height: 200px;
+    width: 300px;
+}
+
+#nameLocation {
+    left: -10vw;
+}
+
+.left {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    margin-top: 6.5vh;
+}
+
+#right {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.center {
+    margin: auto;
+}
+
+.textLocation {
+    color: white;
+}

@@ -1,0 +1,85 @@
+@media only screen and (max-width: 767px) {
+
+    #filterMenu {
+        margin: 0 auto;
+        margin-top: 25px;
+    }
+
+    main {
+        padding: 50px 10px;
+    }
+
+    img.locations {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 25px;
+    }
+
+    #signIn #registerForm {
+        margin-right: 0;
+        padding-right: 0;
+        display: block;
+        width: 100%;
+    }
+
+    #signIn label, #signIn button {
+        display: block;
+    }
+
+    #signIn #loginForm {
+        padding-left: 0;
+        width: 100%;
+    }
+
+    main #profileWrapper {
+        padding: 0;
+    }
+
+    main #favorites {
+        width: 100%;
+    }
+
+    #favorites .favorite img {
+        width: initial;
+        margin-bottom: 15px;
+    }
+
+    main .settingsBlock input {
+        width: initial;
+    }
+
+    main .left {
+        width: 100%;
+    }
+
+    main #right {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1179px) {
+
+    main {
+        padding: 50px 10px;
+    }
+
+    main .left {
+        width: 100%;
+    }
+
+    main #right {
+        width: 100%;
+        text-align: center;
+    }
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+    #signIn {
+        margin: 44px 0px;
+    }
+
+}

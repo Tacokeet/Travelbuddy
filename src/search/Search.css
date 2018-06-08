@@ -1,0 +1,139 @@
+#result {
+    overflow: hidden;
+    margin: 25px auto;
+    width: 1170px;
+}
+
+.singleResult {
+    width: 24%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 25px;
+    position: relative;
+    margin-right: 1%;
+}
+
+.singleResult img {
+    height: 234px;
+    width: 285.8px;
+}
+
+.nameBox {
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    color: #fff;
+    background-color: #FF922B;
+    width: 100%;
+    padding-left: 5px;
+    min-height: 70px;
+}
+
+div.rating {
+    background-color: rgb(244, 212, 66);
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+    padding-top: 10px;
+    padding-left: 8px;
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+}
+
+.searchHeader {
+    background: url(/static/media/searchBanner.8f1e33b4.png) no-repeat;
+    height: 401px;
+    width: 100%;
+}
+
+.searchHeader h3 {
+    color: #fff;
+    font-size: 60px;
+}
+
+.searchHeader input {
+    width: 50%;
+    border-radius: 25px;
+    border: 0;
+    padding: 10px 15px;
+}
+
+.searchHeader button {
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: 0;
+    background: #FF922B;
+    color: #fff;
+    cursor: pointer;
+}
+
+.col-12 {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.search {
+    padding: 50px 0;
+}
+
+.searchContainer {
+    overflow: hidden;
+}
+
+.filter {
+    width: 30%;
+    display: inline-block;
+    float: left;
+    padding: 25px 0;
+    text-align: left;
+}
+
+.allResults {
+    width: 70%;
+    display: inline-block;
+    float: left;
+    padding-top: 25px;
+}
+div.selection div:first-child {
+    border-top: 1px solid #dedede;
+}
+
+div.selection {
+    padding-right: 15px;
+}
+
+div.selection div {
+    border-bottom: 1px solid #dedede;
+    padding: 15px 0;
+}
+
+div.selection div p {
+    font-weight: bold;
+}
+
+div.selection ul {
+    list-style: none;
+    padding-left: 15px;
+}
+
+ul.yourSelection li {
+    display: inline-block;
+}
+
+#resultSearch .singleResult {
+    width: 31%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 25px;
+    position: relative;
+    margin-right: 2%;
+}
+
+#resultSearch .singleResult img {
+    height: 225px;
+    width: 258.8px;
+}

@@ -1,0 +1,45 @@
+#signInTitle {
+	margin-bottom: 20px;
+}
+
+#registerForm {
+	margin-right: 30px;
+    padding-right: 30px;
+	border-right: 1px solid #e5e5e5;
+}
+
+#loginForm {
+	padding-left: 25px;
+}
+
+#forgotPassword {
+	display: block;
+	margin-bottom: 8px;
+}
+
+#registerForm, #loginForm {
+	vertical-align: top;
+	text-align: left;
+	display: inline-block;
+	width: 255px;
+}
+
+#registerForm input, #loginForm input {
+	width: 225px;
+	padding: 4px 4px 4px 8px;
+	border-radius: 3px;
+	line-height: 28px;
+	margin-bottom: 14px;
+	font-size: 14px;
+}
+
+#signIn button {
+	background: #FF922B;
+	border: 0;
+	padding: 10px 19px;
+    font-size: 15px;
+	color: #fff;
+	font-weight: bold;
+	margin-top: 3px;
+	border-radius: 2px;
+}
