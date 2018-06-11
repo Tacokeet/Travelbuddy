@@ -3,6 +3,7 @@ import './Search.css';
 import banner from '../images/searchBanner.png';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import xIcon from "@fortawesome/fontawesome-free-solid/faTimes";
+import loader from '../images/loader.gif';
 
 class Search extends Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class Search extends Component {
             openNow: false,
             rankBy: "",
             locationLng: "",
-            locationLat: ""
+            locationLat: "",
+            loading: ""
         };
     }
 
@@ -39,6 +41,10 @@ class Search extends Component {
         let open = "&opennow=" + this.state.openNow;
         let type = "&type=" + this.state.type;
         let rankBy = "&rankby=" + this.state.rankBy;
+        this.setState({
+            loading: "loading",
+            results: []
+        })
         fetch(location)
             .then(response => response.json())
             .then(result => {
@@ -52,6 +58,9 @@ class Search extends Component {
                 fetch(proxy + url)
                     .then(response => response.json())
                     .then(result => {
+                        this.setState({
+                            loading: ""
+                        })
                         console.log(url)
                         this.setState({ results: result.results });
                 console.log(result.results);
@@ -177,6 +186,12 @@ class Search extends Component {
                                 </div>
                             </div>
                             <div className={"allResults"}>
+                                {this.state.loading &&
+                                    <div>
+                                        <img src={loader} />
+                                        <h2>Please wait, we will load your preferences</h2>
+                                    </div>
+                                }
                                 <ResultList results={this.state.results} results={this.state.results}/>
                             </div>
                         </div>
@@ -188,6 +203,13 @@ class Search extends Component {
 
 class ResultList extends Component {
 
+    constructor(props) {
+        super(props);
+
+
+
+    }
+
     render() {
         return (
             <div id={"resultSearch"}>
@@ -195,6 +217,7 @@ class ResultList extends Component {
                     <Result key={result.id} result={result} />
                 ))}
             </div>
+
         )
     }
 
