@@ -10,7 +10,6 @@ import Login from './user/Login';
 import Profile from './user/Profile';
 import AddEvent from './user/AddEvent';
 import Places from './places/Places';
-import Test from './map/Test';
 import City   from './city/City';
 import Modal   from './modal/Modal';
 import Map   from './map/Map';
