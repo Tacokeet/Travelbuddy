@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import loader from './images/loader.gif';
 
 import './App.css';
 import './Responsive.css';
@@ -169,9 +170,19 @@ class Home extends Component {
         });
     };
 
-    modalHandler = () => {
-        this.setState({showModal: true})
-    };
+
+    modalHandler = (name, image, address, open, lat, lng) => {
+        this.setState({
+            showModal: true,
+            modalName: name,
+            modalImage: image,
+            modalAddress: address,
+            modalOpen: open,
+            modalLat: lat,
+            modalLng: lng
+        })
+    }
+
 
     hideModal = () => {
         this.setState({showModal: false})
@@ -181,19 +192,20 @@ class Home extends Component {
         this.setState({
             range: e.target.value
         })
-    };
+    }
 
 
 
   render() {
        /* loop door alle catergories in state en maak places (div's) aan*/
-      let textcategories = null;
-
+      let textcategories = null
+      let checkLoader = 0;
       textcategories = (
           <div>
               {this.state.categories.map((categorie,index) => {
                   let rand = Math.floor(Math.random() * 3);
                   if (this.state.query) {
+                      console.log("verander")
                       return <Places
                           categories ={categorie}
                           key={this.state.id + index}
@@ -202,7 +214,16 @@ class Home extends Component {
                           index = {index}
                           query = {this.state.query}
                           range = {this.state.range}
+                          handlerssss = {this.modalHandler}
                       />
+                  } else {
+                      if (checkLoader == 0) {
+                          checkLoader = 1;
+                          return <div>
+                                    <img src={loader} />
+                                    <h2>Please wait, we will load your preferences</h2>
+                          </div>
+                      }
                   }
               })}
           </div>
@@ -233,12 +254,17 @@ class Home extends Component {
       if(this.state.showModal){
           viewModal = <Modal
               click={this.hideModal}
+              image = {this.state.modalImage}
+              name = {this.state.modalName}
+              address={this.state.modalAddress}
+              open = {this.state.modalOpen}
+              lat = {this.state.modalLat}
+              lng = {this.state.modalLng}
               photo = {this.state.photos}
               latitude = {this.state.latitude}
               longitude = {this.state.longitude}
 
           />
-
       }
 
 
@@ -255,10 +281,6 @@ class Home extends Component {
 
             <div id={'filter'} onClick={this.handleClick}>
                 <FontAwesomeIcon icon={faFilter} />
-            </div>
-
-            <div onClick={this.modalHandler}>
-                <p>Some Test</p>
             </div>
 
 
