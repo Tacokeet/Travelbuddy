@@ -80,9 +80,5 @@ yarn-debug.log*
 yarn-error.log*
 
 workspace.xml
-<<<<<<< HEAD
-.idea/workspace.xml
-=======
 
 /.idea
->>>>>>> 9a5424e9d9db958aece87c9a7268c176124df0f4
