@@ -48,7 +48,6 @@ class Search extends Component {
         fetch(location)
             .then(response => response.json())
             .then(result => {
-
                 this.setState({
                     locationLng: result.results[0].geometry.location.lng,
                     locationLat: result.results[0].geometry.location.lat

@@ -12,6 +12,7 @@
 .placesText {
     text-align: left;
     font-size: 25px;
+	text-transform: capitalize;
 }
 
 h3.placesText:first-letter {
