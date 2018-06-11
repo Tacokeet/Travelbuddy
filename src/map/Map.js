@@ -8,7 +8,7 @@ const AnyReactComponent = ({ pin }) => <img src={marker} alt={"marker"} />;
 class Map extends Component {
     constructor(props) {
         super(props);
-    }
+    } 
 
     render() {
 
@@ -32,4 +32,3 @@ class Map extends Component {
 }
 
 export default Map;
-
