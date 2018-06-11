@@ -109,9 +109,9 @@ class Home extends Component {
                 }
                                 console.log(response.data);
                                 console.log(`Latitude ${this.state.latitude}, Longitude: ${this.state.longitude} `);
-                // let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-                //     + this.state.latitude + ',' + this.state.longitude;
-                // this.setState({query: places})
+                 let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+                     + this.state.latitude + ',' + this.state.longitude;
+                 this.setState({query: places})
                 var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
                 axios.get(proxy + url)
                     .then(wiki => {
