@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import marker from '../images/purple.png';
 
+
 const AnyReactComponent = ({ pin }) => <img src={marker} alt={"marker"} />;
 
 class Map extends Component {
@@ -31,3 +32,4 @@ class Map extends Component {
 }
 
 export default Map;
+
