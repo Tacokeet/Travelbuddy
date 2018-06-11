@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -57,7 +56,7 @@ fabric.properties
 workspace.xml
 static
 templates
-=======
+
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
@@ -81,4 +80,5 @@ yarn-debug.log*
 yarn-error.log*
 
 workspace.xml
->>>>>>> 17521da683602e8a53a89b33cc16a3d796ee1b12
+
+/.idea
