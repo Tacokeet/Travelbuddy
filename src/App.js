@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
+import loader from './images/loader.gif';
 
 import './App.css';
 import './Responsive.css';
@@ -10,6 +10,7 @@ import Login from './user/Login';
 import Profile from './user/Profile';
 import AddEvent from './user/AddEvent';
 import Places from './places/Places';
+import Test from './map/Test';
 import City   from './city/City';
 import Modal   from './modal/Modal';
 import Map   from './map/Map';
@@ -25,29 +26,29 @@ import logo3 from './images/3.jpg';
 import logo4 from './images/4.jpg';
 
 import {
-	Route,
-	BrowserRouter
+    Route,
+    BrowserRouter
 } from 'react-router-dom';
 
 
 class App extends Component {
     render() {
         return (
-          <BrowserRouter>
-            <div className="App">
+            <BrowserRouter>
+                <div className="App">
 
-                <Header />
-			
-				<Route exact path="/" component={Home} />
-				<Route path="/login" component={Login} />
-				<Route path="/profile" component={Profile} />
-				<Route path="/addEvent" component={AddEvent} />
-				<Route path="/search" component={Search} />
+                    <Header />
 
-                <Footer />
+                    <Route exact path="/" component={Home} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/profile" component={Profile} />
+                    <Route path="/addEvent" component={AddEvent} />
+                    <Route path="/search" component={Search} />
 
-            </div>
-          </BrowserRouter>
+                    <Footer />
+
+                </div>
+            </BrowserRouter>
         );
     }
 }
@@ -56,6 +57,7 @@ class Home extends Component {
     state = {
         region_name: ' ',
         counter: 0,
+        zoom: 1,
         text: ' ',
         city: '',
         continent_name: ' ',
@@ -79,19 +81,19 @@ class Home extends Component {
 
     componentDidMount(){
 
-		const url = "/api/user/preferences/wouter";
+        const url = "/api/user/preferences/wouter";
 
-		axios.get(url)
-			.then(response => {
-				let temp = [];
-				for (var key in response.data) {
-					temp.push(key)
-				}
-				this.setState({
-					categories: temp
-				})
-				console.log(this.state.categories)
-			});
+        axios.get(url)
+            .then(response => {
+                let temp = [];
+                for (var key in response.data) {
+                    temp.push(key)
+                }
+                this.setState({
+                    categories: temp
+                })
+                console.log(this.state.categories)
+            });
 
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
@@ -102,19 +104,19 @@ class Home extends Component {
 
 
 
-        
+
         var proxy  = 'https://cors-anywhere.herokuapp.com/';
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
                 this.setState({ continent_name: response.data.continent_name,
-                                country_name: response.data.country_name,
-                                region_name: response.data.region_name,
-                                city: response.data.city,
-                                name: response.data.location.languages[0].name,
-                                country_flag: response.data.location.country_flag,
-                                calling_code: response.data.location.calling_code,
-                                longitude: response.data.longitude,
-                                latitude: response.data.latitude});
+                    country_name: response.data.country_name,
+                    region_name: response.data.region_name,
+                    city: response.data.city,
+                    name: response.data.location.languages[0].name,
+                    country_flag: response.data.location.country_flag,
+                    calling_code: response.data.location.calling_code,
+                    longitude: response.data.longitude,
+                    latitude: response.data.latitude});
 
                 if (this.state.lat != null){
                     this.setState({
@@ -122,11 +124,20 @@ class Home extends Component {
                         longitude: this.state.lon
                     })
                 }
-                console.log('LAT',this.state.latitude)
-                console.log('LON',this.state.longitude)
+
+                console.log(response.data);
+                console.log(`Latitude ${this.state.latitude}, Longitude: ${this.state.longitude} `);
                 let places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
                     + this.state.latitude + ',' + this.state.longitude;
                 this.setState({query: places})
+                var url = 'https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + this.state.city;
+                axios.get(proxy + url)
+                    .then(wiki => {
+                        this.setState({text: wiki.data});
+                        this.setState({wikitext: wiki.data[2][0]})
+                        //console.log(wiki.data)
+                    });
+
                 var locationURL  =  'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.state.latitude + ',' + this.state.longitude + '&key=AIzaSyCRNHsASJT7nxChb3zBLeH2hGJdZGMIZGQ'
                 axios.get(locationURL)
                     .then(location => {
@@ -153,16 +164,25 @@ class Home extends Component {
 
     }
 
-
     handleClick = () => {
         this.setState({
             show: !this.state.show
         });
     };
 
-    modalHandler = () => {
-        this.setState({showModal: true})
-    };
+
+    modalHandler = (name, image, address, open, lat, lng) => {
+        this.setState({
+            showModal: true,
+            modalName: name,
+            modalImage: image,
+            modalAddress: address,
+            modalOpen: open,
+            modalLat: lat,
+            modalLng: lng
+        })
+    }
+
 
     hideModal = () => {
         this.setState({showModal: false})
@@ -172,89 +192,114 @@ class Home extends Component {
         this.setState({
             range: e.target.value
         })
-    };
+    }
 
 
 
-  render() {
-       /* loop door alle catergories in state en maak places (div's) aan*/
-      let textcategories = null;
-
-      textcategories = (
-          <div>
-              {this.state.categories.map((categorie,index) => {
-                  let rand = Math.floor(Math.random() * 3);
-                  if (this.state.query) {
-                      return <Places
-                          categories ={categorie}
-                          key={this.state.id + index}
-                          click = {this.modalHandler}
-                          photo = {this.state.photos}
-                          index = {index}
-                          query = {this.state.query}
-                          range = {this.state.range}
-                      />
-                  }
-              })}
-          </div>
-      );
-
-
-
-    let viewModal = null;
-      if(this.state.showModal){
-          viewModal = <Modal
-              click={this.hideModal}
-              photo = {this.state.photos}
-              latitude = {this.state.latitude}
-              longitude = {this.state.longitude}
-
-          />
-
-      }
-
-      // let viewMap = null;
-      //     viewMap = <Map
-      //         latitude = {this.state.latitude}
-      //         longitude = {this.state.longitude}
-      //     />
-
-
-
-    return (
-		<main>
-
-
-			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
-                  continent_name={this.state.continent_name} country_flag={this.state.country_flag}
-                  calling_code={this.state.calling_code} region_name={this.state.region_name}
-                  country_name={this.state.country_name}/>
-
-            <div id={'filter'} onClick={this.handleClick}>
-                <FontAwesomeIcon icon={faFilter} />
+    render() {
+        /* loop door alle catergories in state en maak places (div's) aan*/
+        let textcategories = null
+        let checkLoader = 0;
+        textcategories = (
+            <div>
+                {this.state.categories.map((categorie,index) => {
+                    let rand = Math.floor(Math.random() * 3);
+                    if (this.state.query) {
+                        console.log("verander")
+                        return <Places
+                            categories ={categorie}
+                            key={this.state.id + index}
+                            click = {this.modalHandler}
+                            photo = {this.state.photos}
+                            index = {index}
+                            query = {this.state.query}
+                            range = {this.state.range}
+                            handlerssss = {this.modalHandler}
+                        />
+                    } else {
+                        if (checkLoader == 0) {
+                            checkLoader = 1;
+                            return <div>
+                                <img src={loader} />
+                                <h2>Please wait, we will load your preferences</h2>
+                            </div>
+                        }
+                    }
+                })}
             </div>
-
-            {/*<div onClick={this.modalHandler}>*/}
-                {/*<p>Some Test</p>*/}
-            {/*</div>*/}
+        );
 
 
-            <ToggleDisplay show={this.state.show}>
-            <div id={'filterMenu'}>
-                <p className={'filterMenuItems'}>Range</p>
-                <p className={'filterMenuItems'}><input type="radio" name="range"  value="5000" onChange={this.radiusHandler} />5 km</p>
-                <p className={'filterMenuItems'}><input type="radio" name="range"  value="10000" onChange={this.radiusHandler} />10 km</p>
-                <p className={'filterMenuItems'}><input type="radio" name="range"  value="15000" onChange={this.radiusHandler} />15 km</p>
-                <p className={'filterMenuItems'}><input type="radio" name="range"  value="20000" onChange={this.radiusHandler} />20 km</p>
-                <p className={'filterMenuItems'}><input type="radio" name="range"  value="25000" onChange={this.radiusHandler} />25 km</p>
-            </div>
-            </ToggleDisplay>
 
-            {viewModal}
-			{textcategories}
-		</main>
-    );
-  }
+        <Map
+            latitude = {this.state.latitude}
+            longitude = {this.state.longitude}
+            zoom = {this.state.zoom}
+
+        />
+
+        // let test = null;
+        //
+        // test = (
+        //     <Test
+        //         latitude = {this.state.latitude}
+        //         longitude = {this.state.longitude}
+        //         zoom = {this.state.range}
+        //     />
+        // );
+
+
+
+        let viewModal = null;
+        if(this.state.showModal){
+            viewModal = <Modal
+                click={this.hideModal}
+                image = {this.state.modalImage}
+                name = {this.state.modalName}
+                address={this.state.modalAddress}
+                open = {this.state.modalOpen}
+                lat = {this.state.modalLat}
+                lng = {this.state.modalLng}
+                photo = {this.state.photos}
+                latitude = {this.state.latitude}
+                longitude = {this.state.longitude}
+
+            />
+        }
+
+
+
+
+        return (
+            <main>
+
+
+                <City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
+                      continent_name={this.state.continent_name} country_flag={this.state.country_flag}
+                      calling_code={this.state.calling_code} region_name={this.state.region_name}
+                      country_name={this.state.country_name}/>
+
+                <div id={'filter'} onClick={this.handleClick}>
+                    <FontAwesomeIcon icon={faFilter} />
+                </div>
+
+
+                <ToggleDisplay show={this.state.show}>
+                    <div id={'filterMenu'}>
+                        <p className={'filterMenuItems'}>Range</p>
+                        <p className={'filterMenuItems'}><input type="radio" name="range"  value="5000" onChange={this.radiusHandler} />5 km</p>
+                        <p className={'filterMenuItems'}><input type="radio" name="range"  value="10000" onChange={this.radiusHandler} />10 km</p>
+                        <p className={'filterMenuItems'}><input type="radio" name="range"  value="15000" onChange={this.radiusHandler} />15 km</p>
+                        <p className={'filterMenuItems'}><input type="radio" name="range"  value="20000" onChange={this.radiusHandler} />20 km</p>
+                        <p className={'filterMenuItems'}><input type="radio" name="range"  value="25000" onChange={this.radiusHandler} />25 km</p>
+                    </div>
+                </ToggleDisplay>
+
+                {viewModal}
+                {textcategories}
+            </main>
+        );
+    }
 }
 
 export default App;

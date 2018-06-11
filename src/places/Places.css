@@ -15,6 +15,10 @@
 	text-transform: capitalize;
 }
 
+h3.placesText:first-letter {
+    text-transform: uppercase;
+}
+
 .locations {
     cursor: pointer;
     width: 23%;

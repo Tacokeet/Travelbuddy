@@ -7,8 +7,8 @@ class Places extends Component {
         super(props);
         this.state = {
             results: [],
+            radiusResult: []
         }
-
     }
 
     baseUrl = "https://maps.googleapis.com/maps/api/place/photo?maxheight=234&maxwidth=280&photoreference=";
@@ -17,22 +17,21 @@ class Places extends Component {
     type = '&type=';
 
     componentDidMount = () => {
-        console.log("Get Results");
         let proxy = "https://cors-anywhere.herokuapp.com/";
         let cat = this.props.categories;
         let url = this.props.query + this.radius + this.props.range + this.type + cat + this.apikey;
         fetch(proxy + url)
             .then(response => response.json())
             .then(resultPlaces => {
-                console.log(123);
+                console.log(resultPlaces);
                 this.setState({
                     results: resultPlaces.results
                 })
             })
     }
 
+
     createContent = () => {
-        console.log("Create content");
         let content = [];
         let image;
         for (let index = 0; index < 4; index++) {
@@ -41,7 +40,16 @@ class Places extends Component {
             } else {
                 image = this.baseUrl + this.state.results[index].photos[0].photo_reference + this.apikey;
             }
-            content.push(<div className={"singleResult"}>
+
+            content.push(<div className={"singleResult"} onClick={() => this.props.handlerssss(
+                this.state.results[index].name,
+                this.baseUrl + this.state.results[index].photos[0].photo_reference + this.apikey,
+                this.state.results[index].vicinity,
+                this.state.results[index].opening_hours.open_now,
+                this.state.results[index].geometry.location.lat,
+                this.state.results[index].geometry.location.lng,
+
+            )}>
                 <div className={"nameBox"}>
                     <p>{this.state.results[index].name}</p>
                 </div>
@@ -49,7 +57,6 @@ class Places extends Component {
                 <img src={image} alt={""}/>
             </div>)
         }
-
         return content
     }
 
