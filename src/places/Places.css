@@ -14,6 +14,10 @@
     font-size: 25px;
 }
 
+h3.placesText:first-letter {
+    text-transform: uppercase;
+}
+
 .locations {
     cursor: pointer;
     width: 23%;

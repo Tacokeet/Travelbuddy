@@ -3,6 +3,7 @@ import './Search.css';
 import banner from '../images/searchBanner.png';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import xIcon from "@fortawesome/fontawesome-free-solid/faTimes";
+import loader from '../images/loader.gif';
 
 class Search extends Component {
     constructor(props) {
@@ -17,9 +18,14 @@ class Search extends Component {
             minPrice: "",
             maxPrice: "",
             openNow: false,
-            rankBy: ""
+            rankBy: "",
+            locationLng: "",
+            locationLat: "",
+            loading: ""
         };
     }
+
+    apikey = "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
 
     handleChange = (e) => {
         this.setState({
@@ -30,14 +36,39 @@ class Search extends Component {
     searchByPlace = (e) => {
         let keyword = this.state.input.split(' ').join('+');
         let proxy = "https://cors-anywhere.herokuapp.com/";
-        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + keyword +
-            "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
-        fetch(proxy + url)
+        let location = "https://maps.googleapis.com/maps/api/geocode/json?address=" + keyword + this.apikey;
+        let distance = "&radius=" + this.state.radius;
+        let open = "&opennow=" + this.state.openNow;
+        let type = "&type=" + this.state.type;
+        let rankBy = "&rankby=" + this.state.rankBy;
+        this.setState({
+            loading: "loading",
+            results: []
+        })
+        fetch(location)
             .then(response => response.json())
             .then(result => {
-                this.setState({ results: result.results });
+
+                this.setState({
+                    locationLng: result.results[0].geometry.location.lng,
+                    locationLat: result.results[0].geometry.location.lat
+                })
+                let specLocation = this.state.locationLat + "," + this.state.locationLng
+                let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + specLocation
+                    + distance + type + open + "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
+                fetch(proxy + url)
+                    .then(response => response.json())
+                    .then(result => {
+                        this.setState({
+                            loading: ""
+                        })
+                        console.log(url)
+                        this.setState({ results: result.results });
                 console.log(result.results);
+                });
             });
+
+
     }
 
     changeType = (e) => {
@@ -93,17 +124,13 @@ class Search extends Component {
                                         <p>Your selection</p>
                                         <ul className={"yourSelection"}>
                                             {this.state.type != "" &&
-                                                <li><label className={"preference"}>{this.state.type.split('_').join(' ')}
-                                                    <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                                <li><label className={"preference"}>{this.state.type.split('_').join(' ')}</label></li>}
                                             {this.state.openNow != false &&
-                                                <li><label className={"preference"}>{this.state.open}
-                                                    <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                                <li><label className={"preference"}>{this.state.open}</label></li>}
                                             {this.state.radius != "" &&
                                                 <li><label className={"preference"}>
-                                                {this.state.radius.substring(0, this.state.radius.length - 3)} km
-                                                    <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
-                                            {this.state.rankBy != "" && <li><label className={"preference"}>{this.state.rankBy}
-                                                <FontAwesomeIcon className="closeIcon" icon={xIcon} /></label></li>}
+                                                {this.state.radius.substring(0, this.state.radius.length - 3)} km</label></li>}
+                                            {this.state.rankBy != "" && <li><label className={"preference"}>{this.state.rankBy}</label></li>}
                                         </ul>
                                     </div>
                                     <div>
@@ -114,7 +141,7 @@ class Search extends Component {
                                                 <span>Restaurant</span>
                                             </li>
                                             <li>
-                                                <input type="radio" name={"type"} value={"music_store"} onClick={this.changeType}/>
+                                                <input type="radio" name={"type"} value={"bar"} onClick={this.changeType}/>
                                                 <span>Music store</span>
                                             </li>
                                             <li>
@@ -157,22 +184,15 @@ class Search extends Component {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div>
-                                        <p>Rank by</p>
-                                        <ul>
-                                            <li>
-                                                <input type="radio" name="rankby"  value="prominence" onChange={this.changeRankBy} />
-                                                <span>Prominence</span>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="rankby"  value="distance" onChange={this.changeRankBy} />
-                                                <span>Distance</span>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                             <div className={"allResults"}>
+                                {this.state.loading &&
+                                    <div>
+                                        <img src={loader} />
+                                        <h2>Please wait, we will load your preferences</h2>
+                                    </div>
+                                }
                                 <ResultList results={this.state.results} results={this.state.results}/>
                             </div>
                         </div>
@@ -184,6 +204,13 @@ class Search extends Component {
 
 class ResultList extends Component {
 
+    constructor(props) {
+        super(props);
+
+
+
+    }
+
     render() {
         return (
             <div id={"resultSearch"}>
@@ -191,6 +218,7 @@ class ResultList extends Component {
                     <Result key={result.id} result={result} />
                 ))}
             </div>
+
         )
     }
 
