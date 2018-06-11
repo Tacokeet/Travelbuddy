@@ -267,10 +267,6 @@ class Home extends Component {
                 <FontAwesomeIcon icon={faFilter} />
             </div>
 
-            <div onClick={this.modalHandler}>
-                <p>Some Test</p>
-            </div>
-
 
             <ToggleDisplay show={this.state.show}>
             <div id={'filterMenu'}>
