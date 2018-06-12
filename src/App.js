@@ -68,7 +68,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: [],
+        categories: ['Bar','Restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
