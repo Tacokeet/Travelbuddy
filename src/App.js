@@ -56,6 +56,7 @@ class Home extends Component {
     state = {
         region_name: ' ',
         counter: 0,
+        zoom: 1,
         text: ' ',
         city: '',
         continent_name: ' ',
@@ -229,6 +230,25 @@ class Home extends Component {
 
 
 
+                 <Map
+                     latitude = {this.state.latitude}
+                     longitude = {this.state.longitude}
+                     zoom = {this.state.zoom}
+
+                  />
+
+      // let test = null;
+      //
+      // test = (
+      //     <Test
+      //         latitude = {this.state.latitude}
+      //         longitude = {this.state.longitude}
+      //         zoom = {this.state.range}
+      //     />
+      // );
+
+
+
     let viewModal = null;
       if(this.state.showModal){
           viewModal = <Modal
@@ -246,11 +266,6 @@ class Home extends Component {
           />
       }
 
-      // let viewMap = null;
-      //     viewMap = <Map
-      //         latitude = {this.state.latitude}
-      //         longitude = {this.state.longitude}
-      //     />
 
 
 
