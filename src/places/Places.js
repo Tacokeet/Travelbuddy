@@ -50,7 +50,8 @@ class Places extends Component {
                 this.state.results[index].vicinity,
                 this.state.results[index].opening_hours.open_now,
                 this.state.results[index].geometry.location.lat,
-                this.state.results[index].geometry.location.lng
+                this.state.results[index].geometry.location.lng,
+                this.state.results[index].place_id,
             )}>
                 <div className={"nameBox"}>
                     <p>{this.state.results[index].name}</p>
