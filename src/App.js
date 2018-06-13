@@ -173,7 +173,7 @@ class Home extends Component {
     };
 
 
-    modalHandler = (name, image, address, open, lat, lng) => {
+    modalHandler = (name, image, address, open, lat, lng, id) => {
         this.setState({
             showModal: true,
             modalName: name,
@@ -182,6 +182,7 @@ class Home extends Component {
             modalOpen: open,
             modalLat: lat,
             modalLng: lng,
+            modalId: id,
         })
     }
 
@@ -262,6 +263,7 @@ class Home extends Component {
                 lat = {this.state.modalLat}
                 lng = {this.state.modalLng}
                 photo = {this.state.photos}
+                id = {this.state.modalId}
                 latitude = {this.state.latitude}
                 longitude = {this.state.longitude}
                 currentLat = {this.state.latitude}

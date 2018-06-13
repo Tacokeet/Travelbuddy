@@ -12,6 +12,9 @@ class Modal extends Component {
 
     render() {
 
+        //Hier is de place ID
+        console.log(this.props.id);
+
         let open = "Closed"
         if (this.props.open) {
             open = "Open now"
