@@ -53,6 +53,7 @@ header h1 {
 	position: relative;
 	display: inline-block;
 	margin-top: 26px;
+	margin-left: 40px;
 	right: 30px;
 	cursor: pointer;
 
@@ -61,6 +62,12 @@ header h1 {
 #searchIcon {
 	font-size: 25px;
 	margin-right: 20px;
+
+}
+
+#headerName {
+	font-size: 11px;
+	margin-left: 40px;
 }
 
 .mainLogo {
@@ -78,3 +85,12 @@ a {
 #headerText {
 	float: left;
 }
+
+#showLogout {
+	display: block;
+}
+
+#hideLogout {
+	display: none;
+}
+
