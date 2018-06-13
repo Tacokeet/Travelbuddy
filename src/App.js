@@ -199,36 +199,91 @@ class Home extends Component {
 
 
 
-    render() {
-        /* loop door alle catergories in state en maak places (div's) aan*/
-        let textcategories = null
-        let checkLoader = 0;
-        textcategories = (
-            <div>
-                {this.state.categories.map((categorie,index) => {
-                    let rand = Math.floor(Math.random() * 3);
-                    if (this.state.query) {
-                        console.log("verander")
-                        return <Places
-                            categories ={categorie}
-                            key={this.state.id + index}
-                            click = {this.modalHandler}
-                            photo = {this.state.photos}
-                            index = {index}
-                            query = {this.state.query}
-                            range = {this.state.range}
-                            handlerssss = {this.modalHandler}
-                        />
-                    } else {
-                        if (checkLoader == 0) {
-                            checkLoader = 1;
-                            return <div>
-                                <img src={loader} />
-                                <h2>Please wait, we will load your preferences</h2>
-                            </div>
-                        }
-                    }
-                })}
+  render() {
+       /* loop door alle catergories in state en maak places (div's) aan*/
+      let textcategories = null
+      let checkLoader = 0;
+      textcategories = (
+          <div>
+              {this.state.categories.map((categorie,index) => {
+                  let rand = Math.floor(Math.random() * 3);
+                  if (this.state.query) {
+                      console.log("verander")
+                      return <Places
+                          categories ={categorie}
+                          key={this.state.id + index}
+                          click = {this.modalHandler}
+                          photo = {this.state.photos}
+                          index = {index}
+                          query = {this.state.query}
+                          range = {this.state.range}
+                          handlerssss = {this.modalHandler}
+                      />
+                  } else {
+                      if (checkLoader == 0) {
+                          checkLoader = 1;
+                          return <div>
+                                    <img src={loader} />
+                                    <h2>Please wait, we will load your preferences</h2>
+                          </div>
+                      }
+                  }
+              })}
+          </div>
+      );
+
+
+
+                 <Map
+                     latitude = {this.state.latitude}
+                     longitude = {this.state.longitude}
+                     zoom = {this.state.zoom}
+
+                  />
+
+      // let test = null;
+      //
+      // test = (
+      //     <Test
+      //         latitude = {this.state.latitude}
+      //         longitude = {this.state.longitude}
+      //         zoom = {this.state.range}
+      //     />
+      // );
+
+
+
+    let viewModal = null;
+      if(this.state.showModal){
+          viewModal = <Modal
+              click={this.hideModal}
+              image = {this.state.modalImage}
+              name = {this.state.modalName}
+              address={this.state.modalAddress}
+              open = {this.state.modalOpen}
+              lat = {this.state.modalLat}
+              lng = {this.state.modalLng}
+              photo = {this.state.photos}
+              latitude = {this.state.latitude}
+              longitude = {this.state.longitude}
+
+          />
+      }
+
+
+
+
+    return (
+		<main>
+
+
+			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
+                  continent_name={this.state.continent_name} country_flag={this.state.country_flag}
+                  calling_code={this.state.calling_code} region_name={this.state.region_name}
+                  country_name={this.state.country_name}/>
+
+            <div id={'filter'} onClick={this.handleClick}>
+                <FontAwesomeIcon icon={faFilter} />
             </div>
         );
 

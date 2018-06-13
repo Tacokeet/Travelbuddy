@@ -58,7 +58,7 @@ const MapWithADirectionsRenderer = compose (
 class Map extends Component {
     constructor(props) {
         super(props);
-    }
+    } 
 
     render() {
         console.log("current lat" + this.props.currLat)
