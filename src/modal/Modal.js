@@ -12,6 +12,9 @@ class Modal extends Component {
 
     render() {
 
+        //Hier is de place ID
+        console.log(this.props.id);
+
         let open = "Closed"
         if (this.props.open) {
             open = "Open now"
@@ -35,8 +38,11 @@ class Modal extends Component {
                     </div>
                     <div id={'right'}>
                         <Map
-                        lat = {this.props.lat}
-                        lng = {this.props.lng} />
+                            lat = {this.props.lat}
+                            lng = {this.props.lng}
+                            currLat = {this.props.currentLat}
+                            currLng = {this.props.currentLng}
+                        />
                     </div>
 
 
