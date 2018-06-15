@@ -2,13 +2,13 @@
     margin: auto;
     border-radius: 15px;
     width: 70%;
-    border:  1px solid #b98c00;
+    border:  1px solid #BDBDBD;
     box-shadow: 0 5px 6px #cccccc;
     padding: 16px;
-    background-color: #FF922B;
-    background: linear-gradient(#FF9F44, #FF922B);
+    background-color: #6e94a3;
+    /*background: url(../images/sevilla.jpg) no-repeat;*/
+    /*background: linear-gradient(#FF9F44, #FF922B);*/
     text-align: center;
-
 }
 
 #cityText{
