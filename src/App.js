@@ -56,6 +56,7 @@ class Home extends Component {
     state = {
         region_name: ' ',
         counter: 0,
+        zoom: 1,
         text: ' ',
         city: '',
         continent_name: ' ',
@@ -68,7 +69,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: ['Bar','Hotel','Restaurant','Bank','Bakery'],
+        categories: [],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -98,6 +99,9 @@ class Home extends Component {
                 lat: position.coords.latitude,
                 lon: position.coords.longitude
             })
+            console.log("Deze waardes: ")
+            console.log(this.state.lat)
+            console.log(this.state.lon)
         })
 
 
@@ -169,7 +173,7 @@ class Home extends Component {
     };
 
 
-    modalHandler = (name, image, address, open, lat, lng) => {
+    modalHandler = (name, image, address, open, lat, lng, id) => {
         this.setState({
             showModal: true,
             modalName: name,
@@ -177,7 +181,8 @@ class Home extends Component {
             modalAddress: address,
             modalOpen: open,
             modalLat: lat,
-            modalLng: lng
+            modalLng: lng,
+            modalId: id,
         })
     }
 
@@ -194,38 +199,111 @@ class Home extends Component {
 
 
 
-    render() {
-        /* loop door alle catergories in state en maak places (div's) aan*/
-        let textcategories = null
-        let checkLoader = 0;
-        textcategories = (
-            <div>
-                {this.state.categories.map((categorie,index) => {
-                    let rand = Math.floor(Math.random() * 3);
-                    if (this.state.query) {
-                        console.log("verander")
-                        return <Places
-                            categories ={categorie}
-                            key={this.state.id + index}
-                            click = {this.modalHandler}
-                            photo = {this.state.photos}
-                            index = {index}
-                            query = {this.state.query}
-                            range = {this.state.range}
-                            handlerssss = {this.modalHandler}
-                        />
-                    } else {
-                        if (checkLoader == 0) {
-                            checkLoader = 1;
-                            return <div>
-                                <img src={loader} />
-                                <h2>Please wait, we will load your preferences</h2>
-                            </div>
-                        }
-                    }
-                })}
+  render() {
+       /* loop door alle catergories in state en maak places (div's) aan*/
+      let textcategories = null
+      let checkLoader = 0;
+      textcategories = (
+          <div>
+              {this.state.categories.map((categorie,index) => {
+                  let rand = Math.floor(Math.random() * 3);
+                  if (this.state.query) {
+                      console.log("verander")
+                      return <Places
+                          categories ={categorie}
+                          key={this.state.id + index}
+                          click = {this.modalHandler}
+                          photo = {this.state.photos}
+                          index = {index}
+                          query = {this.state.query}
+                          range = {this.state.range}
+                          handlerssss = {this.modalHandler}
+                      />
+                  } else {
+                      if (checkLoader == 0) {
+                          checkLoader = 1;
+                          return <div>
+                                    <img src={loader} />
+                                    <h2>Please wait, we will load your preferences</h2>
+                          </div>
+                      }
+                  }
+              })}
+          </div>
+      );
+
+
+
+                 <Map
+                     latitude = {this.state.latitude}
+                     longitude = {this.state.longitude}
+                     zoom = {this.state.zoom}
+
+                  />
+
+      // let test = null;
+      //
+      // test = (
+      //     <Test
+      //         latitude = {this.state.latitude}
+      //         longitude = {this.state.longitude}
+      //         zoom = {this.state.range}
+      //     />
+      // );
+
+
+
+    let viewModal = null;
+      if(this.state.showModal){
+          viewModal = <Modal
+              click={this.hideModal}
+              image = {this.state.modalImage}
+              name = {this.state.modalName}
+              address={this.state.modalAddress}
+              open = {this.state.modalOpen}
+              lat = {this.state.modalLat}
+              lng = {this.state.modalLng}
+              photo = {this.state.photos}
+              latitude = {this.state.latitude}
+              longitude = {this.state.longitude}
+
+          />
+      }
+
+
+
+
+    return (
+		<main>
+
+
+			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
+                  continent_name={this.state.continent_name} country_flag={this.state.country_flag}
+                  calling_code={this.state.calling_code} region_name={this.state.region_name}
+                  country_name={this.state.country_name}/>
+
+            <div id={'filter'} onClick={this.handleClick}>
+                <FontAwesomeIcon icon={faFilter} />
             </div>
         );
+
+
+
+        <Map
+            latitude = {this.state.latitude}
+            longitude = {this.state.longitude}
+            zoom = {this.state.zoom}
+        />
+
+        // let test = null;
+        //
+        // test = (
+        //     <Test
+        //         latitude = {this.state.latitude}
+        //         longitude = {this.state.longitude}
+        //         zoom = {this.state.range}
+        //     />
+        // );
 
 
 
@@ -240,17 +318,14 @@ class Home extends Component {
                 lat = {this.state.modalLat}
                 lng = {this.state.modalLng}
                 photo = {this.state.photos}
+                id = {this.state.modalId}
                 latitude = {this.state.latitude}
                 longitude = {this.state.longitude}
-
+                currentLat = {this.state.latitude}
+                currentLng = {this.state.longitude}
             />
         }
 
-        // let viewMap = null;
-        //     viewMap = <Map
-        //         latitude = {this.state.latitude}
-        //         longitude = {this.state.longitude}
-        //     />
 
 
 
