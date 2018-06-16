@@ -1,36 +1,40 @@
-/* global google */
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import marker from '../images/purple.png';
-import ScriptTag from 'react-script-tag';
+/*global google*/
 
-
-
-const { compose, withProps, lifecycle } = require("recompose");
-const {
+import {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
     DirectionsRenderer,
-} = require("react-google-maps");
+} from 'react-google-maps';
 
-const MapWithADirectionsRenderer = compose(
+import  {
+    compose,
+    withProps,
+    lifecycle
+} from 'recompose';
+
+const AnyReactComponent = ({ pin }) => <img src={marker} alt={"marker"} />;
+
+const MapWithADirectionsRenderer = compose (
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100%` }} />,
-        containerElement: <div style={{ height: `400px` }} />,
+        containerElement: <div style={{ height: `300px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
     withGoogleMap,
     lifecycle({
         componentDidMount() {
-
+            let latDes = this.props.latDes;
+            let lngDes = this.props.lngDes;
             const DirectionsService = new google.maps.DirectionsService();
-
             DirectionsService.route({
-                origin: new google.maps.LatLng(41.8507300, -87.6512600),
-                destination: new google.maps.LatLng(41.8525800, -87.6514100),
+                origin: new google.maps.LatLng(this.props.latCurr, this.props.lngCurr),
+                destination: new google.maps.LatLng(this.props.latDes, this.props.lngDes),
                 travelMode: google.maps.TravelMode.DRIVING,
             }, (result, status) => {
                 if (status === google.maps.DirectionsStatus.OK) {
@@ -46,25 +50,29 @@ const MapWithADirectionsRenderer = compose(
 )(props =>
     <GoogleMap
         defaultZoom={7}
-        defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}
     >
         {props.directions && <DirectionsRenderer directions={props.directions} />}
     </GoogleMap>
 );
 
-
 class Map extends Component {
     constructor(props) {
         super(props);
-    }
-
+    } 
 
     render() {
-
+        console.log("current lat" + this.props.currLat)
+        console.log("current lat" + this.props.currLng)
         return (
-            // Important! Always set the container height explicitly
-            <div >
+            <div>
+
+                {<MapWithADirectionsRenderer latDes={this.props.lat}
+                                             lngDes={this.props.lng}
+                                             latCurr={this.props.currLat}
+                                             lngCurr={this.props.currLng}
+                />}
             </div>
+
         );
     }
 }
