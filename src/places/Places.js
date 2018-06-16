@@ -9,6 +9,9 @@ class Places extends Component {
             results: [],
             radiusResult: []
         }
+
+        console.log("AAAAAAAAAA")
+
     }
 
     baseUrl = "https://maps.googleapis.com/maps/api/place/photo?maxheight=234&maxwidth=280&photoreference=";
@@ -48,7 +51,7 @@ class Places extends Component {
                 this.state.results[index].opening_hours.open_now,
                 this.state.results[index].geometry.location.lat,
                 this.state.results[index].geometry.location.lng,
-
+                this.state.results[index].place_id,
             )}>
                 <div className={"nameBox"}>
                     <p>{this.state.results[index].name}</p>
