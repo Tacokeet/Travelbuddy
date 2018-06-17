@@ -97,7 +97,7 @@ class Preferences extends Component {
 		this.state = {
 			jsonCategories: {},
 			categories: [],
-			results: []
+			results: [],
 		}
 		
 		axios.get('/api/categories')
@@ -144,7 +144,7 @@ class Preferences extends Component {
 			<div id="preferences">
 				<h2>Preferences</h2>
 				Add preferences: 
-				<input type="text" placeholder="Museums" onChange={this.handleChange} />
+				<input type="text" placeholder="Museums" onChange={this.handleChange} value={}/>
 				<ResultList results={this.state.results} object={this.state.jsonCategories} />
 			</div>
 		);
