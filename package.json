@@ -21,11 +21,19 @@
     "react-slide-toggle": "^0.1.12",
     "react-toggle-display": "^2.2.0",
     "slick-carousel": "^1.8.1"
+    "url-parse": "^1.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "npm-watch"
+  },
+  "devDependencies": {
+    "npm-watch": "^0.3.0"
+  },
+  "watch": {
+    "build": "src/"
   }
 }

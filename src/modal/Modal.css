@@ -58,3 +58,16 @@
 .textLocation {
     color: white;
 }
+
+.voteLocation {
+	display: inline-block;
+}
+
+.favLocation {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+#heartIcon {
+	vertical-align: middle;
+}
