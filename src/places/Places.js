@@ -10,8 +10,6 @@ class Places extends Component {
             radiusResult: [],
 			rangeOld: "5000"
         }
-
-        console.log("AAAAAAAAAA")
     }
 
     baseUrl = "https://maps.googleapis.com/maps/api/place/photo?maxheight=234&maxwidth=280&photoreference=";
@@ -50,7 +48,7 @@ class Places extends Component {
     createContent = () => {
         let content = [];
         let image;
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < this.state.results.length; index++) {
             if (this.state.results[index].photos == undefined) {
                 image = places;
             } else {
@@ -79,9 +77,11 @@ class Places extends Component {
     render() {
         return (
             this.state.results.length > 1 &&
-            <div className={'placesRow'}>
+            <div className={'places'}>
                 <h3 className={'placesText'} >{this.props.categories.split('_').join(' ')}</h3>
+                <div className={'placesRow'}>
                 {this.createContent()}
+                </div>
             </div>
         )
     }

@@ -1,18 +1,21 @@
 .city {
     margin: auto;
+    opacity: 0.8;
+    margin-top: -380px;
+    margin-bottom: 5px;
     border-radius: 15px;
-    width: 70%;
-    border:  1px solid #b98c00;
+    width: 100%;
+    border:  1px solid #BDBDBD;
     box-shadow: 0 5px 6px #cccccc;
-    padding: 16px;
-    background-color: #FF922B;
-    background: linear-gradient(#FF9F44, #FF922B);
+    padding: 10px;
+    background-color: #dcdcdc;
+    /*background: linear-gradient(#FF9F44, #FF922B);*/
     text-align: center;
-
 }
 
 #cityText{
     width: 30px;
+    font-weight: bold;
     font-size: 10px;
     overflow-x: hidden; /* Hide horizontal scrollbar */
     overflow-y: scroll; /* Add vertical scrollbar */
@@ -20,9 +23,11 @@
 
 #extraInfo{
     padding-left: 0;
+    font-weight: bold;
 
 }
 #extraInfo li{
     display: inline-block;
     width: 20%;
 }
+

@@ -71,7 +71,7 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: [],
+        categories: ['Bar','Restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
@@ -222,6 +222,7 @@ class Home extends Component {
 
 
 
+
     render() {
         /* loop door alle catergories in state en maak places (div's) aan*/
         let textcategories = null
@@ -257,21 +258,22 @@ class Home extends Component {
 
 
 
+
         <Map
             latitude = {this.state.latitude}
             longitude = {this.state.longitude}
             zoom = {this.state.zoom}
         />
 
-        // let test = null;
-        //
-        // test = (
-        //     <Test
-        //         latitude = {this.state.latitude}
-        //         longitude = {this.state.longitude}
-        //         zoom = {this.state.range}
-        //     />
-        // );
+        {/*// let test = null;*/}
+        {/*//*/}
+        {/*// test = (*/}
+        {/*//     <Test*/}
+        {/*//         latitude = {this.state.latitude}*/}
+        {/*//         longitude = {this.state.longitude}*/}
+        {/*//         zoom = {this.state.range}*/}
+        {/*//     />*/}
+        {/*// );*/}
 
 
 
@@ -298,8 +300,9 @@ class Home extends Component {
 
 
         return (
+            <div>
+                <div id={'mainBackground'}></div>
             <main>
-
 
                 <City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
                       continent_name={this.state.continent_name} country_flag={this.state.country_flag}
@@ -324,7 +327,9 @@ class Home extends Component {
 
                 {viewModal}
                 {textcategories}
+                
             </main>
+            </div>
         );
     }
 }
