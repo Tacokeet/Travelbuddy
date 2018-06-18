@@ -113,7 +113,7 @@ class Home extends Component {
 				}
 				else {
 					this.setState({
-						categories: ['real_estate_agency', 'restaurant']
+						categories: ['restaurant', 'bar', 'car_dealer', 'hotel']
 					});
 				}
 			})		
