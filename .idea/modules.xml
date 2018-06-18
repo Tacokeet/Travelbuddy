@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/FlaskReact Test.iml" filepath="$PROJECT_DIR$/FlaskReact Test.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/.idea/travelbuddy.iml" filepath="$PROJECT_DIR$/.idea/travelbuddy.iml" />
->>>>>>> 17521da683602e8a53a89b33cc16a3d796ee1b12
     </modules>
   </component>
 </project>
