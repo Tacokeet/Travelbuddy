@@ -6,8 +6,6 @@ import heartIcon from '@fortawesome/fontawesome-free-solid/faHeart';
 import thumbsIcon from '@fortawesome/fontawesome-free-solid/faThumbsUp';
 import axios from 'axios';
 
-let rand = Math.floor(Math.random() * 4);
-
 class Modal extends Component {
 
     constructor(props) {
@@ -38,7 +36,8 @@ class Modal extends Component {
         return(
 
             <div id="myModal" className="modal">
-
+                {console.log("Modal image: " + this.props.image)}
+                {console.log("Modal address: " + this.props.address)}
                 <div className="modal-content">
                     <span id={'close'} onClick={this.props.click} className="close">&times;</span>
                     <div className={'left'}>
