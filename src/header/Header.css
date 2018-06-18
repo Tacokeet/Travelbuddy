@@ -19,6 +19,7 @@ header {
     position: relative;
     display: inline-block;
 	margin-top: 0px;
+    margin-right: -20px;
     right: 30px;
 	cursor: pointer;
 }
@@ -74,19 +75,21 @@ header h1 {
 
 #headerName {
 	float: right;
-	margin-right: 40px;
+	margin-right: 95px;
 	font-size: 12px;
 	margin-left: 40px;
-	margin-top: 8px;
+	margin-top: -29px;
 }
 
 .mainLogo {
 	float: left;
+	background: url(/static/media/logo1.svg) no-repeat;
+	/*background: url(../images/logo.svg) no-repeat;*/
 	margin-left: 50px;
 	margin-right: 30px;
 	width: 180px;
 	height: 110px;
-	margin-top: -23px;
+	margin-top: 7px;
 }
 
 a {
@@ -104,6 +107,12 @@ a {
 	width: 700px;
 	height: 30px;
 	border-radius: 10px;
+}
+
+#avatar {
+	float: right;
+	margin-right: 35px;
+	margin-top: 5px;
 }
 
 

@@ -7,37 +7,50 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import userIcon from '@fortawesome/fontawesome-free-solid/faCaretDown'
 import searchIcon from '@fortawesome/fontawesome-free-solid/faSearch'
 import './Header.css';
-import mainLogo from '../images/logo(1).svg';
+import mainLogo from '../images/logo.svg';
 import axios from "axios/index";
+import Gravatar from 'react-gravatar'
 
 class Header extends Component {
 
     state = {
-        name: "not logged in"
+        name: '',
+		avatar: '',
+		check: false
     }
 
     constructor(props) {
         super(props);
 
-        const url = "/api/loginCheck"
+        const avatarURL = "/api/loginEmail"
 
-        axios.get(url)
+        axios.get(avatarURL)
             .then(response => {
-                this.setState({name: response.data.username})
+                this.setState({avatar: response.data.yourEmail})
+            });
+
+
+        const userURL = "/api/loginName"
+
+        axios.get(userURL)
+            .then(response => {
+                this.setState({name: response.data.yourName})
             });
     }
+
 
 
 	render() {
 		return (
 			<header>
+                <Gravatar id={'avatar'} email={this.state.avatar} size={27} />
+                {/*<img  id={'avatar'} src={this.state.avatar} alt="avatar"/>*/}
 				<div id='topBar'>
                     < DropDown  />
-                    <h4 id="headerName" >{this.state.name}</h4>
-				</div>
 
-                <NavLink to="/">
-                    <img className={'mainLogo'} src={mainLogo} alt="mainLogo" />
+				</div>
+                <h4 id="headerName" >{this.state.name}</h4>
+                <NavLink to="/" className={'mainLogo'}>
                 </NavLink>
 
 				<div>

@@ -3,10 +3,6 @@ import './City.css';
 
 const city = (props) => {
     return (
-        <div>
-            <div id={'cityBackground'}>
-
-            </div>
 
         <div className={'city' }>
             <img src={props.country_flag} alt="country_flag" width={80} height={60} />
@@ -20,9 +16,8 @@ const city = (props) => {
                 <li>Country: {props.country_name}</li>
             </ul>
 
+        </div>
 
-        </div>
-        </div>
     )
 
 }

@@ -234,60 +234,6 @@ class Home extends Component {
 
 
 
-                 <Map
-                     latitude = {this.state.latitude}
-                     longitude = {this.state.longitude}
-                     zoom = {this.state.zoom}
-
-                  />
-
-      // let test = null;
-      //
-      // test = (
-      //     <Test
-      //         latitude = {this.state.latitude}
-      //         longitude = {this.state.longitude}
-      //         zoom = {this.state.range}
-      //     />
-      // );
-
-
-
-    let viewModal = null;
-      if(this.state.showModal){
-          viewModal = <Modal
-              click={this.hideModal}
-              image = {this.state.modalImage}
-              name = {this.state.modalName}
-              address={this.state.modalAddress}
-              open = {this.state.modalOpen}
-              lat = {this.state.modalLat}
-              lng = {this.state.modalLng}
-              photo = {this.state.photos}
-              latitude = {this.state.latitude}
-              longitude = {this.state.longitude}
-
-          />
-      }
-
-
-
-
-    return (
-		<main>
-
-
-			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
-                  continent_name={this.state.continent_name} country_flag={this.state.country_flag}
-                  calling_code={this.state.calling_code} region_name={this.state.region_name}
-                  country_name={this.state.country_name}/>
-
-            <div id={'filter'} onClick={this.handleClick}>
-                <FontAwesomeIcon icon={faFilter} />
-            </div>
-        );
-
-
 
         <Map
             latitude = {this.state.latitude}
@@ -295,15 +241,15 @@ class Home extends Component {
             zoom = {this.state.zoom}
         />
 
-        // let test = null;
-        //
-        // test = (
-        //     <Test
-        //         latitude = {this.state.latitude}
-        //         longitude = {this.state.longitude}
-        //         zoom = {this.state.range}
-        //     />
-        // );
+        {/*// let test = null;*/}
+        {/*//*/}
+        {/*// test = (*/}
+        {/*//     <Test*/}
+        {/*//         latitude = {this.state.latitude}*/}
+        {/*//         longitude = {this.state.longitude}*/}
+        {/*//         zoom = {this.state.range}*/}
+        {/*//     />*/}
+        {/*// );*/}
 
 
 
@@ -330,8 +276,9 @@ class Home extends Component {
 
 
         return (
+            <div>
+                <div id={'mainBackground'}></div>
             <main>
-
 
                 <City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
                       continent_name={this.state.continent_name} country_flag={this.state.country_flag}
@@ -357,6 +304,7 @@ class Home extends Component {
                 {viewModal}
                 {textcategories}
             </main>
+            </div>
         );
     }
 }
