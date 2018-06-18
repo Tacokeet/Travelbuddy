@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import './Search.css';
-import banner from '../images/searchBanner.png';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import xIcon from "@fortawesome/fontawesome-free-solid/faTimes";
 import loader from '../images/loader.gif';
+import axios from "axios/index";
+import ResultList from './ResultList.js';
+import CategoryList from './CategoryList.js';
+import RadiusFilter from './RadiusFilter.js';
+import Modal   from '../modal/Modal';
 
 class Search extends Component {
     constructor(props) {
@@ -11,22 +13,66 @@ class Search extends Component {
 
         this.state = {
             results: [],
+            categories: [],
             input: '',
             type: "",
             radius: "",
             language: "",
-            minPrice: "",
-            maxPrice: "",
             openNow: false,
-            rankBy: "",
             locationLng: "",
             locationLat: "",
             loading: "",
-            searchType: ""
+            searchType: "city",
+            show: false,
+            prevPage: "",
+            nextPage: "",
+            middlePage: "",
+            firstPage: false,
+            savedQuery: "",
+            checkPage: 0
         };
+
+        this.getCategories()
+
     }
 
     apikey = "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
+    proxy ="https://cors-anywhere.herokuapp.com/";
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                currentLat: position.coords.latitude,
+                currentLng: position.coords.longitude
+            })
+        })
+    }
+
+
+    handleClick = () => {
+        this.setState({
+            show: !this.state.show
+        });
+    };
+
+
+    modalHandler = (name, image, address, open, lat, lng, id) => {
+        this.setState({
+            showModal: true,
+            modalName: name,
+            modalImage: image,
+            modalAddress: address,
+            modalOpen: open,
+            modalLat: lat,
+            modalLng: lng,
+            modalId: id,
+        })
+    }
+
+
+    hideModal = () => {
+        this.setState({showModal: false})
+    };
 
     handleChange = (e) => {
         this.setState({
@@ -34,28 +80,95 @@ class Search extends Component {
         })
     }
 
+    getCategories() {
+        axios.get('/api/categories')
+            .then(result => {
+                let temp = []
+                this.setState({
+                    jsonCategories: result.data
+                })
+                for (let key in this.state.jsonCategories) {
+                    temp.push(key)
+                }
+                this.setState({
+                    categories: temp
+                })
+            });
+
+    }
+
     searchByKeyword = (e) => {
         let keyword = this.state.input.split(' ').join('+');
-        let proxy = "https://cors-anywhere.herokuapp.com/";
         let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + keyword +
-            "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
-        console.log(url)
-        fetch(proxy + url)
+            this.apikey;
+        fetch(this.proxy + url)
             .then(response => response.json())
             .then(result => {
-                this.setState({ results: result.results });
-                console.log(result.results);
+                this.setState({
+                    results: result.results,
+                    nextPage: result.next_page_token,
+                    middlePage: result.next_page_token,
+                    savedQuery: url
+                });
+                console.log(this.state.results)
+            });
+    }
+
+    getPrevPage = (e) => {
+        this.setState({
+            checkPage: this.state.checkPage - 1
+        })
+        let url;
+        if (this.state.firstPage) {
+            url = this.state.savedQuery;
+        } else {
+            url = this.state.savedQuery + "&pagetoken=" + this.state.middlePage;
+        }
+        fetch(this.proxy + url)
+            .then(response => response.json())
+            .then(result => {
+                this.setState({
+                    results: result.results,
+                    nextPage: result.next_page_token,
+                    firstPage: true,
+                });
+                console.log(this.state.results)
+            });
+    }
+
+    getNextPage = (e) => {
+        if (this.state.checkPage <= 0) {
+            this.setState({
+                firstPage: true,
+                checkPage: 1
+            })
+        } else {
+            this.setState({
+                firstPage: false,
+                checkPage: 2
+            })
+        }
+        this.setState({
+            prevPage: this.state.nextPage,
+        })
+        let url = this.state.savedQuery + "&pagetoken=" + this.state.nextPage;
+        fetch(this.proxy + url)
+            .then(response => response.json())
+            .then(result => {
+                this.setState({
+                    results: result.results,
+                    nextPage: result.next_page_token,
+                });
+                console.log(this.state.results)
             });
     }
 
     searchByPlace = (e) => {
         let keyword = this.state.input.split(' ').join('+');
-        let proxy = "https://cors-anywhere.herokuapp.com/";
         let location = "https://maps.googleapis.com/maps/api/geocode/json?address=" + keyword + this.apikey;
         let distance = "&radius=" + this.state.radius;
         let open = "&opennow=" + this.state.openNow;
         let type = "&type=" + this.state.type;
-        let rankBy = "&rankby=" + this.state.rankBy;
         this.setState({
             loading: "loading",
             results: []
@@ -70,15 +183,19 @@ class Search extends Component {
                 let specLocation = this.state.locationLat + "," + this.state.locationLng
                 let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + specLocation
                     + distance + type + open + "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
-                fetch(proxy + url)
+                fetch(this.proxy + url)
                     .then(response => response.json())
                     .then(result => {
                         this.setState({
                             loading: ""
                         })
-                        console.log(url)
-                        this.setState({ results: result.results });
-                        console.log(result.results);
+                        this.setState({
+                            results: result.results,
+                            nextPage: result.next_page_token,
+                            middlePage: result.next_page_token,
+                            savedQuery: url
+                        });
+                        console.log(this.state.results)
                     });
             });
 
@@ -89,9 +206,6 @@ class Search extends Component {
         this.setState({
             searchType: e.target.value
         })
-        if (e.target.value == "keyword") {
-
-        }
     }
 
 
@@ -104,7 +218,6 @@ class Search extends Component {
     }
 
     changeType = (e) => {
-        console.log(e.target.value)
         this.setState({
             type: e.target.value
         })
@@ -125,28 +238,38 @@ class Search extends Component {
     }
 
     changeRadius = (e) => {
-        console.log(e.target.value)
         this.setState({
             radius: e.target.value
         })
     }
 
-    changeRankBy = (e) => {
-        console.log(e.target.value)
-        this.setState({
-            rankBy: e.target.value
-        })
-    }
-
     render() {
+
+        let viewModal = null;
+        if(this.state.showModal){
+            viewModal = <Modal
+                click={this.hideModal}
+                image = {this.state.modalImage}
+                name = {this.state.modalName}
+                address={this.state.modalAddress}
+                open = {this.state.modalOpen}
+                lat = {this.state.modalLat}
+                lng = {this.state.modalLng}
+                id = {this.state.modalId}
+                currentLat = {this.state.currentLat}
+                currentLng = {this.state.currentLng}
+            />
+        }
+
+
         return (
             <div className={"data"}>
                 <div className={"searchHeader"}>
                     <div className={"col-12 search"}>
                         <h3>Zoek door TravelBuddy</h3>
                         <select onChange={this.setSearch}>
-                            <option value="keyword" >Keyword search</option>
                             <option value="city" >City search</option>
+                            <option value="keyword" >Keyword search</option>
                         </select>
                         <input type={"text"} name={"place"} onChange={this.handleChange} />
                         <button type={"submit"} name={"submit"} onClick={this.checkSearch}>Zoek</button>
@@ -154,74 +277,42 @@ class Search extends Component {
                 </div>
                 <div className={"col-12"}>
                     <div className={"searchContainer"}>
+                        {this.state.searchType == "city" &&
                         <div className={"filter"}>
                             <div className={"selection"}>
                                 <div>
                                     <p>Your selection</p>
                                     <ul className={"yourSelection"}>
                                         {this.state.type != "" &&
-                                        <li><label className={"preference"}>{this.state.type.split('_').join(' ')}</label></li>}
+                                        <li><label
+                                            className={"preference"}>{this.state.type.split('_').join(' ')}</label>
+                                        </li>}
                                         {this.state.openNow != false &&
                                         <li><label className={"preference"}>{this.state.open}</label></li>}
                                         {this.state.radius != "" &&
                                         <li><label className={"preference"}>
-                                            {this.state.radius.substring(0, this.state.radius.length - 3)} km</label></li>}
-                                        {this.state.rankBy != "" && <li><label className={"preference"}>{this.state.rankBy}</label></li>}
+                                            {this.state.radius.substring(0, this.state.radius.length - 3)} km</label>
+                                        </li>}
                                     </ul>
                                 </div>
                                 <div>
                                     <p>Type of result</p>
-                                    <ul>
-                                        <li>
-                                            <input type="radio" name={"type"} value={"restaurant"} onClick={this.changeType} />
-                                            <span>Restaurant</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name={"type"} value={"bar"} onClick={this.changeType}/>
-                                            <span>Music store</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name={"type"} value={"museum"} onClick={this.changeType} />
-                                            <span>Museum</span>
-                                        </li>
-                                    </ul>
+                                    <CategoryList categories={this.state.categories} click={this.changeType}/>
                                 </div>
                                 <div>
                                     <p>Opened</p>
                                     <ul>
                                         <li>
-                                            <input type="checkbox" onClick={this.changeOpen} checked={this.state.openNow} />
+                                            <input type="checkbox" onClick={this.changeOpen}
+                                                   checked={this.state.openNow}/>
                                             <span>Is open</span>
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
-                                    <p>Max. distance</p>
-                                    <ul>
-                                        <li>
-                                            <input type="radio" name="range"  value="5000" onChange={this.changeRadius} />
-                                            <span>5 km</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="range"  value="10000" onChange={this.changeRadius} />
-                                            <span>10 km</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="range"  value="15000" onChange={this.changeRadius} />
-                                            <span>15 km</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="range"  value="20000" onChange={this.changeRadius} />
-                                            <span>20 km</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="range"  value="25000" onChange={this.changeRadius} />
-                                            <span>25 km</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    <RadiusFilter handler={this.changeRadius} />
                             </div>
                         </div>
+                        }
                         <div className={"allResults"}>
                             {this.state.loading &&
                             <div>
@@ -229,58 +320,21 @@ class Search extends Component {
                                 <h2>Please wait, we will load your preferences</h2>
                             </div>
                             }
-                            <ResultList results={this.state.results} results={this.state.results}/>
+                            <ResultList results={this.state.results} results={this.state.results} handlerss={this.modalHandler}/>
+                            <div className={"pagination"}>
+                                {this.state.prevPage &&
+                                    <p onClick={this.getPrevPage} className={"prev"} >Show previous results</p>
+                                }
+                                {this.state.nextPage &&
+                                    <p onClick={this.getNextPage} className={"next"} >Show next results</p>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
+                {viewModal}
             </div>
         )
-    }
-}
-
-class ResultList extends Component {
-
-    constructor(props) {
-        super(props);
-
-
-
-    }
-
-    render() {
-        return (
-            <div id={"resultSearch"}>
-                {this.props.results.map((result) => (
-                    <Result key={result.id} result={result} />
-                ))}
-            </div>
-
-        )
-    }
-
-}
-
-class Result extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    baseUrl = "https://maps.googleapis.com/maps/api/place/photo?maxheight=234&maxwidth=280&photoreference=";
-    apikey = "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
-
-    render() {
-        return (
-            this.props.result.photos != null  &&
-            <div className={"singleResult"}>
-                <div className={"nameBox"}>
-                    <p>{this.props.result.name}</p>
-                </div>
-                <div className={"rating"}>{this.props.result.rating}</div>
-                {this.props.result.photos.map((element) => (
-                    <img src={this.baseUrl + element.photo_reference + this.apikey} key={element} alt={""}/>
-                ))}
-            </div>
-        );
     }
 }
 
