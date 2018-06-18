@@ -15,19 +15,18 @@ class Modal extends Component {
 		
 		this.state = {
 			voteCount: 0,
-			voted: true,
+			voted: false,
 			favorite: "Add Favorite",
 			url: "/api/likes",
 			placeId: "?placeId=" + this.props.id,
 			userId: "",
 			checkUrl: "/api/user/checkLiked",
 			loggedIn: false
-		}
+		};
 		
-		this.checkLogin()
+		this.vote = this.vote.bind(this);
 		
-		this.vote = this.vote.bind(this)
-		this.getLikes()
+		this.checkLogin();
     }
 
     render() {
@@ -82,7 +81,7 @@ class Modal extends Component {
 				axios.delete(this.state.url + this.state.placeId + this.state.userId)
 				.then(response => {
 					if(response.data['likes'] == "Error") {
-						console.log("Error")
+						console.log("Likes Error 1")
 					} else {
 						this.setState({
 							voteCount: response.data['likes']
@@ -95,7 +94,7 @@ class Modal extends Component {
 				axios.post(this.state.url + this.state.placeId + this.state.userId)
 				.then(response => {
 					if(response.data['likes'] == "Error") {
-						console.log("Error");
+						console.log("Likes Error 2");
 					} else {
 						this.setState({
 							voteCount: response.data['likes']
@@ -118,32 +117,40 @@ class Modal extends Component {
 				});			
 			});
 			
-		axios.get(this.state.checkUrl + this.state.placeId + this.state.userId)
-			.then(response => {
-				if(response.data == "Error") {
-					console.log("Error");
-				} 
-				else if(response.data == "True") {
-					document.getElementById("voteIcon").style.color = "green";
-				}
-				else {
-					document.getElementById("voteIcon").style.color = "#fff";
-				}
-			});
+		if(this.state.loggedIn) {
+			const url = this.state.checkUrl + this.state.placeId + this.state.userId;
+			axios.get(url)
+				.then(response => {
+					if(response.data == "Error") {
+						console.log("Check Liked Error");
+					} 
+					else if(response.data['check']) {
+						this.setState({
+							voted: true
+						});
+						document.getElementById("voteIcon").style.color = "green";
+					}
+					else {
+						document.getElementById("voteIcon").style.color = "#fff";
+					}
+				});
+		}
 	}
 	
 	checkLogin() {
-		const checkUrl = "/api/loginCheck";
-		axios.get(checkUrl)
+		const url = "/api/loginCheck";
+		axios.get(url)
 			.then(response => {
 				if(response.data['username']) {
+					const usr = "&userId=" + response.data['username'];
+					console.log(usr);
 					this.setState({
 						loggedIn: true,
-						userId: "&userId=" + response.data['username']
+						userId: usr
 					});
-					this.getLikes();
 				}
-			});
+			})
+			.then(() => {this.getLikes();})			
 	}
 }
 

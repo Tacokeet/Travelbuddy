@@ -9,6 +9,7 @@ import Footer from './footer/Footer';
 import Login from './user/Login';
 import Profile from './user/Profile';
 import AddEvent from './user/AddEvent';
+import EditEvent from './user/EditEvent';
 import Places from './places/Places';
 import City   from './city/City';
 import Modal   from './modal/Modal';
@@ -42,6 +43,7 @@ class App extends Component {
                     <Route path="/login" component={Login} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/addEvent" component={AddEvent} />
+					<Route path="/editEvent" component={EditEvent} />
                     <Route path="/search" component={Search} />
 
                     <Footer />
@@ -75,24 +77,48 @@ class Home extends Component {
         photos: [logo1,logo2,logo3,logo4],
         query: "",
         range: "5000",
+		userId: "",
+		loggedIn: false
     };
 
 
     componentDidMount(){
 
-        const url = "/api/user/preferences/wouter";
-
-        axios.get(url)
-            .then(response => {
-                let temp = [];
-                for (var key in response.data) {
-                    temp.push(key)
-                }
-                this.setState({
-                    categories: temp
-                })
-                console.log(this.state.categories)
-            });
+		const url = "/api/loginCheck";
+		axios.get(url)
+			.then(response => {
+				if(response.data['username']) {
+					const usr = response.data['username'];
+					this.setState({
+						loggedIn: true,
+						userId: usr
+					});
+				}
+			})
+			.then(() => {
+				if(this.state.loggedIn) {
+					console.log(this.state.userId)
+					const url = "/api/user/preferences/" + this.state.userId;
+					axios.get(url)
+						.then(response => {
+							let temp = [];
+							for (var key in response.data) {
+								temp.push(key)
+							}
+							this.setState({
+								categories: temp
+							})
+							console.log(this.state.categories)
+						});
+				}
+				else {
+					this.setState({
+						categories: ['real_estate_agency', 'restaurant']
+					});
+				}
+			})		
+	
+        
 
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
@@ -104,10 +130,7 @@ class Home extends Component {
             console.log(this.state.lon)
         })
 
-
-
-
-        var proxy  = 'https://cors-anywhere.herokuapp.com/';
+		var proxy  = 'https://cors-anywhere.herokuapp.com/';
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
                 this.setState({ continent_name: response.data.continent_name,
@@ -163,9 +186,9 @@ class Home extends Component {
 
 
             });
-
     }
-
+	
+	
     handleClick = () => {
         this.setState({
             show: !this.state.show
@@ -199,91 +222,36 @@ class Home extends Component {
 
 
 
-  render() {
-       /* loop door alle catergories in state en maak places (div's) aan*/
-      let textcategories = null
-      let checkLoader = 0;
-      textcategories = (
-          <div>
-              {this.state.categories.map((categorie,index) => {
-                  let rand = Math.floor(Math.random() * 3);
-                  if (this.state.query) {
-                      console.log("verander")
-                      return <Places
-                          categories ={categorie}
-                          key={this.state.id + index}
-                          click = {this.modalHandler}
-                          photo = {this.state.photos}
-                          index = {index}
-                          query = {this.state.query}
-                          range = {this.state.range}
-                          handlerssss = {this.modalHandler}
-                      />
-                  } else {
-                      if (checkLoader == 0) {
-                          checkLoader = 1;
-                          return <div>
-                                    <img src={loader} />
-                                    <h2>Please wait, we will load your preferences</h2>
-                          </div>
-                      }
-                  }
-              })}
-          </div>
-      );
-
-
-
-                 <Map
-                     latitude = {this.state.latitude}
-                     longitude = {this.state.longitude}
-                     zoom = {this.state.zoom}
-
-                  />
-
-      // let test = null;
-      //
-      // test = (
-      //     <Test
-      //         latitude = {this.state.latitude}
-      //         longitude = {this.state.longitude}
-      //         zoom = {this.state.range}
-      //     />
-      // );
-
-
-
-    let viewModal = null;
-      if(this.state.showModal){
-          viewModal = <Modal
-              click={this.hideModal}
-              image = {this.state.modalImage}
-              name = {this.state.modalName}
-              address={this.state.modalAddress}
-              open = {this.state.modalOpen}
-              lat = {this.state.modalLat}
-              lng = {this.state.modalLng}
-              photo = {this.state.photos}
-              latitude = {this.state.latitude}
-              longitude = {this.state.longitude}
-
-          />
-      }
-
-
-
-
-    return (
-		<main>
-
-
-			<City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
-                  continent_name={this.state.continent_name} country_flag={this.state.country_flag}
-                  calling_code={this.state.calling_code} region_name={this.state.region_name}
-                  country_name={this.state.country_name}/>
-
-            <div id={'filter'} onClick={this.handleClick}>
-                <FontAwesomeIcon icon={faFilter} />
+    render() {
+        /* loop door alle catergories in state en maak places (div's) aan*/
+        let textcategories = null
+        let checkLoader = 0;
+        textcategories = (
+            <div>
+                {this.state.categories.map((categorie,index) => {
+                    let rand = Math.floor(Math.random() * 3);
+                    if (this.state.query) {
+                        console.log("verander")
+                        return <Places
+                            categories ={categorie}
+                            key={this.state.id + index}
+                            click = {this.modalHandler}
+                            photo = {this.state.photos}
+                            index = {index}
+                            query = {this.state.query}
+                            range = {this.state.range}
+                            handlerssss = {this.modalHandler}
+                        />
+                    } else {
+                        if (checkLoader == 0) {
+                            checkLoader = 1;
+                            return <div>
+                                <img src={loader} />
+                                <h2>Please wait, we will load your preferences</h2>
+                            </div>
+                        }
+                    }
+                })}
             </div>
         );
 

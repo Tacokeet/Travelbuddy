@@ -7,20 +7,33 @@ class Places extends Component {
         super(props);
         this.state = {
             results: [],
-            radiusResult: []
+            radiusResult: [],
+			rangeOld: "5000"
         }
 
         console.log("AAAAAAAAAA")
-
     }
 
     baseUrl = "https://maps.googleapis.com/maps/api/place/photo?maxheight=234&maxwidth=280&photoreference=";
     apikey = "&key=AIzaSyDA8JeZ3hy9n1XHBBuq6ke8M9BfiACME_E";
     radius = '&radius=';
     type = '&type=';
-
-    componentDidMount = () => {
-        let proxy = "https://cors-anywhere.herokuapp.com/";
+	
+    componentDidMount() {
+		this.newQuery()
+    }
+	
+	componentDidUpdate() {
+		if (this.state.rangeOld !== this.props.range) {
+			this.newQuery();
+			this.setState({
+				rangeOld: this.props.range
+			});
+		}
+	}
+	
+	newQuery() {
+		let proxy = "https://cors-anywhere.herokuapp.com/";
         let cat = this.props.categories;
         let url = this.props.query + this.radius + this.props.range + this.type + cat + this.apikey;
         fetch(proxy + url)
@@ -31,7 +44,7 @@ class Places extends Component {
                     results: resultPlaces.results
                 })
             })
-    }
+	}
 
 
     createContent = () => {
