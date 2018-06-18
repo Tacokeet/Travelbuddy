@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import './AddEvent.css';
+import './EditEvent.css';
 import axios from 'axios';
+import URL from 'url-parse';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import fileIcon from '@fortawesome/fontawesome-free-regular/faFile';
 
-class AddEvent extends Component {
+class EditEvent extends Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = {
+			eventId: "",
 			name: "",
-			category: 4,
+			category: "",
 			description: "",
 			location: "",
 			start_date: "",
@@ -36,6 +38,33 @@ class AddEvent extends Component {
 				}
 			})
 			.then(() => {
+				var currentUrl = new URL(window.location.href, true)
+				if(currentUrl.query.id) {
+					this.setState({
+						eventId: currentUrl.query.id
+					});
+				}
+				else {
+					window.location.href = "/";
+				}
+			})
+			.then(() => {
+				axios.get("/api/user/editEvent?id=" + this.state.eventId)
+					.then(response => {
+						response = response.data;
+						this.setState({
+							name: response.name,
+							category: response.category,
+							description: response.description,
+							location: response.location,
+							start_date: response.startDate,
+							start_time: response.startTime,
+							end_date: response.endDate,
+							end_time: response.endTime
+						});
+					})
+			})
+			.then(() => {
 				axios.get("/api/categories")
 					.then(response => {
 						response = response.data;
@@ -51,6 +80,7 @@ class AddEvent extends Component {
 						});
 					})
 			});
+			
 		
 		this.handleInputChange = this.handleInputChange.bind(this);
 	}
@@ -58,18 +88,18 @@ class AddEvent extends Component {
 	render() {
 		return (
 			<main>
-				<h1>Add event</h1>
+				<h1>Edit event</h1>
 				
-				<div id="addEventWrapper">
-					<form action="/api/event" method="POST" enctype="multipart/form-data">
-						<div className="addEventRow">
-							<div className="addEventItem">
-								<label className="addEventLabel">Event name</label>
+				<div id="editEventWrapper">
+					<form action="/api/user/editEvent" method="POST" enctype="multipart/form-data">
+						<div className="editEventRow">
+							<div className="editEventItem">
+								<label className="editEventLabel">Event name</label>
 								<input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
 							</div>
 
-							<div className="addEventItem">
-								<label className="addEventLabel">Category</label>
+							<div className="editEventItem">
+								<label className="editEventLabel">Category</label>
 								<select name="category" value={this.state.category} onChange={this.handleInputChange} >
 									{this.state.categories.map((item) => (
 										<option value={this.state.jsonCategories[item]}>{item.split('_').join(' ')}</option>
@@ -78,50 +108,51 @@ class AddEvent extends Component {
 							</div>
 						</div>
 						
-						<div className="addEventRow">
-							<div className="addEventItem">
-								<label className="addEventLabel">Short event description</label>
+						<div className="editEventRow">
+							<div className="editEventItem">
+								<label className="editEventLabel">Short event description</label>
 								<textarea name="description" value={this.state.description} onChange={this.handleInputChange} />
 							</div>
-							<div className="addEventItem">
-								<label className="addEventLabel">Location</label>
+							<div className="editEventItem">
+								<label className="editEventLabel">Location</label>
 								<input name="location" type="text" value={this.state.location} onChange={this.handleInputChange} />
 							</div>
 						</div>
 
-						<div className="addEventRow">
-							<div className="addEventItem">
-								<label className="addEventLabel">Start date</label>
+						<div className="editEventRow">
+							<div className="editEventItem">
+								<label className="editEventLabel">Start date</label>
 								<input type="date" name="start_date" value={this.state.start_date} onChange={this.handleInputChange} />
 							</div>
 							
-							<div className="addEventItem">
-								<label className="addEventLabel">Start time</label>
+							<div className="editEventItem">
+								<label className="editEventLabel">Start time</label>
 								<input type="time" name="start_time" value={this.state.start_time} onChange={this.handleInputChange} />
 							</div>
 						</div>
-						<div className="addEventRow">
-							<div className="addEventItem">
-								<label className="addEventLabel">End date</label>
+						<div className="editEventRow">
+							<div className="editEventItem">
+								<label className="editEventLabel">End date</label>
 								<input type="date" name="end_date" value={this.state.end_date} onChange={this.handleInputChange} />
 							</div>
 							
-							<div className="addEventItem">
-								<label className="addEventLabel">End time</label>
+							<div className="editEventItem">
+								<label className="editEventLabel">End time</label>
 								<input type="time" name="end_time" value={this.state.end_time} onChange={this.handleInputChange} />
 							</div>
 						</div>
 						
-						<div className="addEventRow">
-							<label className="addEventLabel" id="addImageLabel">Add an image if you want:</label>
+						<div className="editEventRow">
+							<label className="editEventLabel" id="addImageLabel">Add an image if you want:</label>
 							<label for="fileUpload" id="addImageBtn"><FontAwesomeIcon icon={fileIcon}/> Select</label>
 							<input id="fileUpload" type="file" name="image" />
 						</div>
 						
 						<input type="hidden" name="owner" value={this.state.userId} onChange={this.handleInputChange}/>
+						<input type="hidden" name="eventId" value={this.state.eventId} onChange={this.handleInputChange}/>
 						
-						<div className="addEventRow">
-							<button type="submit">Submit event</button>
+						<div className="editEventRow">
+							<button type="submit">Save</button>
 						</div>
 					</form>
 				</div>
@@ -139,4 +170,4 @@ class AddEvent extends Component {
 	}
 }
 
-export default AddEvent;
+export default EditEvent;
