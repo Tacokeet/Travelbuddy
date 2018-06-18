@@ -16,8 +16,8 @@ const city = (props) => {
                 <li>Country: {props.country_name}</li>
             </ul>
 
-
         </div>
+
     )
 
 }
