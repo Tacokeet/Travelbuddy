@@ -7,7 +7,6 @@
 .singleResult {
     width: 24%;
     display: inline-block;
-    float: left;
     margin-bottom: 25px;
     position: relative;
     margin-right: 1%;
@@ -175,4 +174,8 @@ p.prev {
     margin-right: 15px;
     border-right: 1px solid #dedede;
     padding-right: 15px;
+}
+
+.allResults .singleResult {
+    float: left;
 }

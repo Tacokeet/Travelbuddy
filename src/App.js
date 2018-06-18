@@ -301,6 +301,7 @@ class Home extends Component {
 
                 {viewModal}
                 {textcategories}
+                
             </main>
         );
     }

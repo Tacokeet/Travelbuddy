@@ -144,7 +144,7 @@ class Preferences extends Component {
 			<div id="preferences">
 				<h2>Preferences</h2>
 				Add preferences: 
-				<input type="text" placeholder="Museums" onChange={this.handleChange} value={}/>
+				<input type="text" placeholder="Museums" onChange={this.handleChange}/>
 				<ResultList results={this.state.results} object={this.state.jsonCategories} />
 			</div>
 		);
