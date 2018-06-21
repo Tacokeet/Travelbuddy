@@ -9,6 +9,7 @@ import Footer from './footer/Footer';
 import Login from './user/Login';
 import Profile from './user/Profile';
 import AddEvent from './user/AddEvent';
+import EditEvent from './user/EditEvent';
 import Places from './places/Places';
 import City   from './city/City';
 import Modal   from './modal/Modal';
@@ -42,6 +43,7 @@ class App extends Component {
                     <Route path="/login" component={Login} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/addEvent" component={AddEvent} />
+					<Route path="/editEvent" component={EditEvent} />
                     <Route path="/search" component={Search} />
 
                     <Footer />
@@ -69,30 +71,54 @@ class Home extends Component {
         lat: null,
         lon: null,
         name: ' ',
-        categories: ['Bar'],
+        categories: ['Bar','Restaurant'],
         id: "hier moet unieke waarde komen",
         show: false,
         photos: [logo1,logo2,logo3,logo4],
         query: "",
         range: "5000",
+		userId: "",
+		loggedIn: false
     };
 
 
     componentDidMount(){
 
-        const url = "/api/user/preferences/wouter";
-
-        axios.get(url)
-            .then(response => {
-                let temp = [];
-                for (var key in response.data) {
-                    temp.push(key)
-                }
-                this.setState({
-                    categories: temp
-                })
-                console.log(this.state.categories)
-            });
+		const url = "/api/loginCheck";
+		axios.get(url)
+			.then(response => {
+				if(response.data['username']) {
+					const usr = response.data['username'];
+					this.setState({
+						loggedIn: true,
+						userId: usr
+					});
+				}
+			})
+			.then(() => {
+				if(this.state.loggedIn) {
+					console.log(this.state.userId)
+					const url = "/api/user/preferences/" + this.state.userId;
+					axios.get(url)
+						.then(response => {
+							let temp = [];
+							for (var key in response.data) {
+								temp.push(key)
+							}
+							this.setState({
+								categories: temp
+							})
+							console.log(this.state.categories)
+						});
+				}
+				else {
+					this.setState({
+						categories: ['real_estate_agency', 'restaurant']
+					});
+				}
+			})		
+	
+        
 
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
@@ -104,10 +130,7 @@ class Home extends Component {
             console.log(this.state.lon)
         })
 
-
-
-
-        var proxy  = 'https://cors-anywhere.herokuapp.com/';
+		var proxy  = 'https://cors-anywhere.herokuapp.com/';
         axios.get('http://api.ipstack.com/check?access_key=201a9fbb71fcb2b3195f6626795b5907')
             .then(response => {
                 this.setState({ continent_name: response.data.continent_name,
@@ -163,9 +186,9 @@ class Home extends Component {
 
 
             });
-
     }
-
+	
+	
     handleClick = () => {
         this.setState({
             show: !this.state.show
@@ -196,6 +219,7 @@ class Home extends Component {
             range: e.target.value
         })
     }
+
 
 
 
@@ -234,11 +258,22 @@ class Home extends Component {
 
 
 
+
         <Map
             latitude = {this.state.latitude}
             longitude = {this.state.longitude}
             zoom = {this.state.zoom}
         />
+
+        {/*// let test = null;*/}
+        {/*//*/}
+        {/*// test = (*/}
+        {/*//     <Test*/}
+        {/*//         latitude = {this.state.latitude}*/}
+        {/*//         longitude = {this.state.longitude}*/}
+        {/*//         zoom = {this.state.range}*/}
+        {/*//     />*/}
+        {/*// );*/}
 
 
 
@@ -265,8 +300,9 @@ class Home extends Component {
 
 
         return (
+            <div>
+                <div id={'mainBackground'}></div>
             <main>
-
 
                 <City city={this.state.city} wikitext={this.state.wikitext} name={this.state.name}
                       continent_name={this.state.continent_name} country_flag={this.state.country_flag}
@@ -291,7 +327,9 @@ class Home extends Component {
 
                 {viewModal}
                 {textcategories}
+                
             </main>
+            </div>
         );
     }
 }
