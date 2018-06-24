@@ -13,17 +13,28 @@
     "react-dom": "^16.3.2",
     "react-geolocated": "^2.4.0",
     "react-google-maps": "^9.4.5",
+    "react-gravatar": "^2.6.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-script-tag": "^1.1.2",
     "react-scripts": "^1.1.4",
+    "react-slick": "^0.23.1",
     "react-slide-toggle": "^0.1.12",
-    "react-toggle-display": "^2.2.0"
+    "react-toggle-display": "^2.2.0",
+    "slick-carousel": "^1.8.1"
+    "url-parse": "^1.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "npm-watch"
+  },
+  "devDependencies": {
+    "npm-watch": "^0.3.0"
+  },
+  "watch": {
+    "build": "src/"
   }
 }
