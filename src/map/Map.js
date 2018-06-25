@@ -90,16 +90,24 @@ class Map extends Component {
                         destination: new google.maps.LatLng(this.props.latDes, this.props.lngDes),
                         travelMode: this.props.travel,
                     }, (result, status) => {
+                        var route = result.routes[0];
+                        var distanceValue = route.legs[0].distance.value;
+                        var distanceText = route.legs[0].distance.text;
+
+
+                        console.log('Calculated Distance');
+                        console.log(distanceValue);
+                        document.getElementById("distance").innerHTML = 'Distance: ' + distanceText;
                         if (status === google.maps.DirectionsStatus.OK) {
                             this.setState({
                                 directions: result,
                             });
+
                         } else {
                             console.error(`error fetching directions ${result}`);
                         }
+
                     });
-                    console.log('ORIGIN')
-                    console.log(this.origin)
                 }
             })
 
@@ -118,6 +126,7 @@ class Map extends Component {
         console.log("current lat" + this.props.currLng)
 
 
+
         return (
             <div>
 
@@ -125,6 +134,7 @@ class Map extends Component {
                 <img onClick={this.bicyclingHandler} id="mapIcon" src={bicycleIcon} alt="bicycleIcon" />
                 <img onClick={this.walkingHandler} id="mapIcon" src={walkingIcon} alt="walkingIcon" />
                 <img onClick={this.transitHandler} id="mapIcon" src={transitIcon} alt="transitIcon" />
+                <p id={'distance'}></p>
                 <MapWithADirectionsRenderer latDes={this.props.lat}
                                              lngDes={this.props.lng}
                                              latCurr={this.props.currLat}
